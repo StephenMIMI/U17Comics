@@ -35,6 +35,9 @@
 		BC52ADC71DBA431B0006ED6E /* UIView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */; };
 		BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */; };
 		BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */; };
+		BCFDAE4D1DBF513500D79102 /* HomePageRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDAE4C1DBF513500D79102 /* HomePageRecommendView.swift */; };
+		BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDAE4E1DBF559700D79102 /* HomeGalleryCell.swift */; };
+		BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCFDAE4F1DBF559700D79102 /* HomeGalleryCell.xib */; };
 		FAF44F15A061F0A7B960468F /* Pods_U17Comics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1784FB8A3D6884240A8DA6 /* Pods_U17Comics.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,9 @@
 		BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Common.swift"; sourceTree = "<group>"; };
 		BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Common.swift"; sourceTree = "<group>"; };
 		BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Common.swift"; sourceTree = "<group>"; };
+		BCFDAE4C1DBF513500D79102 /* HomePageRecommendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageRecommendView.swift; sourceTree = "<group>"; };
+		BCFDAE4E1DBF559700D79102 /* HomeGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGalleryCell.swift; sourceTree = "<group>"; };
+		BCFDAE4F1DBF559700D79102 /* HomeGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGalleryCell.xib; sourceTree = "<group>"; };
 		EF702C369C996CBC3F37887E /* Pods-U17Comics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-U17Comics.release.xcconfig"; path = "Pods/Target Support Files/Pods-U17Comics/Pods-U17Comics.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +281,9 @@
 		BC52AD931DBA3C650006ED6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BCFDAE4C1DBF513500D79102 /* HomePageRecommendView.swift */,
+				BCFDAE4E1DBF559700D79102 /* HomeGalleryCell.swift */,
+				BCFDAE4F1DBF559700D79102 /* HomeGalleryCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -583,6 +592,7 @@
 				BC52ADB71DBA3C650006ED6E /* tabbar_mine_selected.png in Resources */,
 				BC52ADB31DBA3C650006ED6E /* tabbar_collection_selected.png in Resources */,
 				BC00127A1DBE112800E5C72A /* Controllers.json in Resources */,
+				BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */,
 				BC52ADB61DBA3C650006ED6E /* tabbar_mine_normal.png in Resources */,
 				BC52ADB41DBA3C650006ED6E /* tabbar_comic_normal.png in Resources */,
 				BC52ADB81DBA3C650006ED6E /* tabbar_Special_normal.png in Resources */,
@@ -663,10 +673,12 @@
 				BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */,
 				BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */,
 				BC52ADC51DBA3F900006ED6E /* MainTabBarController.swift in Sources */,
+				BCFDAE4D1DBF513500D79102 /* HomePageRecommendView.swift in Sources */,
 				BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */,
 				BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */,
 				BC0012391DBDF03E00E5C72A /* Const.swift in Sources */,
 				BC52ADBD1DBA3D090006ED6E /* ProfileViewController.swift in Sources */,
+				BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */,
 				BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */,
 				BC52ADC11DBA3D270006ED6E /* BookShelfViewController.swift in Sources */,
 				BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */,

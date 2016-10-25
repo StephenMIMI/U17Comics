@@ -12,15 +12,20 @@ class HomePageViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        automaticallyAdjustsScrollViewInsets = false
+        downloadRecommendData()//下载首页的推荐数据
     }
 
+    //下载首页的推荐数据
+    func downloadRecommendData() {
+        let downloader = U17Download()
+        downloader.delegate = self
+        downloader.getWithUrl(homeRecommendUrl)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
 }
 extension HomePageViewController: U17DownloadDelegate {
     //下载失败
@@ -30,8 +35,19 @@ extension HomePageViewController: U17DownloadDelegate {
     //下载成功
     func downloader(downloader: U17Download, didFinishWithData data: NSData?) {
         if let tmpData = data{
-            let str = NSString(data: tmpData, encoding: NSUTF8StringEncoding)
-            print(str!)
+            //1.json解析
+            let recommendModel = HomeRecommend.parseData(tmpData)
+            
+            //2.显示UI
+            let recommendView = HomePageRecommendView(frame: CGRectZero)
+            recommendView.model = recommendModel
+            view.addSubview(recommendView)
+            
+            //约束
+            recommendView.snp_makeConstraints(closure: { (make) in
+                make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(64, 0, 49, 0))
+            })
+            
         }else{
             print(data)
         }
