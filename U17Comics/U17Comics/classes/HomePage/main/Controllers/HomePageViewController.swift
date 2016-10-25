@@ -20,16 +20,20 @@ class HomePageViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+extension HomePageViewController: U17DownloadDelegate {
+    //下载失败
+    func downloader(downloader: U17Download, didFailWithError error: NSError) {
+        print(error)
     }
-    */
-
+    //下载成功
+    func downloader(downloader: U17Download, didFinishWithData data: NSData?) {
+        if let tmpData = data{
+            let str = NSString(data: tmpData, encoding: NSUTF8StringEncoding)
+            print(str!)
+        }else{
+            print(data)
+        }
+    }
 }

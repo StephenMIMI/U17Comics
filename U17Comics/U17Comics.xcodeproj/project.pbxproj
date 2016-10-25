@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0012391DBDF03E00E5C72A /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0012381DBDF03E00E5C72A /* Const.swift */; };
+		BC00127A1DBE112800E5C72A /* Controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = BC0012791DBE112800E5C72A /* Controllers.json */; };
+		BC00127C1DBE2B8300E5C72A /* HomeRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */; };
+		BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127D1DBE3E9500E5C72A /* U17Download.swift */; };
 		BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52AD5C1DBA34270006ED6E /* AppDelegate.swift */; };
 		BC52AD5F1DBA34270006ED6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52AD5E1DBA34270006ED6E /* ViewController.swift */; };
 		BC52AD621DBA34270006ED6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC52AD601DBA34270006ED6E /* Main.storyboard */; };
@@ -31,6 +35,7 @@
 		BC52ADC71DBA431B0006ED6E /* UIView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */; };
 		BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */; };
 		BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */; };
+		FAF44F15A061F0A7B960468F /* Pods_U17Comics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1784FB8A3D6884240A8DA6 /* Pods_U17Comics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B7CB11C31B4AD514BF0F948 /* Pods-U17Comics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-U17Comics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-U17Comics/Pods-U17Comics.debug.xcconfig"; sourceTree = "<group>"; };
+		6F1784FB8A3D6884240A8DA6 /* Pods_U17Comics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_U17Comics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC0012381DBDF03E00E5C72A /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		BC0012791DBE112800E5C72A /* Controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Controllers.json; sourceTree = "<group>"; };
+		BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommend.swift; sourceTree = "<group>"; };
+		BC00127D1DBE3E9500E5C72A /* U17Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = U17Download.swift; sourceTree = "<group>"; };
 		BC52AD591DBA34270006ED6E /* U17Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = U17Comics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC52AD5C1DBA34270006ED6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC52AD5E1DBA34270006ED6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +92,7 @@
 		BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Common.swift"; sourceTree = "<group>"; };
 		BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Common.swift"; sourceTree = "<group>"; };
 		BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Common.swift"; sourceTree = "<group>"; };
+		EF702C369C996CBC3F37887E /* Pods-U17Comics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-U17Comics.release.xcconfig"; path = "Pods/Target Support Files/Pods-U17Comics/Pods-U17Comics.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF44F15A061F0A7B960468F /* Pods_U17Comics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +121,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04ADA993B73B5A51E16D7DDC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B7CB11C31B4AD514BF0F948 /* Pods-U17Comics.debug.xcconfig */,
+				EF702C369C996CBC3F37887E /* Pods-U17Comics.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7EE458C63251D4F728DA41F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F1784FB8A3D6884240A8DA6 /* Pods_U17Comics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BC52AD501DBA34270006ED6E = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +145,8 @@
 				BC52AD701DBA34270006ED6E /* U17ComicsTests */,
 				BC52AD7B1DBA34270006ED6E /* U17ComicsUITests */,
 				BC52AD5A1DBA34270006ED6E /* Products */,
+				04ADA993B73B5A51E16D7DDC /* Pods */,
+				A7EE458C63251D4F728DA41F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,6 +267,7 @@
 		BC52AD921DBA3C650006ED6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,9 +347,12 @@
 			children = (
 				BC52ADBA1DBA3CBC0006ED6E /* BaseViewController.swift */,
 				BC52ADC41DBA3F900006ED6E /* MainTabBarController.swift */,
+				BC0012381DBDF03E00E5C72A /* Const.swift */,
 				BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */,
 				BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */,
 				BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */,
+				BC0012791DBE112800E5C72A /* Controllers.json */,
+				BC00127D1DBE3E9500E5C72A /* U17Download.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -439,9 +475,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC52AD811DBA34270006ED6E /* Build configuration list for PBXNativeTarget "U17Comics" */;
 			buildPhases = (
+				EFB63BFABFE95685F581CC55 /* [CP] Check Pods Manifest.lock */,
 				BC52AD551DBA34270006ED6E /* Sources */,
 				BC52AD561DBA34270006ED6E /* Frameworks */,
 				BC52AD571DBA34270006ED6E /* Resources */,
+				A5F52A88C9EFEBD2ED409499 /* [CP] Embed Pods Frameworks */,
+				06A37C967A41D3E40D2C5830 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -543,6 +582,7 @@
 				BC52ADB21DBA3C650006ED6E /* tabbar_collection_normal.png in Resources */,
 				BC52ADB71DBA3C650006ED6E /* tabbar_mine_selected.png in Resources */,
 				BC52ADB31DBA3C650006ED6E /* tabbar_collection_selected.png in Resources */,
+				BC00127A1DBE112800E5C72A /* Controllers.json in Resources */,
 				BC52ADB61DBA3C650006ED6E /* tabbar_mine_normal.png in Resources */,
 				BC52ADB41DBA3C650006ED6E /* tabbar_comic_normal.png in Resources */,
 				BC52ADB81DBA3C650006ED6E /* tabbar_Special_normal.png in Resources */,
@@ -566,22 +606,73 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		06A37C967A41D3E40D2C5830 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-U17Comics/Pods-U17Comics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5F52A88C9EFEBD2ED409499 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-U17Comics/Pods-U17Comics-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFB63BFABFE95685F581CC55 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BC52AD551DBA34270006ED6E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BC52AD5F1DBA34270006ED6E /* ViewController.swift in Sources */,
+				BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */,
 				BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */,
 				BC52ADC51DBA3F900006ED6E /* MainTabBarController.swift in Sources */,
 				BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */,
 				BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */,
+				BC0012391DBDF03E00E5C72A /* Const.swift in Sources */,
 				BC52ADBD1DBA3D090006ED6E /* ProfileViewController.swift in Sources */,
 				BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */,
 				BC52ADC11DBA3D270006ED6E /* BookShelfViewController.swift in Sources */,
 				BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */,
 				BC52ADBB1DBA3CBC0006ED6E /* BaseViewController.swift in Sources */,
 				BC52ADC71DBA431B0006ED6E /* UIView+Common.swift in Sources */,
+				BC00127C1DBE2B8300E5C72A /* HomeRecommend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,8 +812,10 @@
 		};
 		BC52AD821DBA34270006ED6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B7CB11C31B4AD514BF0F948 /* Pods-U17Comics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = U17Comics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-980681359.U17Comics";
@@ -732,8 +825,10 @@
 		};
 		BC52AD831DBA34270006ED6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF702C369C996CBC3F37887E /* Pods-U17Comics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = U17Comics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-980681359.U17Comics";
@@ -806,6 +901,7 @@
 				BC52AD831DBA34270006ED6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC52AD841DBA34270006ED6E /* Build configuration list for PBXNativeTarget "U17ComicsTests" */ = {
 			isa = XCConfigurationList;
@@ -814,6 +910,7 @@
 				BC52AD861DBA34270006ED6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC52AD871DBA34270006ED6E /* Build configuration list for PBXNativeTarget "U17ComicsUITests" */ = {
 			isa = XCConfigurationList;
@@ -822,6 +919,7 @@
 				BC52AD891DBA34270006ED6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
