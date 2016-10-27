@@ -10,6 +10,7 @@ import UIKit
 
 class HomeGalleryCell: UITableViewCell {
 
+    var jumpClosure: HomeJumpClosure?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -37,6 +38,13 @@ class HomeGalleryCell: UITableViewCell {
     }
     
     private func showData() {
+        //注意:滚动视图系统默认添加了一些子视图,删除子视图时要考虑一下会不会影响这些子视图
+        
+        //删除滚动视图之前的子视图
+        for sub in scrollView.subviews {
+            sub.removeFromSuperview()
+        }
+        
         let count = GalleryArray?.count//获取scrollView Image数量
 //        var tempImageArray = Array<String>()
         if count > 0 {
@@ -60,6 +68,13 @@ class HomeGalleryCell: UITableViewCell {
                 let url = NSURL(string: model.cover!)
                 tmpImageView.kf_setImageWithURL(url, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
                 containerView.addSubview(tmpImageView)
+                
+                //添加点击事件
+                tmpImageView.userInteractionEnabled = true
+                tmpImageView.tag = 200+i
+                let g = UITapGestureRecognizer(target: self, action: #selector(tapImage(_:)))
+                tmpImageView.addGestureRecognizer(g)
+                
                 //图片的约束
                 tmpImageView.snp_makeConstraints(closure: { (make) in
                     make.top.bottom.equalTo(containerView)
@@ -78,6 +93,20 @@ class HomeGalleryCell: UITableViewCell {
             })
             pageControl.numberOfPages = count!
         }
+    }
+    
+    func tapImage(g: UIGestureRecognizer) {
+        
+        let index = (g.view?.tag)! - 200
+        //获取点击的数据
+        let gallery = GalleryArray![index].ext
+        
+        if jumpClosure != nil  && gallery![0].val != nil {
+            jumpClosure!(gallery![0].val!)
+        }
+        
+        
+        
     }
     
     override func awakeFromNib() {

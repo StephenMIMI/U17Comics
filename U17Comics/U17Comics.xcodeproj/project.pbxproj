@@ -35,6 +35,11 @@
 		BC52ADC71DBA431B0006ED6E /* UIView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */; };
 		BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */; };
 		BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */; };
+		BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */; };
+		BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */; };
+		BCC1C5F81DC1FC02000B2F38 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC1C5F71DC1FC02000B2F38 /* HomeHeaderView.swift */; };
+		BCC1C5FB1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC1C5F91DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png */; };
+		BCC1C5FC1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC1C5FA1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png */; };
 		BCFDAE4D1DBF513500D79102 /* HomePageRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDAE4C1DBF513500D79102 /* HomePageRecommendView.swift */; };
 		BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDAE4E1DBF559700D79102 /* HomeGalleryCell.swift */; };
 		BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCFDAE4F1DBF559700D79102 /* HomeGalleryCell.xib */; };
@@ -95,6 +100,11 @@
 		BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Common.swift"; sourceTree = "<group>"; };
 		BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Common.swift"; sourceTree = "<group>"; };
 		BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Common.swift"; sourceTree = "<group>"; };
+		BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommendCell.swift; sourceTree = "<group>"; };
+		BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRecommendCell.xib; sourceTree = "<group>"; };
+		BCC1C5F71DC1FC02000B2F38 /* HomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		BCC1C5F91DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommendview_icon_more_5x10_@2x.png"; sourceTree = "<group>"; };
+		BCC1C5FA1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommendview_icon_more_5x10_@3x.png"; sourceTree = "<group>"; };
 		BCFDAE4C1DBF513500D79102 /* HomePageRecommendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageRecommendView.swift; sourceTree = "<group>"; };
 		BCFDAE4E1DBF559700D79102 /* HomeGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGalleryCell.swift; sourceTree = "<group>"; };
 		BCFDAE4F1DBF559700D79102 /* HomeGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGalleryCell.xib; sourceTree = "<group>"; };
@@ -284,6 +294,9 @@
 				BCFDAE4C1DBF513500D79102 /* HomePageRecommendView.swift */,
 				BCFDAE4E1DBF559700D79102 /* HomeGalleryCell.swift */,
 				BCFDAE4F1DBF559700D79102 /* HomeGalleryCell.xib */,
+				BCC1C5F71DC1FC02000B2F38 /* HomeHeaderView.swift */,
+				BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */,
+				BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,6 +404,8 @@
 		BC52AD9F1DBA3C650006ED6E /* 公共 */ = {
 			isa = PBXGroup;
 			children = (
+				BCC1C5F91DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png */,
+				BCC1C5FA1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png */,
 			);
 			path = "公共";
 			sourceTree = "<group>";
@@ -592,8 +607,11 @@
 				BC52ADB71DBA3C650006ED6E /* tabbar_mine_selected.png in Resources */,
 				BC52ADB31DBA3C650006ED6E /* tabbar_collection_selected.png in Resources */,
 				BC00127A1DBE112800E5C72A /* Controllers.json in Resources */,
+				BCC1C5FB1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png in Resources */,
+				BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */,
 				BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */,
 				BC52ADB61DBA3C650006ED6E /* tabbar_mine_normal.png in Resources */,
+				BCC1C5FC1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png in Resources */,
 				BC52ADB41DBA3C650006ED6E /* tabbar_comic_normal.png in Resources */,
 				BC52ADB81DBA3C650006ED6E /* tabbar_Special_normal.png in Resources */,
 				BC52AD621DBA34270006ED6E /* Main.storyboard in Resources */,
@@ -677,6 +695,8 @@
 				BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */,
 				BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */,
 				BC0012391DBDF03E00E5C72A /* Const.swift in Sources */,
+				BCC1C5F81DC1FC02000B2F38 /* HomeHeaderView.swift in Sources */,
+				BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */,
 				BC52ADBD1DBA3D090006ED6E /* ProfileViewController.swift in Sources */,
 				BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */,
 				BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */,

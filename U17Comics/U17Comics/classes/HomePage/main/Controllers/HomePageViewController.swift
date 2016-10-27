@@ -48,6 +48,11 @@ extension HomePageViewController: U17DownloadDelegate {
                 make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(64, 0, 49, 0))
             })
             
+            recommendView.jumpClosure = {
+                jumpUrl in
+                print(jumpUrl)
+            }
+            
         }else{
             print(data)
         }
