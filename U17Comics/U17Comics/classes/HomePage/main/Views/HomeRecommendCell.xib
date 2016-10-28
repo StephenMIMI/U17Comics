@@ -38,12 +38,6 @@
                             <constraint firstAttribute="height" constant="140" id="nzi-sc-UuT"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mge-D0-PkF" userLabel="secondImage">
-                        <rect key="frame" x="145" y="0.0" width="124" height="140"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="140" id="QuM-ba-L5l"/>
-                        </constraints>
-                    </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aru-Bn-igF" userLabel="thirdImage">
                         <rect key="frame" x="279" y="0.0" width="125" height="140"/>
                         <constraints>
@@ -104,6 +98,12 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mge-D0-PkF" userLabel="secondImage">
+                        <rect key="frame" x="145" y="0.0" width="124" height="140"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="140" id="QuM-ba-L5l"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="2fy-W9-AUS" secondAttribute="trailing" constant="10" id="3ra-HO-sHZ"/>

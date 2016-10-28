@@ -1,15 +1,23 @@
 //
-//  HomeRecommendCell.swift
+//  HomeUpdateCell.swift
 //  U17Comics
 //
-//  Created by qianfeng on 16/10/27.
+//  Created by qianfeng on 16/10/28.
 //  Copyright © 2016年 zhb. All rights reserved.
 //
 
 import UIKit
 
-class HomeRecommendCell: UITableViewCell {
+class HomeUpdateCell: UITableViewCell {
     
+    @IBAction func btnClick(sender: UIButton) {
+        let index = sender.tag-400
+        let model = listModel![index]
+        if jumpClosure != nil && model.comicId != nil {
+            jumpClosure!(model.comicId!.stringValue)
+        }
+    }
+
     var jumpClosure: HomeJumpClosure?
     
     var listModel: Array<HomeComicData>? {
@@ -17,11 +25,11 @@ class HomeRecommendCell: UITableViewCell {
             showData()
         }
     }
-
+    
     func showData() {
         let count = listModel?.count
         if count > 0 {
-            for i in 0..<3 {
+            for i in 0..<2 {
                 let model = listModel![i]
                 let tmpView = contentView.viewWithTag(100+i)
                 if tmpView?.isKindOfClass(UIImageView) == true {
@@ -41,26 +49,17 @@ class HomeRecommendCell: UITableViewCell {
                 let tmpView2 = contentView.viewWithTag(300+i)
                 if tmpView2?.isKindOfClass(UILabel) == true {
                     let descLabel = tmpView2 as! UILabel
-                    descLabel.text = "更新至"+model.cornerInfo!+"话"
+                    descLabel.text = "更新至\(model.chapterNew!)话"
                 }
             }
         }
     }
     
-    @IBAction func recommendBtnClick(sender: UIButton) {
-        let index = sender.tag-400
-        let model = listModel![index]
-        if jumpClosure != nil && model.comicId != nil {
-            jumpClosure!(model.comicId!.stringValue)
-        }
-        
-    }
-    
-    class func createRecommendCellFor(tableView: UITableView, atIndexPath indexPath: NSIndexPath, listModel: Array<HomeComicData>?) -> HomeRecommendCell {
-        let cellId = "homeRecommendCellId"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? HomeRecommendCell
+    class func createUpdateCellFor(tableView: UITableView, atIndexPath indexPath: NSIndexPath, listModel: Array<HomeComicData>?) -> HomeUpdateCell {
+        let cellId = "homeUpdateCellId"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? HomeUpdateCell
         if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed("HomeRecommendCell", owner: nil, options: nil).last as? HomeRecommendCell
+            cell = NSBundle.mainBundle().loadNibNamed("HomeUpdateCell", owner: nil, options: nil).last as? HomeUpdateCell
         }
         cell?.listModel = listModel
         return cell!

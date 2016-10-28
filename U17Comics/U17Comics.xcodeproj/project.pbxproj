@@ -11,6 +11,15 @@
 		BC00127A1DBE112800E5C72A /* Controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = BC0012791DBE112800E5C72A /* Controllers.json */; };
 		BC00127C1DBE2B8300E5C72A /* HomeRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */; };
 		BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127D1DBE3E9500E5C72A /* U17Download.swift */; };
+		BC19DD951DC34E35006C83AC /* HomeADCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19DD931DC34E35006C83AC /* HomeADCell.swift */; };
+		BC19DD961DC34E35006C83AC /* HomeADCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC19DD941DC34E35006C83AC /* HomeADCell.xib */; };
+		BC19DD991DC37477006C83AC /* freeLook.png in Resources */ = {isa = PBXBuildFile; fileRef = BC19DD971DC37477006C83AC /* freeLook.png */; };
+		BC19DD9A1DC37477006C83AC /* list_free.png in Resources */ = {isa = PBXBuildFile; fileRef = BC19DD981DC37477006C83AC /* list_free.png */; };
+		BC19DD9D1DC376C6006C83AC /* HomeUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19DD9B1DC376C6006C83AC /* HomeUpdateCell.swift */; };
+		BC19DD9E1DC376C6006C83AC /* HomeUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC19DD9C1DC376C6006C83AC /* HomeUpdateCell.xib */; };
+		BC19DDA11DC3803F006C83AC /* HomeHotNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19DD9F1DC3803F006C83AC /* HomeHotNewCell.swift */; };
+		BC19DDA21DC3803F006C83AC /* HomeHotNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC19DDA01DC3803F006C83AC /* HomeHotNewCell.xib */; };
+		BC19DDA41DC38285006C83AC /* discount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC19DDA31DC38285006C83AC /* discount@2x.png */; };
 		BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52AD5C1DBA34270006ED6E /* AppDelegate.swift */; };
 		BC52AD5F1DBA34270006ED6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52AD5E1DBA34270006ED6E /* ViewController.swift */; };
 		BC52AD621DBA34270006ED6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC52AD601DBA34270006ED6E /* Main.storyboard */; };
@@ -70,6 +79,15 @@
 		BC0012791DBE112800E5C72A /* Controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Controllers.json; sourceTree = "<group>"; };
 		BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommend.swift; sourceTree = "<group>"; };
 		BC00127D1DBE3E9500E5C72A /* U17Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = U17Download.swift; sourceTree = "<group>"; };
+		BC19DD931DC34E35006C83AC /* HomeADCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeADCell.swift; sourceTree = "<group>"; };
+		BC19DD941DC34E35006C83AC /* HomeADCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeADCell.xib; sourceTree = "<group>"; };
+		BC19DD971DC37477006C83AC /* freeLook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freeLook.png; sourceTree = "<group>"; };
+		BC19DD981DC37477006C83AC /* list_free.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_free.png; sourceTree = "<group>"; };
+		BC19DD9B1DC376C6006C83AC /* HomeUpdateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUpdateCell.swift; sourceTree = "<group>"; };
+		BC19DD9C1DC376C6006C83AC /* HomeUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpdateCell.xib; sourceTree = "<group>"; };
+		BC19DD9F1DC3803F006C83AC /* HomeHotNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHotNewCell.swift; sourceTree = "<group>"; };
+		BC19DDA01DC3803F006C83AC /* HomeHotNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHotNewCell.xib; sourceTree = "<group>"; };
+		BC19DDA31DC38285006C83AC /* discount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discount@2x.png"; sourceTree = "<group>"; };
 		BC52AD591DBA34270006ED6E /* U17Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = U17Comics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC52AD5C1DBA34270006ED6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC52AD5E1DBA34270006ED6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +315,12 @@
 				BCC1C5F71DC1FC02000B2F38 /* HomeHeaderView.swift */,
 				BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */,
 				BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */,
+				BC19DD931DC34E35006C83AC /* HomeADCell.swift */,
+				BC19DD941DC34E35006C83AC /* HomeADCell.xib */,
+				BC19DD9B1DC376C6006C83AC /* HomeUpdateCell.swift */,
+				BC19DD9C1DC376C6006C83AC /* HomeUpdateCell.xib */,
+				BC19DD9F1DC3803F006C83AC /* HomeHotNewCell.swift */,
+				BC19DDA01DC3803F006C83AC /* HomeHotNewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +480,9 @@
 		BC52ADAD1DBA3C650006ED6E /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				BC19DDA31DC38285006C83AC /* discount@2x.png */,
+				BC19DD971DC37477006C83AC /* freeLook.png */,
+				BC19DD981DC37477006C83AC /* list_free.png */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -600,17 +627,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC52AD671DBA34270006ED6E /* LaunchScreen.storyboard in Resources */,
+				BC19DDA41DC38285006C83AC /* discount@2x.png in Resources */,
 				BC52AD641DBA34270006ED6E /* Assets.xcassets in Resources */,
 				BC52ADB91DBA3C650006ED6E /* tabbar_Special_selected.png in Resources */,
+				BC19DD961DC34E35006C83AC /* HomeADCell.xib in Resources */,
+				BC19DD9A1DC37477006C83AC /* list_free.png in Resources */,
 				BC52ADB51DBA3C650006ED6E /* tabbar_comic_selected.png in Resources */,
 				BC52ADB21DBA3C650006ED6E /* tabbar_collection_normal.png in Resources */,
 				BC52ADB71DBA3C650006ED6E /* tabbar_mine_selected.png in Resources */,
 				BC52ADB31DBA3C650006ED6E /* tabbar_collection_selected.png in Resources */,
 				BC00127A1DBE112800E5C72A /* Controllers.json in Resources */,
 				BCC1C5FB1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png in Resources */,
+				BC19DD991DC37477006C83AC /* freeLook.png in Resources */,
+				BC19DDA21DC3803F006C83AC /* HomeHotNewCell.xib in Resources */,
 				BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */,
 				BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */,
 				BC52ADB61DBA3C650006ED6E /* tabbar_mine_normal.png in Resources */,
+				BC19DD9E1DC376C6006C83AC /* HomeUpdateCell.xib in Resources */,
 				BCC1C5FC1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png in Resources */,
 				BC52ADB41DBA3C650006ED6E /* tabbar_comic_normal.png in Resources */,
 				BC52ADB81DBA3C650006ED6E /* tabbar_Special_normal.png in Resources */,
@@ -689,13 +722,16 @@
 			files = (
 				BC52AD5F1DBA34270006ED6E /* ViewController.swift in Sources */,
 				BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */,
+				BC19DDA11DC3803F006C83AC /* HomeHotNewCell.swift in Sources */,
 				BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */,
 				BC52ADC51DBA3F900006ED6E /* MainTabBarController.swift in Sources */,
 				BCFDAE4D1DBF513500D79102 /* HomePageRecommendView.swift in Sources */,
 				BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */,
 				BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */,
+				BC19DD9D1DC376C6006C83AC /* HomeUpdateCell.swift in Sources */,
 				BC0012391DBDF03E00E5C72A /* Const.swift in Sources */,
 				BCC1C5F81DC1FC02000B2F38 /* HomeHeaderView.swift in Sources */,
+				BC19DD951DC34E35006C83AC /* HomeADCell.swift in Sources */,
 				BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */,
 				BC52ADBD1DBA3D090006ED6E /* ProfileViewController.swift in Sources */,
 				BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */,

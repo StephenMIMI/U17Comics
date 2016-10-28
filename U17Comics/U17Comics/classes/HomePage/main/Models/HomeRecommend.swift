@@ -98,22 +98,31 @@ class HomeComicList: NSObject {
 
 class HomeComicData: NSObject {
     var author_name: String?
+    var chapterNew: NSNumber?
     var comicId: NSNumber?
     var cornerInfo: String?
     var cover: String?
     var is_vip: NSNumber?
     var name: String?
     var short_description: String?
+    var ext: Array<HomeTextExt>?
     
     class func parseModel(json: JSON) -> HomeComicData {
         let model = HomeComicData()
         model.author_name = json["author_name"].string
+        model.chapterNew = json["chapterNew"].number
         model.comicId = json["comicId"].number
         model.cornerInfo = json["cornerInfo"].string
         model.cover = json["cover"].string
         model.is_vip = json["is_vip"].number
         model.name = json["name"].string
         model.short_description = json["short_description"].string
+        //初始化一个临时空数组
+        var tmpExtArray = Array<HomeTextExt>()
+        for (_,subjson) in json["ext"] {
+            tmpExtArray.append(HomeTextExt.parseModel(subjson))
+        }
+        model.ext = tmpExtArray
         return model
     }
 }
