@@ -106,6 +106,7 @@ class HomeComicData: NSObject {
     var name: String?
     var short_description: String?
     var ext: Array<HomeTextExt>?
+    var tags: Array<String>?
     
     class func parseModel(json: JSON) -> HomeComicData {
         let model = HomeComicData()
@@ -123,6 +124,12 @@ class HomeComicData: NSObject {
             tmpExtArray.append(HomeTextExt.parseModel(subjson))
         }
         model.ext = tmpExtArray
+        //初始化一个临时空数组
+        var tmpTags = Array<String>()
+        for (_,subjson) in json["tags"] {
+            tmpTags.append(subjson.string!)
+        }
+        model.tags = tmpTags
         return model
     }
 }

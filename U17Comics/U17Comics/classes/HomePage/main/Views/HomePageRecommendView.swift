@@ -13,6 +13,8 @@ public typealias HomeJumpClosure = (String -> Void)
 //定义首页推荐列表的类型
 public enum HomeComicType: Int {
     case Comics = 1  //漫画类型section
+    case Event = 5  //漫画活动
+    case Hot = 3    //热门漫画
 }
 
 class HomePageRecommendView: UIView {
@@ -65,9 +67,12 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
             row = 1
         }else{//解析成功后
             let listModel = model?.data?.returnData?.comicLists![section-1]
-            if listModel!.itemTitle! == "强力推荐作品" || listModel!.itemTitle! == "条漫每日更新" {
+            if listModel!.itemTitle! == "强力推荐作品" || listModel!.itemTitle! == "条漫每日更新"  || listModel!.itemTitle! == "热门新品"{
                 row = 2
-            }else {
+            }else if listModel!.itemTitle! == "排行"{
+                row = (listModel?.comics?.count)!
+            }
+            else{
                 row = 1
             }
         }
@@ -81,12 +86,14 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
             height = 140
         }else {
             let listModel = model?.data?.returnData?.comicLists![indexPath.section-1]
-            if listModel!.itemTitle! == "强力推荐作品" || listModel!.itemTitle! == "人气推荐作品" || listModel!.itemTitle! == "今日更新" || listModel!.itemTitle! == "订阅漫画" {
+            if listModel!.itemTitle! == "强力推荐作品" || listModel!.itemTitle! == "人气推荐作品" || listModel!.itemTitle! == "今日更新" || listModel!.itemTitle! == "订阅漫画" || (listModel!.itemTitle! == "热门新品" && indexPath.row == 1) || listModel!.itemTitle! == "VIP会员漫画" {
                 height = 180
-            }else if listModel!.itemTitle! == "不知道什么鬼" {
-                height = 80
-            }else if listModel!.itemTitle! == "条漫每日更新" {
+            }else if listModel!.itemTitle! == "不知道什么鬼" || listModel!.itemTitle! == "每日限免" || listModel!.itemTitle! == "排行" {
+                height = 90
+            }else if listModel!.itemTitle! == "条漫每日更新" || listModel!.itemTitle! == "完结漫画" {
                 height = 140
+            }else if (listModel!.itemTitle! == "热门新品" && indexPath.row == 0) {
+                height = 120
             }
         }
         return height
@@ -103,17 +110,13 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
             let listModel = model?.data?.returnData?.comicLists![indexPath.section-1]
             if listModel!.itemTitle! == "强力推荐作品" {
                 //人气推荐作品，显示2行，特殊处理
-                let comicsModel = model?.data?.returnData?.comicLists![indexPath.section-1].comics
                 //将数据分割成3个一组
-                var realModel = Array<HomeComicData>()
-                for i in indexPath.row*3..<indexPath.row*3+3 {
-                    let tmpValue = comicsModel![i]
-                    realModel.append(tmpValue)
-                }
-                let cell = HomeRecommendCell.createRecommendCellFor(tableView, atIndexPath: indexPath, listModel: realModel)
+                let range = NSMakeRange(indexPath.row*3, 3)
+                let array = NSArray(array: (listModel?.comics)!).subarrayWithRange(range) as! Array<HomeComicData>
+                let cell = HomeRecommendCell.createRecommendCellFor(tableView, atIndexPath: indexPath, listModel: array)
                 cell.jumpClosure = jumpClosure
                 return cell
-            }else if listModel!.itemTitle! == "人气推荐作品" || listModel!.itemTitle! == "今日更新" || listModel!.itemTitle! == "订阅漫画" {//返回人气推荐作品cell
+            }else if listModel!.itemTitle! == "人气推荐作品" || listModel!.itemTitle! == "今日更新" || listModel!.itemTitle! == "订阅漫画" || listModel!.itemTitle! == "VIP会员漫画" {//返回人气推荐作品cell
                 let cell = HomeRecommendCell.createRecommendCellFor(tableView, atIndexPath: indexPath, listModel: listModel?.comics)
                 cell.jumpClosure = jumpClosure
                 return cell
@@ -123,14 +126,35 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }else if listModel!.itemTitle! == "条漫每日更新" {
                 //人气推荐作品，显示2行，特殊处理
-                let comicsModel = model?.data?.returnData?.comicLists![indexPath.section-1].comics
                 //将数据分割成2个一组
-                var realModel = Array<HomeComicData>()
-                for i in indexPath.row*2..<indexPath.row*2+2 {
-                    let tmpValue = comicsModel![i]
-                    realModel.append(tmpValue)
-                }
-                let cell = HomeUpdateCell.createUpdateCellFor(tableView, atIndexPath: indexPath, listModel: realModel)
+                let range = NSMakeRange(indexPath.row*2, 2)
+                let array = NSArray(array: (listModel?.comics)!).subarrayWithRange(range) as! Array<HomeComicData>
+                let cell = HomeUpdateCell.createUpdateCellFor(tableView, atIndexPath: indexPath, listModel: array)
+                cell.jumpClosure = jumpClosure
+                return cell
+            }else if (listModel!.itemTitle! == "热门新品" && indexPath.row == 0) {
+                let cell = HomeHotNewCell.createHotNewCellFor(tableView, atIndexPath: indexPath, listModel: listModel?.comics![indexPath.row])
+                cell.jumpClosure = jumpClosure
+                return cell
+            }else if (listModel!.itemTitle! == "热门新品" && indexPath.row == 1) {
+                //热门新品有两个不同的cell，需要注意数据的传递
+                let range = NSMakeRange(1, 3)
+                let array = NSArray(array: (listModel?.comics)!).subarrayWithRange(range) as! Array<HomeComicData>
+                let cell = HomeRecommendCell.createRecommendCellFor(tableView, atIndexPath: indexPath, listModel: array)
+                cell.jumpClosure = jumpClosure
+                return cell
+            }else if listModel?.itemTitle! == "每日限免" {
+                let cell = HomeLimitCell.createLimitCellFor(tableView, atIndexPath: indexPath, listModel: listModel?.comics)
+                cell.jumpClosure = jumpClosure
+                return cell
+            }else if listModel?.itemTitle! == "完结漫画" {
+                let cell = HomeUpdateCell.createUpdateCellFor(tableView, atIndexPath: indexPath, listModel: listModel?.comics)
+                cell.jumpClosure = jumpClosure
+                return cell
+            }else if listModel?.itemTitle! == "排行" {
+                let range = NSMakeRange(indexPath.row*1, 1)
+                let array = NSArray(array: (listModel?.comics)!).subarrayWithRange(range) as! Array<HomeComicData>
+                let cell = HomeRankCell.createRankCellFor(tableView, atIndexPath: indexPath, listModel: array)
                 cell.jumpClosure = jumpClosure
                 return cell
             }

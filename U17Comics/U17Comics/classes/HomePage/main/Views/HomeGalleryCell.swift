@@ -66,7 +66,7 @@ class HomeGalleryCell: UITableViewCell {
                 //创建图片
                 let tmpImageView = UIImageView()
                 let url = NSURL(string: model.cover!)
-                tmpImageView.kf_setImageWithURL(url, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+                tmpImageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
                 containerView.addSubview(tmpImageView)
                 
                 //添加点击事件

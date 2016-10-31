@@ -11,6 +11,14 @@
 		BC00127A1DBE112800E5C72A /* Controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = BC0012791DBE112800E5C72A /* Controllers.json */; };
 		BC00127C1DBE2B8300E5C72A /* HomeRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */; };
 		BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127D1DBE3E9500E5C72A /* U17Download.swift */; };
+		BC03074B1DC732CD00D11E59 /* 120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC03074A1DC732CD00D11E59 /* 120@2x.png */; };
+		BC03074E1DC73E8300D11E59 /* HomeLimitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC03074C1DC73E8300D11E59 /* HomeLimitCell.swift */; };
+		BC03074F1DC73E8300D11E59 /* HomeLimitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC03074D1DC73E8300D11E59 /* HomeLimitCell.xib */; };
+		BC0307511DC741E200D11E59 /* u17product_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0307501DC741E200D11E59 /* u17product_button.png */; };
+		BC0307541DC7485800D11E59 /* HomeRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0307521DC7485800D11E59 /* HomeRankCell.swift */; };
+		BC0307551DC7485800D11E59 /* HomeRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC0307531DC7485800D11E59 /* HomeRankCell.xib */; };
+		BC0307571DC7777900D11E59 /* recommend_comic_default_91x115_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0307561DC7777900D11E59 /* recommend_comic_default_91x115_@2x.png */; };
+		BC0307591DC7778000D11E59 /* recommend_comic_default_91x115_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0307581DC7778000D11E59 /* recommend_comic_default_91x115_@3x.png */; };
 		BC19DD951DC34E35006C83AC /* HomeADCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19DD931DC34E35006C83AC /* HomeADCell.swift */; };
 		BC19DD961DC34E35006C83AC /* HomeADCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC19DD941DC34E35006C83AC /* HomeADCell.xib */; };
 		BC19DD991DC37477006C83AC /* freeLook.png in Resources */ = {isa = PBXBuildFile; fileRef = BC19DD971DC37477006C83AC /* freeLook.png */; };
@@ -79,6 +87,14 @@
 		BC0012791DBE112800E5C72A /* Controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Controllers.json; sourceTree = "<group>"; };
 		BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommend.swift; sourceTree = "<group>"; };
 		BC00127D1DBE3E9500E5C72A /* U17Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = U17Download.swift; sourceTree = "<group>"; };
+		BC03074A1DC732CD00D11E59 /* 120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "120@2x.png"; sourceTree = "<group>"; };
+		BC03074C1DC73E8300D11E59 /* HomeLimitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLimitCell.swift; sourceTree = "<group>"; };
+		BC03074D1DC73E8300D11E59 /* HomeLimitCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeLimitCell.xib; sourceTree = "<group>"; };
+		BC0307501DC741E200D11E59 /* u17product_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = u17product_button.png; sourceTree = "<group>"; };
+		BC0307521DC7485800D11E59 /* HomeRankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRankCell.swift; sourceTree = "<group>"; };
+		BC0307531DC7485800D11E59 /* HomeRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRankCell.xib; sourceTree = "<group>"; };
+		BC0307561DC7777900D11E59 /* recommend_comic_default_91x115_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommend_comic_default_91x115_@2x.png"; sourceTree = "<group>"; };
+		BC0307581DC7778000D11E59 /* recommend_comic_default_91x115_@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommend_comic_default_91x115_@3x.png"; sourceTree = "<group>"; };
 		BC19DD931DC34E35006C83AC /* HomeADCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeADCell.swift; sourceTree = "<group>"; };
 		BC19DD941DC34E35006C83AC /* HomeADCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeADCell.xib; sourceTree = "<group>"; };
 		BC19DD971DC37477006C83AC /* freeLook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freeLook.png; sourceTree = "<group>"; };
@@ -321,6 +337,10 @@
 				BC19DD9C1DC376C6006C83AC /* HomeUpdateCell.xib */,
 				BC19DD9F1DC3803F006C83AC /* HomeHotNewCell.swift */,
 				BC19DDA01DC3803F006C83AC /* HomeHotNewCell.xib */,
+				BC03074C1DC73E8300D11E59 /* HomeLimitCell.swift */,
+				BC03074D1DC73E8300D11E59 /* HomeLimitCell.xib */,
+				BC0307521DC7485800D11E59 /* HomeRankCell.swift */,
+				BC0307531DC7485800D11E59 /* HomeRankCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,9 +500,13 @@
 		BC52ADAD1DBA3C650006ED6E /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				BC0307501DC741E200D11E59 /* u17product_button.png */,
+				BC03074A1DC732CD00D11E59 /* 120@2x.png */,
 				BC19DDA31DC38285006C83AC /* discount@2x.png */,
 				BC19DD971DC37477006C83AC /* freeLook.png */,
 				BC19DD981DC37477006C83AC /* list_free.png */,
+				BC0307581DC7778000D11E59 /* recommend_comic_default_91x115_@3x.png */,
+				BC0307561DC7777900D11E59 /* recommend_comic_default_91x115_@2x.png */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -626,21 +650,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0307551DC7485800D11E59 /* HomeRankCell.xib in Resources */,
 				BC52AD671DBA34270006ED6E /* LaunchScreen.storyboard in Resources */,
 				BC19DDA41DC38285006C83AC /* discount@2x.png in Resources */,
 				BC52AD641DBA34270006ED6E /* Assets.xcassets in Resources */,
+				BC0307511DC741E200D11E59 /* u17product_button.png in Resources */,
 				BC52ADB91DBA3C650006ED6E /* tabbar_Special_selected.png in Resources */,
 				BC19DD961DC34E35006C83AC /* HomeADCell.xib in Resources */,
 				BC19DD9A1DC37477006C83AC /* list_free.png in Resources */,
 				BC52ADB51DBA3C650006ED6E /* tabbar_comic_selected.png in Resources */,
 				BC52ADB21DBA3C650006ED6E /* tabbar_collection_normal.png in Resources */,
+				BC03074B1DC732CD00D11E59 /* 120@2x.png in Resources */,
 				BC52ADB71DBA3C650006ED6E /* tabbar_mine_selected.png in Resources */,
+				BC03074F1DC73E8300D11E59 /* HomeLimitCell.xib in Resources */,
 				BC52ADB31DBA3C650006ED6E /* tabbar_collection_selected.png in Resources */,
 				BC00127A1DBE112800E5C72A /* Controllers.json in Resources */,
+				BC0307591DC7778000D11E59 /* recommend_comic_default_91x115_@3x.png in Resources */,
 				BCC1C5FB1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png in Resources */,
 				BC19DD991DC37477006C83AC /* freeLook.png in Resources */,
 				BC19DDA21DC3803F006C83AC /* HomeHotNewCell.xib in Resources */,
 				BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */,
+				BC0307571DC7777900D11E59 /* recommend_comic_default_91x115_@2x.png in Resources */,
 				BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */,
 				BC52ADB61DBA3C650006ED6E /* tabbar_mine_normal.png in Resources */,
 				BC19DD9E1DC376C6006C83AC /* HomeUpdateCell.xib in Resources */,
@@ -729,7 +759,9 @@
 				BC52AD5D1DBA34270006ED6E /* AppDelegate.swift in Sources */,
 				BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */,
 				BC19DD9D1DC376C6006C83AC /* HomeUpdateCell.swift in Sources */,
+				BC0307541DC7485800D11E59 /* HomeRankCell.swift in Sources */,
 				BC0012391DBDF03E00E5C72A /* Const.swift in Sources */,
+				BC03074E1DC73E8300D11E59 /* HomeLimitCell.swift in Sources */,
 				BCC1C5F81DC1FC02000B2F38 /* HomeHeaderView.swift in Sources */,
 				BC19DD951DC34E35006C83AC /* HomeADCell.swift in Sources */,
 				BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */,

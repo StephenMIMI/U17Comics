@@ -27,7 +27,7 @@ class HomeRecommendCell: UITableViewCell {
                 if tmpView?.isKindOfClass(UIImageView) == true {
                     let imageView = tmpView as! UIImageView
                     let url = NSURL(string: model.cover!)
-                    imageView.kf_setImageWithURL(url)//设置图片
+                    imageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)//设置图片
                 }
                 
                 //设置漫画名字

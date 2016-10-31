@@ -15,18 +15,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nRS-PH-CnH">
-                        <rect key="frame" x="212" y="0.0" width="192" height="79"/>
+                        <rect key="frame" x="212" y="0.0" width="192" height="69"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qbj-H5-e9T">
-                        <rect key="frame" x="10" y="0.0" width="192" height="79"/>
+                        <rect key="frame" x="10" y="0.0" width="192" height="69"/>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nRS-PH-CnH" firstAttribute="leading" secondItem="Qbj-H5-e9T" secondAttribute="trailing" constant="10" id="3EV-Qt-UUa"/>
-                    <constraint firstAttribute="bottom" secondItem="Qbj-H5-e9T" secondAttribute="bottom" id="SgR-Jt-wub"/>
+                    <constraint firstAttribute="bottom" secondItem="Qbj-H5-e9T" secondAttribute="bottom" constant="10" id="SgR-Jt-wub"/>
                     <constraint firstItem="Qbj-H5-e9T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cxa-H8-APW"/>
                     <constraint firstItem="Qbj-H5-e9T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hAC-sf-AWa"/>
-                    <constraint firstAttribute="bottom" secondItem="nRS-PH-CnH" secondAttribute="bottom" id="qME-0h-Lvv"/>
+                    <constraint firstAttribute="bottom" secondItem="nRS-PH-CnH" secondAttribute="bottom" constant="10" id="qME-0h-Lvv"/>
                     <constraint firstAttribute="trailing" secondItem="nRS-PH-CnH" secondAttribute="trailing" constant="10" id="sWD-2X-sEH"/>
                     <constraint firstItem="nRS-PH-CnH" firstAttribute="width" secondItem="Qbj-H5-e9T" secondAttribute="width" id="su4-iv-93y"/>
                     <constraint firstItem="nRS-PH-CnH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="v9M-eD-gDJ"/>

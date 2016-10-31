@@ -23,6 +23,7 @@ class HomeHeaderView: UIView {
     private var imageView: UIImageView?//头部视图图片
     private var titleLabel: UILabel?//头部视图标题
     private var moreLabel: UILabel?//头部视图跳转提示文字
+    private var moreIcon: UIImageView?
     
     //左右的间距
     private var space: CGFloat = 10
@@ -41,7 +42,6 @@ class HomeHeaderView: UIView {
         
         imageView = UIImageView()
         imageView?.contentMode = .ScaleAspectFit
-//        imageView?.clipsToBounds = true
         bgView!.addSubview(imageView!)
         imageView!.snp_makeConstraints { (make) in
             make.left.equalTo(bgView!).offset(5)
@@ -54,39 +54,6 @@ class HomeHeaderView: UIView {
         
         moreLabel = UILabel.createLabel(nil, textAlignment: .Right, font: UIFont.systemFontOfSize(12))
         bgView!.addSubview(moreLabel!)
-
-        //排行和每日限免的右侧视图不同,暂无解决方案
-        if listModel?.itemTitle == "每日限免" {
-            let moreIcon = UIImageView(image: UIImage(named: "freeLook"))
-            moreIcon.contentMode = .ScaleAspectFill
-            moreIcon.clipsToBounds = true
-            bgView!.addSubview(moreIcon)
-            moreIcon.snp_makeConstraints { (make) in
-                make.centerY.equalTo(bgView!)
-                make.right.equalTo(bgView!).offset(-10)
-                make.width.equalTo(11)
-                make.height.equalTo(15)//头部更多icon大小11x21
-            }
-        }else if listModel?.itemTitle == "排行" {
-        
-        }else {
-            let moreIcon = UIImageView(image: UIImage(named: "recommendview_icon_more_5x10_"))
-            moreIcon.contentMode = .ScaleAspectFill
-            moreIcon.clipsToBounds = true
-            bgView!.addSubview(moreIcon)
-            moreIcon.snp_makeConstraints { (make) in
-                make.centerY.equalTo(bgView!)
-                make.right.equalTo(bgView!).offset(-10)
-                make.width.equalTo(11)
-                make.height.equalTo(15)//头部更多icon大小11x21
-            }
-            
-            moreLabel?.snp_makeConstraints(closure: { (make) in
-                make.right.equalTo(moreIcon.snp_left)
-                make.top.bottom.equalTo(bgView!)
-                make.width.equalTo(50)//给了更多label 50的宽度
-            })
-        }
 
         let g = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         bgView!.addGestureRecognizer(g)
@@ -121,6 +88,39 @@ class HomeHeaderView: UIView {
             moreLabel?.text = nil
         }else {
             moreLabel?.text = model.description1
+        }
+        
+        //排行和每日限免的右侧视图不同,init的时候listModel为nil
+        if listModel?.itemTitle == "每日限免" {
+            moreIcon = UIImageView(image: UIImage(named: "freeLook"))
+            moreIcon!.contentMode = .ScaleAspectFill
+            moreIcon!.clipsToBounds = true
+            bgView!.addSubview(moreIcon!)
+            moreIcon!.snp_makeConstraints { (make) in
+                make.centerY.equalTo(bgView!)
+                make.right.equalTo(bgView!).offset(-10)
+                make.width.equalTo(50)
+                make.height.equalTo(15)//头部更多icon大小11x21
+            }
+        }else if listModel?.itemTitle == "排行" {
+            moreIcon?.hidden = true
+        }else {
+            moreIcon = UIImageView(image: UIImage(named: "recommendview_icon_more_5x10_"))
+            moreIcon!.contentMode = .ScaleAspectFill
+            moreIcon!.clipsToBounds = true
+            bgView!.addSubview(moreIcon!)
+            moreIcon!.snp_makeConstraints { (make) in
+                make.centerY.equalTo(bgView!)
+                make.right.equalTo(bgView!).offset(-10)
+                make.width.equalTo(11)
+                make.height.equalTo(15)//头部更多icon大小11x21
+            }
+            
+            moreLabel?.snp_makeConstraints(closure: { (make) in
+                make.right.equalTo(moreIcon!.snp_left)
+                make.top.bottom.equalTo(bgView!)
+                make.width.equalTo(50)//给了更多label 50的宽度
+            })
         }
     }
     

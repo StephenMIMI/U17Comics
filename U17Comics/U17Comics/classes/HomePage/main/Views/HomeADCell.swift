@@ -33,13 +33,13 @@ class HomeADCell: UITableViewCell {
                 if i == 0 {
                     //接受用户点击
                     firstADImage.userInteractionEnabled = true
-                    firstADImage.kf_setImageWithURL(url)//设置图片
+                    firstADImage.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)//设置图片
                     let g = UITapGestureRecognizer(target: self, action: #selector(firstTapAction))
                     firstADImage.addGestureRecognizer(g)
                 }else {
                     //接受用户点击
                     secondADImage.userInteractionEnabled = true
-                    secondADImage.kf_setImageWithURL(url)//设置图片
+                    secondADImage.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)//设置图片
                     let g = UITapGestureRecognizer(target: self, action: #selector(secondTapAction))
                     secondADImage.addGestureRecognizer(g)
                 }

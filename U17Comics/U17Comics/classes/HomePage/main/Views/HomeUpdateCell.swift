@@ -35,7 +35,7 @@ class HomeUpdateCell: UITableViewCell {
                 if tmpView?.isKindOfClass(UIImageView) == true {
                     let imageView = tmpView as! UIImageView
                     let url = NSURL(string: model.cover!)
-                    imageView.kf_setImageWithURL(url)//设置图片
+                    imageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)//设置图片
                 }
                 
                 //设置漫画名字
@@ -49,7 +49,11 @@ class HomeUpdateCell: UITableViewCell {
                 let tmpView2 = contentView.viewWithTag(300+i)
                 if tmpView2?.isKindOfClass(UILabel) == true {
                     let descLabel = tmpView2 as! UILabel
-                    descLabel.text = "更新至\(model.chapterNew!)话"
+                    if model.chapterNew != nil {
+                        descLabel.text = "更新至\(model.chapterNew!)话"
+                    }else {
+                        descLabel.text = "已完结"
+                    }
                 }
             }
         }
