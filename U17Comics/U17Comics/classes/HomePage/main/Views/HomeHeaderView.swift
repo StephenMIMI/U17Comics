@@ -54,7 +54,6 @@ class HomeHeaderView: UIView {
         
         moreLabel = UILabel.createLabel(nil, textAlignment: .Right, font: UIFont.systemFontOfSize(12))
         bgView!.addSubview(moreLabel!)
-
         let g = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         bgView!.addGestureRecognizer(g)
     }

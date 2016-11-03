@@ -103,7 +103,7 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == 0 {
             //头部滚动视图
-            let cell = HomeGalleryCell.createGalleryCell(tableView, indexPath: indexPath, galleryArray: model!.data!.returnData!.galleryItems)
+            let cell = HomeGalleryCell.createGalleryCell(tableView, indexPath: indexPath, galleryArray: model?.data?.returnData?.galleryItems)
             cell.jumpClosure = jumpClosure
             return cell
         }else {
@@ -170,6 +170,10 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
                 recommendHeaderView.listModel = listModel
                 recommendHeaderView.jumpClosure = jumpClosure
                 return recommendHeaderView
+            } else if listModel!.itemTitle! == "排行" {
+                let recommendHeaderView = HomeHeaderView(frame: CGRectMake(0,0,screenWidth,54))
+                recommendHeaderView.listModel = listModel
+                return recommendHeaderView
             } else {
                 let recommendHeaderView = HomeHeaderView(frame: CGRectMake(0,0,screenWidth,54))
                 recommendHeaderView.listModel = listModel
@@ -192,5 +196,20 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return height
+    }
+    
+    //防止cell点击高亮
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    //去掉UITableView的粘滞性
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let height: CGFloat = 54
+        if scrollView.contentOffset.y >= height {
+            scrollView.contentInset = UIEdgeInsetsMake(-height, 0, 0, 0)
+        }else if scrollView.contentOffset.y > 0 {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+        }
     }
 }

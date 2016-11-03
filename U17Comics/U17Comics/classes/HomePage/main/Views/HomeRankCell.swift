@@ -17,7 +17,6 @@ class HomeRankCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     
     var leftRankLabel: UILabel!//定义一个显示排行的label
-    var rankStr:String = ""
     var indexPath: NSIndexPath?
     var jumpClosure: HomeJumpClosure?
     var listModel: Array<HomeComicData>? {
@@ -48,6 +47,7 @@ class HomeRankCell: UITableViewCell {
             if model.name != nil {
                 nameLabel.text = model.name
             }
+            var rankStr:String = ""
             if model.tags != nil {
                 for i in 0..<model.tags!.count {
                     if i == 0 {
@@ -80,7 +80,8 @@ class HomeRankCell: UITableViewCell {
         if listModel!.count > 0 {
             let model = listModel![0]
             if model.comicId != nil && jumpClosure != nil {
-                jumpClosure!((model.comicId?.stringValue)!)
+                let tmpUrl = comicsDetailUrl+"\(model.comicId!)"
+                jumpClosure!(tmpUrl)
             }
         }
     }

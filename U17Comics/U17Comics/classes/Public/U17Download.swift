@@ -16,8 +16,27 @@ protocol U17DownloadDelegate: NSObjectProtocol {
     func downloader(downloader: U17Download, didFinishWithData data: NSData?)
 }
 
+enum HomeDownloadType: Int {
+    case Normal = 0
+    case HomeRecommend  //首页推荐
+    case HomeVIP        //首页VIP
+    case HomeSubscribe //首页分类
+    case HomeRank       //首页排行
+    case RankTicket
+    case RankClick
+    case RankComment
+    case RankNew
+    case MoreComic   //漫画更多
+    case ComicDetail
+}
+
+
 class U17Download: NSObject {
     weak var delegate: U17DownloadDelegate?
+    
+    //下载的类型
+    var downloadType: HomeDownloadType = HomeDownloadType.Normal
+    
     //GET请求
     func getWithUrl(urlString: String) {
         Alamofire.request(.GET, urlString).responseData { (response) in
