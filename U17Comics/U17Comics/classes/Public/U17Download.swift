@@ -22,12 +22,12 @@ enum HomeDownloadType: Int {
     case HomeVIP        //首页VIP
     case HomeSubscribe //首页分类
     case HomeRank       //首页排行
-    case RankTicket
-    case RankClick
-    case RankComment
-    case RankNew
+    case RankTicket     //排行月票
+    case RankClick      //排行点击
+    case RankComment    //排行评论
+    case RankNew        //排行新作
     case MoreComic   //漫画更多
-    case ComicDetail
+    case ComicDetail    //漫画详情
 }
 
 

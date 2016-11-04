@@ -80,6 +80,18 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    func showTabBar() {
+        UIView.animateWithDuration(0.25) { [weak self] in
+            self!.bgView?.hidden = false
+        }
+    }
+    
+    func hideTabBar() {
+        UIView.animateWithDuration(0.25) { [weak self] in
+            self!.bgView?.hidden = true
+        }
+    }
+    
     func btnClick(curBtn: UIButton) {
         let index = curBtn.tag-100
         //1.1 获取取消选中之前的按钮

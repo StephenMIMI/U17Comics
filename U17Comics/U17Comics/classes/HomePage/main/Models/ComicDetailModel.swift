@@ -95,7 +95,7 @@ class ComicData: NSObject {
     var comic_id: String?
     var cover: String?
     var description1: String?
-    var is_vip: String?
+    var is_vip: NSNumber?
     var last_update_time: NSNumber?
     var last_update_week: String?
     var name: String?
@@ -115,7 +115,7 @@ class ComicData: NSObject {
         model.comic_id = json["comic_id"].string
         model.cover = json["cover"].string
         model.description1 = json["description"].string
-        model.is_vip = json["is_vip"].string
+        model.is_vip = json["is_vip"].number
         model.last_update_time = json["last_update_time"].number
         model.last_update_week = json["last_update_week"].string
         model.name = json["name"].string

@@ -10,7 +10,7 @@ import UIKit
 
 class MoreComicsView: NSObject {
     
-    class func handleMoreComics(urlString: String, onViewController vc: UIViewController) {
+    class func handleEvent(urlString: String, onViewController vc: UIViewController) {
         let ctrl = MoreComicController()
         ctrl.viewType = ViewType.Subscribe
         ctrl.urlString = urlString

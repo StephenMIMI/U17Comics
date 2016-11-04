@@ -10,7 +10,7 @@ import UIKit
 
 class WebViewService: NSObject {
     
-    class func handleWebEvent(urlString: String, onViewController vc: UIViewController) {
+    class func handleEvent(urlString: String, onViewController vc: UIViewController) {
         let ctrl = WebViewController()
         ctrl.jumpUrl = urlString
         vc.navigationController?.pushViewController(ctrl, animated: true)

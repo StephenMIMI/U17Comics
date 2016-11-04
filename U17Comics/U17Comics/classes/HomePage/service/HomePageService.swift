@@ -12,11 +12,17 @@ class HomePageService: NSObject {
     
     class func handleEvent(urlString: String, onViewController vc: UIViewController) {
         if urlString.hasPrefix(homeMoreUrl) {
-            MoreComicsView.handleMoreComics(urlString, onViewController: vc)
+            //处理显示更多页面
+            MoreComicsView.handleEvent(urlString, onViewController: vc)
         }else if urlString.hasPrefix(comicsDetailUrl) {
-            print(urlString)
+            //处理漫画详情页面
+            ComicDetailView.handleEvent(urlString, onViewController: vc)
+        }else if urlString.hasPrefix("http://"){
+            //处理网页跳转页面
+            WebViewService.handleEvent(urlString, onViewController: vc)
         }else {
-            WebViewService.handleWebEvent(urlString, onViewController: vc)
+            
+            print(urlString)
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebViewController: UIViewController {
+class WebViewController: U17TabViewController {
 
     var webView = UIWebView()
     var jumpUrl: String?

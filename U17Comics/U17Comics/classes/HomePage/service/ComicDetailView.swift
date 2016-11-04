@@ -9,5 +9,10 @@
 import UIKit
 
 class ComicDetailView: NSObject {
-
+    
+    class func handleEvent(urlString: String, onViewController vc: UIViewController) {
+        let ctrl = ComicDetailController()
+        ctrl.jumpUrl = urlString
+        vc.navigationController?.pushViewController(ctrl, animated: true)
+    }
 }

@@ -71,7 +71,7 @@ class HomeRankCell: UITableViewCell {
                 leftRankLabel.backgroundColor = UIColor.orangeColor()
             }else if indexPath?.row == 2 {
                 rightBgView.backgroundColor = UIColor.init(red: 254/255.0, green: 247/255.0, blue: 220/255.0, alpha: 1.0)
-                leftRankLabel.backgroundColor = UIColor.yellowColor()
+                leftRankLabel.backgroundColor = lightGreen
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoreComicController: BaseViewController {
+class MoreComicController: U17TabViewController {
 
     //请求的url
     var urlString: String? {
@@ -47,7 +47,6 @@ class MoreComicController: BaseViewController {
         })
     }
     
-    //下载详情的数据
     //下载详情的数据
     func downloadDetailData() {
         if urlString != nil {
