@@ -28,6 +28,7 @@ enum HomeDownloadType: Int {
     case RankNew        //排行新作
     case MoreComic   //漫画更多
     case ComicDetail    //漫画详情
+    case ComicTicket    //漫画月票信息
 }
 
 

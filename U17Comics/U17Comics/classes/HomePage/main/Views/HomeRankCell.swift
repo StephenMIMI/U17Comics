@@ -81,7 +81,8 @@ class HomeRankCell: UITableViewCell {
             let model = listModel![0]
             if model.comicId != nil && jumpClosure != nil {
                 let tmpUrl = comicsDetailUrl+"\(model.comicId!)"
-                jumpClosure!(tmpUrl)
+                let tmpTicket = comicsTicketUrl+"\(model.comicId!)"
+                jumpClosure!(tmpUrl,tmpTicket)
             }
         }
     }

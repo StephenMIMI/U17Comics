@@ -32,3 +32,5 @@ let homeRankUrl = "http://app.u17.com/v3/appV3_1/android/phone/rank/list"
 let homeRankDetail = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?"
 //作品详情
 let comicsDetailUrl = "http://app.u17.com/v3/appV3_1/android/phone/comic/detail_static_new?comicid="
+//作品月票数量和评论
+let comicsTicketUrl = "http://app.u17.com/v3/appV3_1/android/phone/comic/detail_realtime?comicid="

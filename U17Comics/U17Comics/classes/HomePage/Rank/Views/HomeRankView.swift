@@ -10,6 +10,8 @@ import UIKit
 
 class HomeRankView: UIView {
 
+    //获取当前view的控制视图
+    var viewController: BaseViewController?
     
     private var tableView: UITableView?
     private var headerView: CustomSegCtrl?
@@ -134,6 +136,21 @@ class HomeRankView: UIView {
         }
     }
     
+    func handleClickEvent(urlString: String, ticketUrl: String?) {
+        if let tmpViewController = viewController {
+            HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: tmpViewController)
+        }
+    }
+    
+    //获取当前显示页面的UIViewController
+//    func GetRootViewController() -> UIViewController {
+//        var topVC = UIApplication.sharedApplication().keyWindow?.rootViewController
+//        while topVC?.presentedViewController != nil {
+//            topVC = topVC?.presentedViewController
+//        }
+//        return topVC!
+//    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -242,8 +259,8 @@ extension HomeRankView: U17DownloadDelegate {
                 let model = HomeVIPModel.parseData(tmpData)
                 monthTicketView!.model = model
                 monthTicketView!.jumpClosure = {
-                    jumpUrl in
-                    print(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.RankClick {
                 //点击页面
@@ -251,8 +268,8 @@ extension HomeRankView: U17DownloadDelegate {
                 rankClickView?.model = model
                 rankClickView?.viewType = ViewType.RankClick
                 rankClickView!.jumpClosure = {
-                    jumpUrl in
-                    print(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.RankComment {
                 //吐槽页面
@@ -260,8 +277,8 @@ extension HomeRankView: U17DownloadDelegate {
                 rankCommentView?.model = model
                 rankCommentView?.viewType = ViewType.RankComment
                 rankCommentView!.jumpClosure = {
-                    jumpUrl in
-                    print(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.RankNew {
                 //新作页面
@@ -269,8 +286,8 @@ extension HomeRankView: U17DownloadDelegate {
                 rankNewView?.model = model
                 rankCommentView?.viewType = ViewType.RankNew
                 rankNewView!.jumpClosure = {
-                    jumpUrl in
-                    print(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }
         }else {

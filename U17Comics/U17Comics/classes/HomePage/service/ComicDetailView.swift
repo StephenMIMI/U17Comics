@@ -10,8 +10,9 @@ import UIKit
 
 class ComicDetailView: NSObject {
     
-    class func handleEvent(urlString: String, onViewController vc: UIViewController) {
+    class func handleEvent(urlString: String, comicTicket: String?, onViewController vc: UIViewController) {
         let ctrl = ComicDetailController()
+        ctrl.ticketUrl = comicTicket//先加载月票数据
         ctrl.jumpUrl = urlString
         vc.navigationController?.pushViewController(ctrl, animated: true)
     }

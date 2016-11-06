@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94EEAC0A1DCDC4A300B413D6 /* ComicDetailTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EEAC091DCDC4A300B413D6 /* ComicDetailTicket.swift */; };
+		94EEAC0E1DCE37AB00B413D6 /* HomeComicChapterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EEAC0D1DCE37AB00B413D6 /* HomeComicChapterCell.swift */; };
 		BC0012391DBDF03E00E5C72A /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0012381DBDF03E00E5C72A /* Const.swift */; };
 		BC00127A1DBE112800E5C72A /* Controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = BC0012791DBE112800E5C72A /* Controllers.json */; };
 		BC00127C1DBE2B8300E5C72A /* HomeRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */; };
@@ -113,6 +115,8 @@
 /* Begin PBXFileReference section */
 		1B7CB11C31B4AD514BF0F948 /* Pods-U17Comics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-U17Comics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-U17Comics/Pods-U17Comics.debug.xcconfig"; sourceTree = "<group>"; };
 		6F1784FB8A3D6884240A8DA6 /* Pods_U17Comics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_U17Comics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94EEAC091DCDC4A300B413D6 /* ComicDetailTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetailTicket.swift; sourceTree = "<group>"; };
+		94EEAC0D1DCE37AB00B413D6 /* HomeComicChapterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeComicChapterCell.swift; sourceTree = "<group>"; };
 		BC0012381DBDF03E00E5C72A /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		BC0012791DBE112800E5C72A /* Controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Controllers.json; sourceTree = "<group>"; };
 		BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommend.swift; sourceTree = "<group>"; };
@@ -450,6 +454,7 @@
 			children = (
 				BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */,
 				BCF6B1041DCB63C700296544 /* ComicDetailModel.swift */,
+				94EEAC091DCDC4A300B413D6 /* ComicDetailTicket.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				BC4E95351DCC7169008E94C2 /* HomeComicHeaderCell.swift */,
 				BC4E95361DCC7169008E94C2 /* HomeComicHeaderCell.xib */,
 				BC4E95551DCCBC1D008E94C2 /* HomeComicHeaderView.swift */,
+				94EEAC0D1DCE37AB00B413D6 /* HomeComicChapterCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -930,6 +936,7 @@
 				BC19DDA11DC3803F006C83AC /* HomeHotNewCell.swift in Sources */,
 				BC1A7C961DC88B88005147C4 /* HomeVIPView.swift in Sources */,
 				BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */,
+				94EEAC0A1DCDC4A300B413D6 /* ComicDetailTicket.swift in Sources */,
 				BCF6B1011DCB460A00296544 /* MoreComicController.swift in Sources */,
 				BC52ADC51DBA3F900006ED6E /* MainTabBarController.swift in Sources */,
 				BC4E95401DCC83E7008E94C2 /* U17TabViewController.swift in Sources */,
@@ -958,6 +965,7 @@
 				BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */,
 				BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */,
 				BCF6B0FB1DCB3DE500296544 /* WebViewService.swift in Sources */,
+				94EEAC0E1DCE37AB00B413D6 /* HomeComicChapterCell.swift in Sources */,
 				BC52ADC11DBA3D270006ED6E /* BookShelfViewController.swift in Sources */,
 				BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */,
 				BC52ADBB1DBA3CBC0006ED6E /* BaseViewController.swift in Sources */,

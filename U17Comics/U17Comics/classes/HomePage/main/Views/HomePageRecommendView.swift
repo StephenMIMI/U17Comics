@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias HomeJumpClosure = (String -> Void)
+public typealias HomeJumpClosure = ((String, String?) -> Void)
 
 //定义首页推荐列表的类型
 public enum HomeComicType: Int {

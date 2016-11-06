@@ -57,8 +57,8 @@ class MoreComicController: U17TabViewController {
         }
     }
     
-    func handleClickEvent(urlString: String) {
-        HomePageService.handleEvent(urlString, onViewController: self)
+    func handleClickEvent(urlString: String, ticketUrl: String?) {
+        HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,8 +80,8 @@ extension MoreComicController: U17DownloadDelegate {
             if downloader.downloadType == HomeDownloadType.MoreComic {
                 detailData = HomeVIPModel.parseData(tmpData)
                 jumpClosure = {
-                    [weak self]jumpUrl in
-                    self!.handleClickEvent(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }
         }

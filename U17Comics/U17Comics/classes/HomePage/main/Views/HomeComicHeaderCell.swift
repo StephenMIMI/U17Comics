@@ -38,6 +38,8 @@ class HomeComicHeaderCell: UITableViewCell {
     
     var backClosure: (Void -> Void)?
     var jumpClosure: HomeJumpClosure?
+    //月票数据
+    var ticketModel: ComicDTReturnData?
     var model: ComicDetailReturnData? {
         didSet {
             if model != nil {
@@ -67,7 +69,19 @@ class HomeComicHeaderCell: UITableViewCell {
             nameLabel.adjustsFontSizeToFitWidth = true
             nameLabel.text = comicModel.name
             authorLabel.text = comicModel.author?.name
-            clickCountLabel.text = "label"
+            if let tmpTotalClick = ticketModel?.comic?.total_click?.integerValue {
+                if tmpTotalClick >= 0 && tmpTotalClick <= 9999 {
+                    clickCountLabel.text = "\(tmpTotalClick)"
+                }else if tmpTotalClick >= 10000 && tmpTotalClick <= 99999999 {
+                    clickCountLabel.text = String(format: "%.2f万", Double(tmpTotalClick)/10000.0)
+                }else if tmpTotalClick > 100000000 {
+                    clickCountLabel.text = String(format: "%.2f亿", Double(tmpTotalClick)/100000000.0)
+                }else {
+                    //获取点击参数错误
+                    clickCountLabel.text = "没拿到数据呢"
+                }
+            }
+            
             //类型按钮赋值
             var typeStr = ""
             for i in 0..<comicModel.theme_ids!.count {
@@ -79,11 +93,17 @@ class HomeComicHeaderCell: UITableViewCell {
             }
             typeLabel.text = typeStr
             descLabel.text = comicModel.description1
+            descLabel.userInteractionEnabled = true
             //详情label可以跳转作者详情页面
             let g = UITapGestureRecognizer(target: self, action: #selector(tapAction))
             descLabel.addGestureRecognizer(g)
-            
-            ticketLabel.text = "123"
+            if let tmpTicket = ticketModel?.comic?.monthly_ticket?.integerValue {
+                if tmpTicket >= 0 && tmpTicket <= 99999 {
+                    ticketLabel.text = "\(tmpTicket)"
+                }else if tmpTicket >= 100000 {
+                    ticketLabel.text = String(format: "%.2f万", Double(tmpTicket)/100000.0)
+                }
+            }
             
             //画一个圆角按钮
             ticketBtn.layer.cornerRadius = 25
@@ -94,7 +114,7 @@ class HomeComicHeaderCell: UITableViewCell {
     func tapAction() {
         if let comicModel = model?.comic {
             if jumpClosure != nil && comicModel.author?.id != nil {
-                jumpClosure!((comicModel.author?.id)!)
+                jumpClosure!((comicModel.author?.id)!,nil)
             }
         }
     }

@@ -64,11 +64,11 @@ class ComicChapterList: NSObject {
     var image_total: String?
     var is_new: NSNumber?
     var name: String?
-    var pass_time: String?
+    var pass_time: NSNumber?
     var price: String?
     var release_time: String?
     var size: String?
-    var type: String?
+    var type: NSNumber?
     var zip_high_webp: String?
     
     class func parseModel(json: JSON) -> ComicChapterList {
@@ -78,11 +78,11 @@ class ComicChapterList: NSObject {
         model.image_total = json["image_total"].string
         model.is_new = json["is_new"].number
         model.name = json["name"].string
-        model.pass_time = json["pass_time"].string
+        model.pass_time = json["pass_time"].number
         model.price = json["price"].string
         model.release_time = json["release_time"].string
         model.size = json["size"].string
-        model.type = json["type"].string
+        model.type = json["type"].number
         model.zip_high_webp = json["zip_high_webp"].string
         return model
     }

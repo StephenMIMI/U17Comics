@@ -97,6 +97,8 @@ class HomePageViewController: BaseViewController {
         
         //3.排行视图
         rankView = HomeRankView()
+        //将当前视图控制器传递过去
+        rankView?.viewController = self
         containerView.addSubview(rankView!)
         rankView?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo((subscribeView?.snp_right)!)
@@ -134,8 +136,9 @@ class HomePageViewController: BaseViewController {
         downloader.getWithUrl(homeSubscribeUrl)
     }
     
-    func handleClickEvent(urlString: String) {
-        HomePageService.handleEvent(urlString, onViewController: self)
+    func handleClickEvent(urlString: String, ticketUrl: String?) {
+        HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: self)
+        print(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -157,16 +160,16 @@ extension HomePageViewController: U17DownloadDelegate {
                 let model = HomeRecommend.parseData(tmpData)
                 recommendView!.model = model
                 recommendView!.jumpClosure = {
-                    [weak self]jumpUrl in
-                    self!.handleClickEvent(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.HomeVIP {
                 //VIP页面
                 let model = HomeVIPModel.parseData(tmpData)
                 VIPView?.model = model
                 VIPView!.jumpClosure = {
-                    jumpUrl in
-                    print(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.HomeSubscribe {
                 //分类页面
@@ -174,8 +177,8 @@ extension HomePageViewController: U17DownloadDelegate {
                 subscribeView?.model = model
                 subscribeView?.viewType = ViewType.Subscribe
                 subscribeView!.jumpClosure = {
-                    jumpUrl in
-                    print(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }
         }else {

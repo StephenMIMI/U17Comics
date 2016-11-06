@@ -15,7 +15,8 @@ class HomeUpdateCell: UITableViewCell {
         let model = listModel![index]
         if jumpClosure != nil && model.comicId != nil {
             let tmpUrl = comicsDetailUrl+"\(model.comicId!)"
-            jumpClosure!(tmpUrl)
+            let tmpTicket = comicsTicketUrl+"\(model.comicId)"
+            jumpClosure!(tmpUrl,tmpTicket)
         }
     }
 

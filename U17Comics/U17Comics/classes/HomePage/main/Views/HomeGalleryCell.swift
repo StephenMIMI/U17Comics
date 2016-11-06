@@ -102,7 +102,14 @@ class HomeGalleryCell: UITableViewCell {
         let gallery = GalleryArray![index].ext
         
         if jumpClosure != nil  && gallery![0].val != nil {
-            jumpClosure!(gallery![0].val!)
+            if (gallery![0].val!).hasPrefix("http://") {
+                jumpClosure!(gallery![0].val!, nil)
+            }else {
+                let tmpUrl = "\(comicsDetailUrl)+\(gallery![0].val!)"
+                let tmpTicket = "\(comicsTicketUrl)+\(gallery![0].val!)"
+                jumpClosure!(tmpUrl,tmpTicket)
+            }
+            
         }
         
         

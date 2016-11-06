@@ -20,30 +20,34 @@ class HomeComicHeaderView: UIView {
     }
     
     func configUI() {
-        startReadBtn = UIButton()
+        startReadBtn = UIButton(type: .Custom)
         startReadBtn?.setTitle("开始阅读", forState: .Normal)
         startReadBtn?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         startReadBtn?.backgroundColor = lightGreen
         startReadBtn?.addTarget(self, action: #selector(startRead), forControlEvents: .TouchUpInside)
+        startReadBtn?.layer.cornerRadius = 5
+        startReadBtn?.layer.masksToBounds = true
         addSubview(startReadBtn!)
         
         startReadBtn?.snp_makeConstraints(closure: { [weak self](make) in
-            make.top.equalTo(self!)
+            make.top.equalTo(self!).offset(5)
             make.right.bottom.equalTo(self!).offset(-5)
             make.width.equalTo(80)
         })
         
-        downloadBtn = UIButton()
+        downloadBtn = UIButton(type: .Custom)
         downloadBtn?.setTitle("下载", forState: .Normal)
         downloadBtn?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         downloadBtn?.backgroundColor = UIColor.orangeColor()
         downloadBtn?.addTarget(self, action: #selector(startDownload), forControlEvents: .TouchUpInside)
+        downloadBtn?.layer.cornerRadius = 5
+        downloadBtn?.layer.masksToBounds = true
         addSubview(downloadBtn!)
         
         downloadBtn?.snp_makeConstraints(closure: { [weak self](make) in
             make.top.equalTo(self!).offset(5)
             make.bottom.equalTo(self!).offset(-5)
-            make.right.equalTo((self!.startReadBtn?.snp_left)!).offset(10)
+            make.right.equalTo((self!.startReadBtn?.snp_left)!).offset(-10)
             make.width.equalTo(80)
             
         })

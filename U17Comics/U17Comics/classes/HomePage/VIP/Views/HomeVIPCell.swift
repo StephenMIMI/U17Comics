@@ -150,7 +150,8 @@ class HomeVIPCell: UITableViewCell {
     func tapAction() {
         if listModel?.comicId != nil && jumpClosure != nil {
             let tmpUrl = comicsDetailUrl+"\((listModel?.comicId!)!)"
-            jumpClosure!(tmpUrl)
+            let ticketUrl = comicsTicketUrl+"\((listModel?.comicId!)!)"
+            jumpClosure!(tmpUrl, ticketUrl)
         }
     }
     

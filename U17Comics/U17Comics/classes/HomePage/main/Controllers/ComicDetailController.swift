@@ -13,14 +13,22 @@ class ComicDetailController: U17TabViewController {
     var jumpUrl: String? {
         didSet {
             createTableView()
+            //先下载月票数据并存储
+            downloadTicketData()
             downloadDetailData()
         }
     }
+    var ticketUrl: String?
     var jumpClosure: HomeJumpClosure?
     //数据
     private var comicDetailModel: ComicDetailModel? {
         didSet {
-            
+            tableView?.reloadData()
+        }
+    }
+    //月票数据
+    private var comicTicketModel: ComicDetailTicket? {
+        didSet {
             tableView?.reloadData()
         }
     }
@@ -49,8 +57,18 @@ class ComicDetailController: U17TabViewController {
         }
     }
     
-    func handleClickEvent(urlString: String) {
-        HomePageService.handleEvent(urlString, onViewController: self)
+    //下载月票的数据
+    func downloadTicketData() {
+        if ticketUrl != nil {
+            let downloader = U17Download()
+            downloader.delegate = self
+            downloader.downloadType = .ComicTicket
+            downloader.getWithUrl(ticketUrl!)
+        }
+    }
+    
+    func handleClickEvent(urlString: String, ticketUrl: String?) {
+        HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: self)
     }
     
     override func viewDidLoad() {
@@ -89,9 +107,11 @@ extension ComicDetailController: U17DownloadDelegate {
             if downloader.downloadType == HomeDownloadType.ComicDetail {
                 comicDetailModel = ComicDetailModel.parseData(tmpData)
                 jumpClosure = {
-                    [weak self]jumpUrl in
-                    self!.handleClickEvent(jumpUrl)
+                    [weak self](jumpUrl,ticketUrl) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
+            }else if downloader.downloadType == HomeDownloadType.ComicTicket {
+                    comicTicketModel = ComicDetailTicket.parseData(tmpData)
             }
         }
     }
@@ -112,37 +132,63 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
         if (comicDetailModel?.data?.returnData?.comic) != nil {
             if indexPath.section == 0 {
                 height = 200
-            }else {
-            
+            }else if indexPath.section == 1 {
+                height = 270
             }
         }
         return height
     }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if let model = comicDetailModel?.data?.returnData {
+            if indexPath.section == 0 {
+                let cellId = "comicHeaderCellId"
+                var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? HomeComicHeaderCell
+                if cell == nil {
+                    cell = NSBundle.mainBundle().loadNibNamed("HomeComicHeaderCell", owner: nil, options: nil).last as? HomeComicHeaderCell
+                }
+                
+                cell?.jumpClosure = jumpClosure
+                cell?.backClosure = { [weak self] in
+                    self!.navigationController?.popViewControllerAnimated(true)
+                }
+                cell?.ticketModel = comicTicketModel?.data?.returnData
+                cell?.model = model
+                return cell!
+            }else if indexPath.section == 1 {
+                let cellId = "comicChapterCellId"
+                var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? HomeComicChapterCell
+                if cell == nil {
+                    cell = HomeComicChapterCell()
+                }
+                cell?.model = model
+                return cell!
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        var height: CGFloat = 0
+        if section == 0 {
+            height = 0
+        }else if section == 1 {
+            height = 44
+        }
+        return height
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let model = comicDetailModel?.data?.returnData
-            let cellId = "comicHeaderCellId"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? HomeComicHeaderCell
-            if cell == nil {
-                cell = NSBundle.mainBundle().loadNibNamed("HomeComicHeaderCell", owner: nil, options: nil).last as? HomeComicHeaderCell
-            }
-            cell?.jumpClosure = jumpClosure
-            cell?.backClosure = {
-                self.navigationController?.popViewControllerAnimated(true)
-            }
-            cell?.model = model
-            return cell!
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let cell = HomeComicHeaderView.init(frame: CGRectMake(0,0,screenWidth,44))
+            return cell
         }
-        return UITableViewCell()
+        return nil
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {

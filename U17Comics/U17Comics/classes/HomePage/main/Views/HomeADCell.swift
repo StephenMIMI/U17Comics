@@ -61,13 +61,13 @@ class HomeADCell: UITableViewCell {
     
     func firstTapAction() {
         if jumpClosure != nil && firstLink != nil {
-            jumpClosure!(firstLink!)
+            jumpClosure!(firstLink!,nil)
         }
     }
     
     func secondTapAction() {
         if jumpClosure != nil && secondLink != nil {
-            jumpClosure!(secondLink!)
+            jumpClosure!(secondLink!,nil)
         }
     }
     

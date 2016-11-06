@@ -41,7 +41,8 @@ class HomeHotNewCell: UITableViewCell {
             let imageData = listModel!
             if imageData.comicId != nil && jumpClosure != nil {
                 let tmpUrl = comicsDetailUrl+"\(imageData.comicId!)"
-                jumpClosure!(tmpUrl)
+                let tmpTicket = comicsTicketUrl+"\(imageData.comicId!)"
+                jumpClosure!(tmpUrl,tmpTicket)
             }
         }
     }

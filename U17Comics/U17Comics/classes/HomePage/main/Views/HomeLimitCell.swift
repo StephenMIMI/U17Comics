@@ -40,7 +40,8 @@ class HomeLimitCell: UITableViewCell {
             let imageData = listModel![0]
             if imageData.comicId != nil && jumpClosure != nil {
                 let tmpUrl = comicsDetailUrl+"\(imageData.comicId!)"
-                jumpClosure!(tmpUrl)
+                let tmpTicket = comicsTicketUrl+"\(imageData.comicId!)"
+                jumpClosure!(tmpUrl,tmpTicket)
             }
         }
     }
