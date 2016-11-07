@@ -23,6 +23,7 @@ class HomeHotNewCell: UITableViewCell {
     }
     
     func showData() {
+        self.backgroundColor = customBgColor
         if listModel != nil {
             if listModel!.cover != nil {
                 let url = NSURL(string: listModel!.cover!)
@@ -42,7 +43,7 @@ class HomeHotNewCell: UITableViewCell {
             if imageData.comicId != nil && jumpClosure != nil {
                 let tmpUrl = comicsDetailUrl+"\(imageData.comicId!)"
                 let tmpTicket = comicsTicketUrl+"\(imageData.comicId!)"
-                jumpClosure!(tmpUrl,tmpTicket)
+                jumpClosure!(tmpUrl,tmpTicket,nil)
             }
         }
     }

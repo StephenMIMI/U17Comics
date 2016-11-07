@@ -114,7 +114,7 @@ class HomeComicHeaderCell: UITableViewCell {
     func tapAction() {
         if let comicModel = model?.comic {
             if jumpClosure != nil && comicModel.author?.id != nil {
-                jumpClosure!((comicModel.author?.id)!,nil)
+                jumpClosure!((comicModel.author?.id)!,nil,nil)
             }
         }
     }

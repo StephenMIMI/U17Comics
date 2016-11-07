@@ -13,7 +13,7 @@ let screenHeight = UIScreen.mainScreen().bounds.height
 
 //淡绿色
 let lightGreen = UIColor.init(red: 134/255.0, green: 222/255.0, blue: 97/255.0, alpha: 1.0)
-
+let customBgColor = UIColor.init(red: 240/255.0, green: 255/255.0, blue: 240/255.0, alpha: 1.0)
 
 
 //首页推荐

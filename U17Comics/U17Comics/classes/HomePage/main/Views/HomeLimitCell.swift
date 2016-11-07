@@ -22,6 +22,7 @@ class HomeLimitCell: UITableViewCell {
     }
     
     func showData() {
+        self.backgroundColor = customBgColor
         if listModel?.count > 0 {
             let imageData = listModel![0]
             if imageData.cover != nil {
@@ -41,7 +42,7 @@ class HomeLimitCell: UITableViewCell {
             if imageData.comicId != nil && jumpClosure != nil {
                 let tmpUrl = comicsDetailUrl+"\(imageData.comicId!)"
                 let tmpTicket = comicsTicketUrl+"\(imageData.comicId!)"
-                jumpClosure!(tmpUrl,tmpTicket)
+                jumpClosure!(tmpUrl,tmpTicket,nil)
             }
         }
     }

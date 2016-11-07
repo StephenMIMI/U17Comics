@@ -10,9 +10,11 @@ import UIKit
 
 class MoreComicsView: NSObject {
     
-    class func handleEvent(urlString: String, onViewController vc: UIViewController) {
+    class func handleEvent(urlString: String, title: String?, onViewController vc: UIViewController) {
         let ctrl = MoreComicController()
         ctrl.viewType = ViewType.Subscribe
+        ctrl.titleStr = title
+        //手动让页面在url赋值之后初始化，其他值需要在url之前赋值
         ctrl.urlString = urlString
         vc.navigationController?.pushViewController(ctrl, animated: true)
     }

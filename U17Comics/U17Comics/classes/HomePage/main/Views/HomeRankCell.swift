@@ -26,6 +26,7 @@ class HomeRankCell: UITableViewCell {
     }
     
     func showData() {
+        self.backgroundColor = customBgColor
         if listModel!.count > 0 {
             leftRankLabel = UILabel()
             leftRankLabel.backgroundColor = UIColor.lightGrayColor()
@@ -82,7 +83,7 @@ class HomeRankCell: UITableViewCell {
             if model.comicId != nil && jumpClosure != nil {
                 let tmpUrl = comicsDetailUrl+"\(model.comicId!)"
                 let tmpTicket = comicsTicketUrl+"\(model.comicId!)"
-                jumpClosure!(tmpUrl,tmpTicket)
+                jumpClosure!(tmpUrl,tmpTicket,nil)
             }
         }
     }

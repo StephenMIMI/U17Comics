@@ -49,6 +49,7 @@ class HomeRankView: UIView {
     }
     
     func initView() {
+        self.backgroundColor = customBgColor
         headerView = CustomSegCtrl(frame: CGRectMake(0, 64, screenWidth, 44), titleArray: rankTitle)
         headerView?.delegate = self
         headerView!.backgroundColor = UIColor.whiteColor()
@@ -60,6 +61,7 @@ class HomeRankView: UIView {
         
         
         tableView = UITableView(frame: CGRectZero, style: .Plain)
+        tableView?.backgroundColor = customBgColor
         tableView?.dataSource = self
         tableView?.delegate = self
         addSubview(tableView!)
@@ -81,6 +83,7 @@ class HomeRankView: UIView {
     //创建子滚动视图
     func createSubScroll() {
         scrollView = UIScrollView()
+        scrollView?.backgroundColor = customBgColor
         scrollView?.pagingEnabled = true
         scrollView?.showsHorizontalScrollIndicator = false
         scrollView?.delegate = self
@@ -259,7 +262,7 @@ extension HomeRankView: U17DownloadDelegate {
                 let model = HomeVIPModel.parseData(tmpData)
                 monthTicketView!.model = model
                 monthTicketView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.RankClick {
@@ -268,7 +271,7 @@ extension HomeRankView: U17DownloadDelegate {
                 rankClickView?.model = model
                 rankClickView?.viewType = ViewType.RankClick
                 rankClickView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.RankComment {
@@ -277,7 +280,7 @@ extension HomeRankView: U17DownloadDelegate {
                 rankCommentView?.model = model
                 rankCommentView?.viewType = ViewType.RankComment
                 rankCommentView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.RankNew {
@@ -286,7 +289,7 @@ extension HomeRankView: U17DownloadDelegate {
                 rankNewView?.model = model
                 rankCommentView?.viewType = ViewType.RankNew
                 rankNewView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }

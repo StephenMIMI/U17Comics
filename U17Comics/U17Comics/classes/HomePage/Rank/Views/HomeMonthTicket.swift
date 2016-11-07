@@ -21,7 +21,9 @@ class HomeMonthTicket: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        //self.backgroundColor = customBgColor
         tableView = UITableView(frame: CGRectZero, style: .Plain)
+        tableView?.backgroundColor = customBgColor
         tableView?.dataSource = self
         tableView?.delegate = self
         addSubview(tableView!)

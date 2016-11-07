@@ -20,6 +20,7 @@ class ComicDetailController: U17TabViewController {
     }
     var ticketUrl: String?
     var jumpClosure: HomeJumpClosure?
+    private var tableView: UITableView?
     //数据
     private var comicDetailModel: ComicDetailModel? {
         didSet {
@@ -32,7 +33,7 @@ class ComicDetailController: U17TabViewController {
             tableView?.reloadData()
         }
     }
-    private var tableView: UITableView?
+    
     
     func createTableView() {
         automaticallyAdjustsScrollViewInsets = false
@@ -107,7 +108,7 @@ extension ComicDetailController: U17DownloadDelegate {
             if downloader.downloadType == HomeDownloadType.ComicDetail {
                 comicDetailModel = ComicDetailModel.parseData(tmpData)
                 jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.ComicTicket {
@@ -133,7 +134,7 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 height = 200
             }else if indexPath.section == 1 {
-                height = 270
+                height = HomeComicChapterCell.heightForChapter((comicDetailModel?.data?.returnData?.chapter_list?.count)!)
             }
         }
         return height
@@ -161,6 +162,7 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
                 if cell == nil {
                     cell = HomeComicChapterCell()
                 }
+                cell?.jumpClosure = jumpClosure
                 cell?.model = model
                 return cell!
             }
@@ -180,12 +182,25 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        var height: CGFloat = 0
+        if section == 1 {
+            height = 44
+        }
+        return height
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let cell = HomeComicHeaderView.init(frame: CGRectMake(0,0,screenWidth,44))
+            return cell
+        }
+        return nil
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            let cell = HomeComicChapterFooter.init(frame: CGRectMake(0,0,screenWidth,44))
+            cell.model = comicTicketModel?.data?.returnData?.comment
             return cell
         }
         return nil

@@ -25,7 +25,7 @@ class HomeADCell: UITableViewCell {
     var secondLink: String?
     
     private func configImage() {
-        
+        self.backgroundColor = customBgColor
         if listModel!.count > 0 {
             for i in 0..<2 {
                 let tmpModel = listModel![i]
@@ -61,13 +61,13 @@ class HomeADCell: UITableViewCell {
     
     func firstTapAction() {
         if jumpClosure != nil && firstLink != nil {
-            jumpClosure!(firstLink!,nil)
+            jumpClosure!(firstLink!,nil,nil)
         }
     }
     
     func secondTapAction() {
         if jumpClosure != nil && secondLink != nil {
-            jumpClosure!(secondLink!,nil)
+            jumpClosure!(secondLink!,nil,nil)
         }
     }
     

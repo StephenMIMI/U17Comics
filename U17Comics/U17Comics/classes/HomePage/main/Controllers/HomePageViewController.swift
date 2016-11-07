@@ -27,6 +27,7 @@ class HomePageViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = customBgColor
         automaticallyAdjustsScrollViewInsets = false
         
         //选择控件
@@ -50,6 +51,7 @@ class HomePageViewController: BaseViewController {
     //创建首页滚动视图
     func createHomePage() {
         scrollView = UIScrollView()
+        scrollView?.backgroundColor = customBgColor
         scrollView?.pagingEnabled = true
         scrollView?.showsHorizontalScrollIndicator = false
         scrollView?.delegate = self
@@ -136,9 +138,8 @@ class HomePageViewController: BaseViewController {
         downloader.getWithUrl(homeSubscribeUrl)
     }
     
-    func handleClickEvent(urlString: String, ticketUrl: String?) {
-        HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: self)
-        print(self)
+    func handleClickEvent(urlString: String, ticketUrl: String?, title: String? = nil) {
+        HomePageService.handleEvent(urlString, comicTicket: ticketUrl, title: title, onViewController: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,15 +161,15 @@ extension HomePageViewController: U17DownloadDelegate {
                 let model = HomeRecommend.parseData(tmpData)
                 recommendView!.model = model
                 recommendView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
+                    [weak self](jumpUrl,ticketUrl,title) in
+                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl, title: title)
                 }
             }else if downloader.downloadType == HomeDownloadType.HomeVIP {
                 //VIP页面
                 let model = HomeVIPModel.parseData(tmpData)
                 VIPView?.model = model
                 VIPView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }else if downloader.downloadType == HomeDownloadType.HomeSubscribe {
@@ -177,7 +178,7 @@ extension HomePageViewController: U17DownloadDelegate {
                 subscribeView?.model = model
                 subscribeView?.viewType = ViewType.Subscribe
                 subscribeView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl) in
+                    [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
             }

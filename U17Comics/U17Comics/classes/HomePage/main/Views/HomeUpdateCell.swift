@@ -16,7 +16,7 @@ class HomeUpdateCell: UITableViewCell {
         if jumpClosure != nil && model.comicId != nil {
             let tmpUrl = comicsDetailUrl+"\(model.comicId!)"
             let tmpTicket = comicsTicketUrl+"\(model.comicId)"
-            jumpClosure!(tmpUrl,tmpTicket)
+            jumpClosure!(tmpUrl,tmpTicket,nil)
         }
     }
 
@@ -29,6 +29,7 @@ class HomeUpdateCell: UITableViewCell {
     }
     
     func showData() {
+        self.backgroundColor = customBgColor
         let count = listModel?.count
         if count > 0 {
             for i in 0..<2 {

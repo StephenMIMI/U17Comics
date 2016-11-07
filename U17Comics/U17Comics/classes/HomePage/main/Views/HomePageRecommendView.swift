@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias HomeJumpClosure = ((String, String?) -> Void)
+public typealias HomeJumpClosure = ((String, String?, String?) -> Void)
 
 //定义首页推荐列表的类型
 public enum HomeComicType: Int {
@@ -35,6 +35,7 @@ class HomePageRecommendView: UIView {
         tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView?.delegate = self
         tableView?.dataSource = self
+        tableView?.backgroundColor = customBgColor
         
         addSubview(tableView!)
         
@@ -170,7 +171,7 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
                 recommendHeaderView.listModel = listModel
                 recommendHeaderView.jumpClosure = jumpClosure
                 return recommendHeaderView
-            } else if listModel!.itemTitle! == "排行" {
+            } else if listModel!.itemTitle! == "排行" || listModel!.itemTitle! == "不知道什么鬼"{
                 let recommendHeaderView = HomeHeaderView(frame: CGRectMake(0,0,screenWidth,54))
                 recommendHeaderView.listModel = listModel
                 return recommendHeaderView
@@ -212,4 +213,5 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
             scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
         }
     }
+    
 }

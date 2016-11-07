@@ -32,7 +32,7 @@ class HomeHeaderView: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         bgView = UIView.createView()
-        bgView?.backgroundColor = UIColor.whiteColor()
+        bgView?.backgroundColor = customBgColor
         addSubview(bgView!)
         //添加bgView的约束
         bgView?.snp_makeConstraints(closure: { (make) in
@@ -64,9 +64,9 @@ class HomeHeaderView: UIView {
             
             if listModel!.argValue != nil && listModel!.argName != nil {
                 let para = "\(homeMoreUrl)?argValue=\(listModel!.argValue!.stringValue)&argName=\(listModel!.argName!)&argCon=2&page=1"
-                jumpClosure!(para,nil)
+                jumpClosure!(para,nil,listModel?.itemTitle)
             }else {
-                jumpClosure!(homeUnknownMoreUrl,nil)
+                jumpClosure!(homeUnknownMoreUrl,nil,listModel?.itemTitle)
             }
         }
         
@@ -83,7 +83,7 @@ class HomeHeaderView: UIView {
         let attr = [NSFontAttributeName: UIFont.systemFontOfSize(16)]
         let width = str.boundingRectWithSize(CGSizeMake(maxWidth, 44), options: .UsesLineFragmentOrigin, attributes: attr, context: nil).size.width
         titleLabel?.frame = CGRectMake(50, 0, width, 44)
-        if listModel?.itemTitle == "今日限免" || listModel?.itemTitle == "排行" {
+        if listModel?.itemTitle == "今日限免" || listModel?.itemTitle == "排行" || listModel?.itemTitle == "不知道什么鬼" {
             moreLabel?.text = nil
         }else {
             moreLabel?.text = model.description1
@@ -101,7 +101,7 @@ class HomeHeaderView: UIView {
                 make.width.equalTo(50)
                 make.height.equalTo(15)//头部更多icon大小11x21
             }
-        }else if listModel?.itemTitle == "排行" {
+        }else if listModel?.itemTitle == "排行" || listModel?.itemTitle == "不知道什么鬼"{
             moreIcon?.hidden = true
         }else {
             moreIcon = UIImageView(image: UIImage(named: "recommendview_icon_more_5x10_"))

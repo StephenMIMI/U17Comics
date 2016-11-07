@@ -16,6 +16,7 @@ enum ViewType: Int {
     case RankClick = 4
     case RankComment = 5
     case RankNew = 6
+    case Collection = 7
     
 }
 
@@ -42,6 +43,7 @@ class HomeVIPCell: UITableViewCell {
     }
     
     func showData() {
+        self.backgroundColor = customBgColor
         rankLabel.hidden = true
         if listModel != nil {
             let model = listModel!
@@ -120,6 +122,16 @@ class HomeVIPCell: UITableViewCell {
                     }
                 }
                 configRankLabel()
+            }else if viewType == ViewType.Collection {
+                if model.conTag != nil {
+                    if Int(model.conTag!)! >= 100000000 {
+                        updateLabel.text = String(format: "总收藏 %.02f 亿", Double(model.conTag!)!/100000000.0)
+                    }else if Int(model.conTag!)! >= 10000 {
+                        updateLabel.text = String(format: "总收藏 %.02f 万", Double(model.conTag!)!/10000.0)
+                    }else {
+                        updateLabel.text = "总收藏 \(Int(model.conTag!)!)"
+                    }
+                }
             }
             let g = UITapGestureRecognizer(target: self, action: #selector(tapAction))
             addGestureRecognizer(g)
@@ -151,7 +163,7 @@ class HomeVIPCell: UITableViewCell {
         if listModel?.comicId != nil && jumpClosure != nil {
             let tmpUrl = comicsDetailUrl+"\((listModel?.comicId!)!)"
             let ticketUrl = comicsTicketUrl+"\((listModel?.comicId!)!)"
-            jumpClosure!(tmpUrl, ticketUrl)
+            jumpClosure!(tmpUrl, ticketUrl, nil)
         }
     }
     

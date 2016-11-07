@@ -8,13 +8,22 @@
 
 import UIKit
 
-class WebViewController: U17TabViewController {
+class WebViewController: U17TabViewController ,CustomNavigationProtocol{
 
     var webView = UIWebView()
     var jumpUrl: String?
+    var webTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tmpTitle = webTitle {
+            addTitle(tmpTitle)
+        }
+        //自定义返回按钮
+        let backBtn = UIButton(frame: CGRectMake(0,0,30,30))
+        backBtn.setImage(UIImage(named: "nav_back_black"), forState: .Normal)
+        backBtn.addTarget(self, action: #selector(backBtnClick), forControlEvents: .TouchUpInside)
+        addBarButton(backBtn, position: BarButtonPosition.left)
         
         view.backgroundColor = UIColor.whiteColor()
         automaticallyAdjustsScrollViewInsets = false
@@ -31,6 +40,10 @@ class WebViewController: U17TabViewController {
         }
     }
 
+    func backBtnClick() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

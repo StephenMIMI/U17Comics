@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -154,7 +154,7 @@
                             <constraint firstAttribute="width" constant="30" id="lI4-nO-3ls"/>
                             <constraint firstAttribute="height" constant="30" id="tNV-eA-dmq"/>
                         </constraints>
-                        <state key="normal" image="nav_back_white.png"/>
+                        <state key="normal" image="nav_back_black.png"/>
                         <connections>
                             <action selector="backBtnClick" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ayj-Fk-wTa"/>
                         </connections>
@@ -224,7 +224,7 @@
     </objects>
     <resources>
         <image name="collect_icon_notpress.png" width="20" height="19"/>
-        <image name="nav_back_white.png" width="90" height="90"/>
+        <image name="nav_back_black.png" width="90" height="90"/>
         <image name="share.png" width="20" height="19"/>
     </resources>
 </document>
