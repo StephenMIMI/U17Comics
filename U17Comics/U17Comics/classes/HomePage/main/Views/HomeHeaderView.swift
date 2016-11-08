@@ -63,7 +63,7 @@ class HomeHeaderView: UIView {
         if jumpClosure != nil {
             
             if listModel!.argValue != nil && listModel!.argName != nil {
-                let para = "\(homeMoreUrl)?argValue=\(listModel!.argValue!.stringValue)&argName=\(listModel!.argName!)&argCon=2&page=1"
+                let para = "\(homeMoreUrl)?argValue=\(listModel!.argValue!.stringValue)&argName=\(listModel!.argName!)&argCon=2&page="
                 jumpClosure!(para,nil,listModel?.itemTitle)
             }else {
                 jumpClosure!(homeUnknownMoreUrl,nil,listModel?.itemTitle)

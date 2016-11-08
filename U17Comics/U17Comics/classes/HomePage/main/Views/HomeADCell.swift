@@ -61,13 +61,21 @@ class HomeADCell: UITableViewCell {
     
     func firstTapAction() {
         if jumpClosure != nil && firstLink != nil {
-            jumpClosure!(firstLink!,nil,nil)
+            var title = ""
+            if listModel?[0].ext?[1].val != nil {
+                title = (listModel?[0].ext?[1].val)!
+            }
+            jumpClosure!(firstLink!,nil,title)
         }
     }
     
     func secondTapAction() {
         if jumpClosure != nil && secondLink != nil {
-            jumpClosure!(secondLink!,nil,nil)
+            var title = ""
+            if listModel?[1].ext?[1].val != nil {
+                title = (listModel?[1].ext?[1].val)!
+            }
+            jumpClosure!(secondLink!,nil,title)
         }
     }
     

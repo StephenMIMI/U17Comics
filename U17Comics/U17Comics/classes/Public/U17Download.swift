@@ -17,18 +17,18 @@ protocol U17DownloadDelegate: NSObjectProtocol {
 }
 
 enum HomeDownloadType: Int {
-    case Normal = 0
-    case HomeRecommend  //首页推荐
-    case HomeVIP        //首页VIP
-    case HomeSubscribe //首页分类
-    case HomeRank       //首页排行
     case RankTicket     //排行月票
     case RankClick      //排行点击
     case RankComment    //排行评论
     case RankNew        //排行新作
+    case HomeRecommend  //首页推荐
+    case HomeVIP        //首页VIP
+    case HomeSubscribe //首页分类
+    case HomeRank       //首页排行
     case MoreComic   //漫画更多
     case ComicDetail    //漫画详情
     case ComicTicket    //漫画月票信息
+    case Normal
 }
 
 

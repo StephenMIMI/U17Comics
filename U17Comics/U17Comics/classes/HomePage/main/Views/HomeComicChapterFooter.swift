@@ -32,6 +32,7 @@ class HomeComicChapterFooter: UIView {
     }
     
     func configUI() {
+        self.backgroundColor = UIColor.whiteColor()
         commentBtn = UIButton(type: .Custom)
         commentBtn?.frame = CGRectMake(20, 5, screenWidth-40, 34)
         commentBtn?.layer.cornerRadius = 5

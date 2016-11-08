@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MJRefresh
 
 
 class HomePageViewController: BaseViewController {
@@ -36,16 +36,12 @@ class HomePageViewController: BaseViewController {
         segCtrl!.delegate = self
         navigationItem.titleView = segCtrl
         
-        createNav()//创建导航
         createHomePage()//创建滚动视图
         downloadRecommendData()//下载首页的推荐数据
         downloadVIPData()//下载VIP页面的数据
         downloadSubscribeData()//下载订阅页面的数据
-    }
+        
 
-    //创建导航
-    func createNav() {
-    
     }
     
     //创建首页滚动视图
@@ -128,14 +124,14 @@ class HomePageViewController: BaseViewController {
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = HomeDownloadType.HomeVIP
-        downloader.getWithUrl(homeVIPUrl)
+        downloader.getWithUrl(homeVIPUrl+"1")
     }
     
     func downloadSubscribeData() {
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = HomeDownloadType.HomeSubscribe
-        downloader.getWithUrl(homeSubscribeUrl)
+        downloader.getWithUrl(homeSubscribeUrl+"1")
     }
     
     func handleClickEvent(urlString: String, ticketUrl: String?, title: String? = nil) {
@@ -166,20 +162,25 @@ extension HomePageViewController: U17DownloadDelegate {
                 }
             }else if downloader.downloadType == HomeDownloadType.HomeVIP {
                 //VIP页面
-                let model = HomeVIPModel.parseData(tmpData)
-                VIPView?.model = model
-                VIPView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl,title) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
+                if let model = HomeVIPModel.parseData(tmpData).data?.returnData?.comics {
+                    VIPView?.model = model
+                    VIPView?.downloadType = .HomeVIP
+                    VIPView?.viewType = ViewType.VIP
+                    VIPView!.jumpClosure = {
+                        [weak self](jumpUrl,ticketUrl,title) in
+                        self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
+                    }
                 }
             }else if downloader.downloadType == HomeDownloadType.HomeSubscribe {
                 //分类页面
-                let model = HomeVIPModel.parseData(tmpData)
-                subscribeView?.model = model
-                subscribeView?.viewType = ViewType.Subscribe
-                subscribeView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl,title) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
+                if let model = HomeVIPModel.parseData(tmpData).data?.returnData?.comics {
+                    subscribeView?.model = model
+                    VIPView?.downloadType = .HomeSubscribe
+                    subscribeView?.viewType = ViewType.Subscribe
+                    subscribeView!.jumpClosure = {
+                        [weak self](jumpUrl,ticketUrl,title) in
+                        self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
+                    }
                 }
             }
         }else {
@@ -191,13 +192,22 @@ extension HomePageViewController: U17DownloadDelegate {
 extension HomePageViewController: CustomSegCtrlDelegate {
     func segmentCtrl(segCtrl: CustomSegCtrl, didClickBtnAtIndex index: Int) {
         scrollView?.setContentOffset(CGPointMake(CGFloat(index)*screenWidth, 0), animated: true)
+        if index == 1 {
+            VIPView?.downloadType = .HomeVIP
+        }else if index == 2 {
+            subscribeView?.downloadType = .HomeSubscribe
+        }
     }
-    
 }
 //MARK: UIScrollView的代理
 extension HomePageViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let index = scrollView.contentOffset.x / scrollView.bounds.width
         segCtrl?.selectedIndex = Int(index)
+        if index == 1 {
+            VIPView?.downloadType = .HomeVIP
+        }else if index == 2 {
+            subscribeView?.downloadType = .HomeSubscribe
+        }
     }
 }

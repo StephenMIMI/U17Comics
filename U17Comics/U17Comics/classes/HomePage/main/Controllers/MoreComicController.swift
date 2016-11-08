@@ -7,24 +7,21 @@
 //
 
 import UIKit
+import MJRefresh
 
 class MoreComicController: U17TabViewController, CustomNavigationProtocol {
 
     //请求的url
-    var urlString: String? {
-        didSet {
-            createTableView()
-            downloadDetailData(urlString)
-        }
-    }
+    var urlString: String?
     var jumpClosure: HomeJumpClosure?
     var viewType: ViewType = ViewType.Subscribe
     //标题文字
     var titleStr: String?
+    //页数
+    private var currentPage: Int = 1
     //数据重载就刷新页面
-    private var detailData: HomeVIPModel? {
+    private var detailData: Array<HomeVIPComics>? {
         didSet {
-            
             tableView?.reloadData()
         }
     }
@@ -33,6 +30,7 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
         didSet {
             if index != oldValue {
                 if cataLabel != nil && urlString != nil {
+                    
                     cataLabel?.text = titleArray[index!]
                     var strArray = urlString?.componentsSeparatedByString("&")
                     //更新url
@@ -42,7 +40,10 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
                         for i in 1..<(strArray?.count)! {
                             newUrl += "&\(strArray![i])"
                         }
-                        downloadDetailData(newUrl)
+                        //修改显示页面为1并滚动回顶部
+                        currentPage = 1
+                        urlString = newUrl
+                        tableView?.setContentOffset(CGPointMake(0, 0), animated: false)
                         if titleArray[index!] == "点击" {
                             viewType = .RankClick
                         }else if titleArray[index!] == "更新" {
@@ -50,6 +51,7 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
                         }else if titleArray[index!] == "收藏" {
                             viewType = .Collection
                         }
+                        downloadDetailData(urlString!)
                     }
                 }
             }
@@ -87,6 +89,21 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
         let downArrow = UIImageView(frame: CGRectMake(25,5,20,30))
         downArrow.image = UIImage(named: "arrowdown")
         rightBtn.addSubview(downArrow)
+        //创建tableView
+        createTableView()
+        if urlString != nil {
+            downloadDetailData(urlString!)
+        }
+        //添加下拉刷新
+        addRefresh({
+            [weak self] in
+            self!.currentPage = 1
+            self!.downloadDetailData(self!.urlString!)
+        }) {
+            [weak self] in
+            self!.currentPage += 1
+            self!.downloadDetailData(self!.urlString!)
+        }
     }
 
     func rightBtnClick() {
@@ -95,9 +112,9 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
             //bug这里的手势无法响应
             coverView?.backgroundColor = UIColor.clearColor()
             view.addSubview(coverView!)
-            let tap = UIGestureRecognizer(target: self, action: #selector(coverTap))
-            tap.cancelsTouchesInView = false
-            tap.delegate = self
+            let tap = UITapGestureRecognizer(target: self, action: #selector(coverTap))
+            //tap.cancelsTouchesInView = false
+            //tap.delegate = self
             coverView?.addGestureRecognizer(tap)
         }
         if coverView != nil && sortView == nil {
@@ -128,7 +145,6 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
     
     //背部蒙版点击隐藏
     func coverTap() {
-        print(11)
         viewHidden = !viewHidden
         coverView?.hidden = viewHidden
     }
@@ -158,13 +174,11 @@ class MoreComicController: U17TabViewController, CustomNavigationProtocol {
     }
     
     //下载详情的数据
-    func downloadDetailData(urlString: String?) {
-        if urlString != nil {
-            let downloader = U17Download()
-            downloader.delegate = self
-            downloader.downloadType = HomeDownloadType.MoreComic
-            downloader.getWithUrl(urlString!)
-        }
+    func downloadDetailData(urlString: String) {
+        let downloader = U17Download()
+        downloader.delegate = self
+        downloader.downloadType = HomeDownloadType.MoreComic
+        downloader.getWithUrl(urlString+"\(currentPage)")
     }
     
     func handleClickEvent(urlString: String, ticketUrl: String?) {
@@ -188,7 +202,20 @@ extension MoreComicController: U17DownloadDelegate {
     func downloader(downloader: U17Download, didFinishWithData data: NSData?) {
         if let tmpData = data {
             if downloader.downloadType == HomeDownloadType.MoreComic {
-                detailData = HomeVIPModel.parseData(tmpData)
+                if tableView!.mj_header != nil {
+                    self.tableView!.mj_header.endRefreshing()
+                    self.tableView!.mj_footer.endRefreshing()
+                }
+                
+                if let tmpModel = HomeVIPModel.parseData(tmpData).data?.returnData?.comics {
+                    if currentPage == 1 {
+                        detailData = tmpModel
+                    }else {
+                        let tmpArray = NSMutableArray(array: detailData!)
+                        tmpArray.addObjectsFromArray(tmpModel)
+                        detailData = NSArray(array: tmpArray) as? Array<HomeVIPComics>
+                    }
+                }
                 jumpClosure = {
                     [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
@@ -206,15 +233,14 @@ extension MoreComicController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tmpModel = detailData?.data?.returnData?.comics
-        if tmpModel?.count > 0 {
-            return (tmpModel?.count)!
+        if let tmpModel = detailData {
+            return tmpModel.count
         }
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let listModel = detailData?.data?.returnData?.comics {
+        if let listModel = detailData {
             let cell = HomeVIPCell.createVIPCellFor(tableView, atIndexPath: indexPath, listModel: listModel[indexPath.row], type: viewType)
             cell.jumpClosure = jumpClosure
             cell.backgroundColor = customBgColor
@@ -228,13 +254,18 @@ extension MoreComicController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//MARK: 实现点击事件代理
-extension MoreComicController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        //不接受uiview上的button
-        if ((touch.view?.isKindOfClass(UIButton.self)) != nil) {
-            return false
+//刷新页面的代理
+extension MoreComicController: CustomAddRefreshProtocol {
+    func addRefresh(header: (()->())?, footer:(()->())?) {
+        if header != nil && tableView != nil {
+            tableView!.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+                header!()
+            })
         }
-        return true
+        if footer != nil && tableView != nil {
+            tableView!.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+                footer!()
+            })
+        }
     }
 }

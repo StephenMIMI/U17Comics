@@ -209,5 +209,14 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let height: CGFloat = 44
+        if scrollView.contentOffset.y >= height {
+            scrollView.contentInset = UIEdgeInsetsMake(-height, 0, 0, 0)
+        }else if scrollView.contentOffset.y > 0 {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+        }
+    }
 }
 

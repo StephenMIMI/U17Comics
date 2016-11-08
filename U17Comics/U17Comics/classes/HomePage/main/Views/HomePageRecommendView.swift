@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import MJRefresh
+
+protocol CustomAddRefreshProtocol: NSObjectProtocol {
+    func addRefresh(header: (()->())?, footer:(()->())?)
+}
 
 public typealias HomeJumpClosure = ((String, String?, String?) -> Void)
 
@@ -28,7 +33,9 @@ class HomePageRecommendView: UIView {
         }
     }
     private var tableView: UITableView?
-
+    //当前页数
+    private var currentPage: Int = 1
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         //创建表格视图
@@ -42,11 +49,24 @@ class HomePageRecommendView: UIView {
         tableView?.snp_makeConstraints(closure: { (make) in
             make.edges.equalTo(self)
         })
+        addRefresh({ 
+            [weak self] in
+            self!.currentPage = 1
+            self!.downloadData()
+            }, footer: nil)
+    }
+    
+    func downloadData() {
+        let downloader = U17Download()
+        downloader.delegate = self
+        downloader.downloadType = HomeDownloadType.HomeRecommend
+        downloader.getWithUrl(homeRecommendUrl)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 //MARK: 实现UITableView的代理
 extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
@@ -214,4 +234,40 @@ extension HomePageRecommendView: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+//MARK: 网址请求代理
+extension HomePageRecommendView: U17DownloadDelegate {
+    //下载失败
+    func downloader(downloader: U17Download, didFailWithError error: NSError) {
+        print(error)
+    }
+    //下载成功
+    func downloader(downloader: U17Download, didFinishWithData data: NSData?) {
+        if let tmpData = data {
+            if downloader.downloadType == HomeDownloadType.HomeRecommend {
+                self.tableView!.mj_header.endRefreshing()
+                //1.json解析
+                let tmpModel = HomeRecommend.parseData(tmpData)
+                model = tmpModel
+            }
+        }else {
+            print(data)
+        }
+    }
+}
+
+//刷新页面的代理
+extension HomePageRecommendView: CustomAddRefreshProtocol {
+    func addRefresh(header: (()->())?, footer:(()->())?) {
+        if header != nil && tableView != nil {
+            tableView!.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+                header!()
+            })
+        }
+        if footer != nil && tableView != nil {
+            tableView!.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+                footer!()
+            })
+        }
+    }
 }

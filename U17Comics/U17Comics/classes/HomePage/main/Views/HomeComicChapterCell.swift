@@ -44,11 +44,12 @@ class HomeComicChapterCell: UITableViewCell {
         if num%2 > 0 {
             row += 1
         }
-        if row >= 5 {
-            return CGFloat(5)*(btnH+margin)+30+40
-        }else {
-            return CGFloat(row)*(btnH+margin)+30+40
-        }
+//        if row >= 5 {
+//            return CGFloat(5)*(btnH+margin)+30+40
+//        }else {
+//            return CGFloat(row)*(btnH+margin)+30+40
+//        }
+        return CGFloat(row)*(btnH+margin)+30+40
     }
     
     
@@ -76,7 +77,7 @@ class HomeComicChapterCell: UITableViewCell {
             var num = 0
             for i in 0..<realCount {
                 //只创建10个
-                if i < 10 {
+                //if i < 10 {
                     let btn = UIButton(type: .Custom)
                     //倒叙显示
                     if sortBool == false {
@@ -121,7 +122,7 @@ class HomeComicChapterCell: UITableViewCell {
                         newLabel.backgroundColor = lightGreen
                         btn.addSubview(newLabel)
                     }
-                }
+                //}
             }
             //修改moreBtn的约束
             moreChapterBtn = UIButton(type: .Custom)
@@ -129,7 +130,7 @@ class HomeComicChapterCell: UITableViewCell {
             moreChapterBtn?.addTarget(self, action: #selector(moreChapter), forControlEvents: .TouchUpInside)
             addSubview(moreChapterBtn!)
             let moreChapterLabel = UILabel(frame: (moreChapterBtn?.bounds)!)
-            moreChapterLabel.text = "更多章节点击查看"
+            moreChapterLabel.text = "没有更多了"
             moreChapterLabel.textAlignment = .Center
             moreChapterLabel.font = UIFont.systemFontOfSize(14)
             moreChapterBtn?.addSubview(moreChapterLabel)
@@ -190,7 +191,7 @@ class HomeComicChapterCell: UITableViewCell {
     }
     
     func moreChapter() {
-        print("moreChapter")
+        
     }
     
     override func awakeFromNib() {

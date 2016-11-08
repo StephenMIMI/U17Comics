@@ -23,9 +23,9 @@ let homeMoreUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicL
 //首页不知道什么鬼更多页面
 let homeUnknownMoreUrl = "http://app.u17.com/v3/appV3_1/android/phone/comic/special?argCon=1&page=1"
 //首页VIP
-let homeVIPUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=14&argName=topic&argCon=2&page=1"
+let homeVIPUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=14&argName=topic&argCon=2&page="
 //首页订阅
-let homeSubscribeUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=12&argName=topic&argCon=2&page=1"
+let homeSubscribeUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=12&argName=topic&argCon=2&page="
 
 //首页排行
 let homeRankUrl = "http://app.u17.com/v3/appV3_1/android/phone/rank/list"
