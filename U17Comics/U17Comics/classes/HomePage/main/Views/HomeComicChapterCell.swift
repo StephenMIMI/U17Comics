@@ -17,7 +17,7 @@ class HomeComicChapterCell: UITableViewCell {
     var updateLabel: UILabel?
     //排序button
     var sortLabel: UILabel?
-    var sortBool: Bool = false {
+    var sortBool: Bool? {
         didSet {
             if sortBool == false {
                 sortLabel?.text = "正序"
@@ -33,7 +33,7 @@ class HomeComicChapterCell: UITableViewCell {
     var model: ComicDetailReturnData? {
         didSet {
             if model != nil {
-                
+                configUI()
                 showData()
             }
         }
@@ -68,7 +68,7 @@ class HomeComicChapterCell: UITableViewCell {
     func showData() {
         if let realCount = model?.chapter_list?.count {
             //先配置基础页面
-            configUI()
+            
             let chapterList = model?.chapter_list
             if let tmpTime = chapterList![realCount-1].pass_time {
                 updateLabel?.text = "\(configDate(tmpTime)) 更新到\(chapterList![realCount-1].name!)"
@@ -176,7 +176,7 @@ class HomeComicChapterCell: UITableViewCell {
     
     //排序按钮点击
     func sortClick(btn: UIButton) {
-        sortBool = !sortBool
+        sortBool = !(sortBool!)
     }
     
     //阅读某章节
