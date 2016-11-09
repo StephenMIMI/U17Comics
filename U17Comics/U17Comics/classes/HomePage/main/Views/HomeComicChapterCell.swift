@@ -17,6 +17,7 @@ class HomeComicChapterCell: UITableViewCell {
     var updateLabel: UILabel?
     //排序button
     var sortLabel: UILabel?
+    var sortBtn: UIButton?
     var sortBool: Bool? {
         didSet {
             if sortBool == false {
@@ -33,7 +34,6 @@ class HomeComicChapterCell: UITableViewCell {
     var model: ComicDetailReturnData? {
         didSet {
             if model != nil {
-                configUI()
                 showData()
             }
         }
@@ -55,6 +55,7 @@ class HomeComicChapterCell: UITableViewCell {
     
     var lastBtn: UIButton?
     var jumpClosure: HomeJumpClosure?
+    var readComicClosure: ReadComicClosure?
     //上下间距
     class private var margin: CGFloat {
         return 8
@@ -67,6 +68,10 @@ class HomeComicChapterCell: UITableViewCell {
     }
     
     func showData() {
+        for sub in self.subviews {
+            sub.removeFromSuperview()
+        }
+        configUI()
         if let realCount = model?.chapter_list?.count {
             //先配置基础页面
             
@@ -78,50 +83,51 @@ class HomeComicChapterCell: UITableViewCell {
             for i in 0..<realCount {
                 //只创建10个
                 //if i < 10 {
-                    let btn = UIButton(type: .Custom)
-                    //倒叙显示
-                    if sortBool == false {
-                        num = realCount-i-1
-                    }else {
-                        num = i
-                    }
-                    
-                    btn.frame = CGRectMake(10+(HomeComicChapterCell.btnW+10)*CGFloat(i%2), 30+(HomeComicChapterCell.btnH+HomeComicChapterCell.margin)*CGFloat(i/2), HomeComicChapterCell.btnW, HomeComicChapterCell.btnH)
-                    btn.tag = 100+i
-                    btn.layer.cornerRadius = 5
-                    btn.layer.masksToBounds = true
-                    btn.layer.borderWidth = 1
-                    btn.layer.borderColor = UIColor.grayColor().CGColor
-                    btn.backgroundColor = UIColor.whiteColor()
-                    btn.addTarget(self, action: #selector(readComic(_:)), forControlEvents: .TouchUpInside)
-                    addSubview(btn)
-                    let btnShowLabel = UILabel(frame: CGRectMake(10,2,btn.bounds.width-20,btn.bounds.height-4))
-                    btnShowLabel.text = chapterList![num].name
-                    btnShowLabel.textAlignment = .Center
-                    btnShowLabel.font = UIFont.systemFontOfSize(14)
-                    btn.addSubview(btnShowLabel)
-                    //记录最后一个button的位置
-                    lastBtn = btn
-                    
-                    if chapterList![num].type == 3 {
-                        //显示VIP Label
-                        let vipLabel = UILabel(frame: CGRectMake(0,0,10,12))
-                        vipLabel.text = "V"
-                        vipLabel.textAlignment = .Right
-                        vipLabel.font = UIFont.systemFontOfSize(10)
-                        vipLabel.textColor = UIColor.whiteColor()
-                        vipLabel.backgroundColor = UIColor.orangeColor()
-                        btn.addSubview(vipLabel)
-                    }
-                    if chapterList![num].is_new == 1 {
-                        //显示new Label
-                        let newLabel = UILabel(frame: CGRectMake(HomeComicChapterCell.btnW-10,0,10,12))
-                        newLabel.text = "N"
-                        newLabel.font = UIFont.systemFontOfSize(10)
-                        newLabel.textColor = UIColor.whiteColor()
-                        newLabel.backgroundColor = lightGreen
-                        btn.addSubview(newLabel)
-                    }
+                let btn = UIButton(type: .Custom)
+                //倒叙显示
+                if sortBool == false {
+                    num = realCount-i-1
+                }else {
+                    num = i
+                }
+                
+                btn.frame = CGRectMake(10+(HomeComicChapterCell.btnW+10)*CGFloat(i%2), 30+(HomeComicChapterCell.btnH+HomeComicChapterCell.margin)*CGFloat(i/2), HomeComicChapterCell.btnW, HomeComicChapterCell.btnH)
+                btn.tag = 100+num
+                btn.layer.cornerRadius = 5
+                btn.layer.masksToBounds = true
+                btn.layer.borderWidth = 1
+                btn.layer.borderColor = UIColor.grayColor().CGColor
+                btn.backgroundColor = UIColor.whiteColor()
+                btn.addTarget(self, action: #selector(readComic(_:)), forControlEvents: .TouchUpInside)
+                addSubview(btn)
+                let btnShowLabel = UILabel(frame: CGRectMake(10,2,btn.bounds.width-20,btn.bounds.height-4))
+                
+                btnShowLabel.text = chapterList![num].name
+                btnShowLabel.textAlignment = .Center
+                btnShowLabel.font = UIFont.systemFontOfSize(14)
+                btn.addSubview(btnShowLabel)
+                //记录最后一个button的位置
+                lastBtn = btn
+                
+                if chapterList![num].type == 3 {
+                    //显示VIP Label
+                    let vipLabel = UILabel(frame: CGRectMake(0,0,10,12))
+                    vipLabel.text = "V"
+                    vipLabel.textAlignment = .Right
+                    vipLabel.font = UIFont.systemFontOfSize(10)
+                    vipLabel.textColor = UIColor.whiteColor()
+                    vipLabel.backgroundColor = UIColor.orangeColor()
+                    btn.addSubview(vipLabel)
+                }
+                if chapterList![num].is_new == 1 {
+                    //显示new Label
+                    let newLabel = UILabel(frame: CGRectMake(HomeComicChapterCell.btnW-10,0,10,12))
+                    newLabel.text = "N"
+                    newLabel.font = UIFont.systemFontOfSize(10)
+                    newLabel.textColor = UIColor.whiteColor()
+                    newLabel.backgroundColor = lightGreen
+                    btn.addSubview(newLabel)
+                }
                 //}
             }
             //修改moreBtn的约束
@@ -153,25 +159,34 @@ class HomeComicChapterCell: UITableViewCell {
         //设置背景色
         self.backgroundColor = customBgColor
         
-        catalogLabel = UILabel(frame: CGRectMake(10,0,30,30))
-        catalogLabel?.text = "目录"
-        catalogLabel?.font = UIFont.systemFontOfSize(13)
+        if catalogLabel == nil {
+            catalogLabel = UILabel(frame: CGRectMake(10,0,30,30))
+            catalogLabel?.text = "目录"
+            catalogLabel?.font = UIFont.systemFontOfSize(13)
+        }
         addSubview(catalogLabel!)
-        
-        let sortBtn = UIButton(type: .Custom)
-        sortBtn.frame = CGRectMake(screenWidth-10-30, 0, 30, 30)
-        sortBtn.addTarget(self, action: #selector(sortClick), forControlEvents: .TouchUpInside)
-        addSubview(sortBtn)
-        
-        sortLabel = UILabel(frame: CGRectMake(0,0,30,30))
-        sortBool = false
-        sortLabel?.font = UIFont.systemFontOfSize(13)
-        sortBtn.addSubview(sortLabel!)
-        
-        updateLabel = UILabel(frame: CGRectMake(45,5,screenWidth-35-45,20))
-        updateLabel?.font = UIFont.systemFontOfSize(12)
-        updateLabel?.textColor = UIColor.grayColor()
+
+        if sortBtn == nil {
+            sortBtn = UIButton(type: .Custom)
+            sortBtn?.frame = CGRectMake(screenWidth-10-30, 0, 30, 30)
+            sortBtn?.addTarget(self, action: #selector(sortClick), forControlEvents: .TouchUpInside)
+        }
+        addSubview(sortBtn!)
+
+        if sortLabel == nil {
+            sortLabel = UILabel(frame: CGRectMake(0,0,30,30))
+            sortBool = false
+            sortLabel?.font = UIFont.systemFontOfSize(13)
+        }
+        sortBtn!.addSubview(sortLabel!)
+
+        if updateLabel == nil {
+            updateLabel = UILabel(frame: CGRectMake(45,5,screenWidth-35-45,20))
+            updateLabel?.font = UIFont.systemFontOfSize(12)
+            updateLabel?.textColor = UIColor.grayColor()
+        }
         addSubview(updateLabel!)
+
         
     }
     
@@ -184,8 +199,13 @@ class HomeComicChapterCell: UITableViewCell {
     func readComic(btn: UIButton) {
         let index = btn.tag-100
         if let chapterList = model?.chapter_list {
-            if jumpClosure != nil && chapterList[index].chapter_id != nil {
-                jumpClosure!(chapterList[index].chapter_id!,nil,nil)
+            if readComicClosure != nil && chapterList[index].chapter_id != nil {
+                if chapterList[index].type == 3 {
+                    print("VIP章节，需要做个弹框提示")
+                }else {
+                    let tmpUrl = onlineReadComic+"\(chapterList[index].chapter_id!)"
+                    readComicClosure!(tmpUrl)
+                }
             }
         }
     }

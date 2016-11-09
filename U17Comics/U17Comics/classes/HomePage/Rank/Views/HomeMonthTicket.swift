@@ -11,14 +11,24 @@ import MJRefresh
 
 class HomeMonthTicket: UIView {
 
+    //获取当前view的控制视图
+    var viewController: BaseViewController?
+    
+    private var currentPage: Int = 1
     private var tableView: UITableView?
     //选中页面
     var downloadType: HomeDownloadType = HomeDownloadType.RankTicket
     //显示网址
-    var urlString: String?
+    var urlString: String? {
+        didSet {
+            if urlString != nil {
+                downloadData(urlString!+"\(currentPage)", downloadType: downloadType)
+            }
+        }
+    }
     var viewType: ViewType = ViewType.RankTicket
     var jumpClosure: HomeJumpClosure?
-    var model: HomeVIPModel? {
+    var model: Array<HomeVIPComics>? {
         didSet {
             tableView?.reloadData()
         }
@@ -27,30 +37,43 @@ class HomeMonthTicket: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //self.backgroundColor = customBgColor
-        tableView = UITableView(frame: CGRectZero, style: .Plain)
-        tableView?.backgroundColor = customBgColor
-        tableView?.dataSource = self
-        tableView?.delegate = self
-        addSubview(tableView!)
-        
-        tableView?.snp_makeConstraints(closure: { (make) in
-            make.edges.equalTo(self)
-        })
-        addRefresh({ [weak self] in
-//            self!.currentPage = 1
-//            self!.downloadData(self!.rankLink![(self!.headerView?.selectedIndex)!]+"\(self!.currentPage)", downloadType: self!.downloadType)
-        }) { [weak self] in
-//            self?.currentPage += 1
-//            self!.downloadData(self!.rankLink![(self!.headerView?.selectedIndex)!]+"\(self!.currentPage)", downloadType: self!.downloadType)
+        if tableView == nil {
+            tableView = UITableView(frame: CGRectZero, style: .Plain)
+            tableView?.backgroundColor = customBgColor
+            tableView?.dataSource = self
+            tableView?.delegate = self
+            addSubview(tableView!)
+            
+            tableView?.snp_makeConstraints(closure: { (make) in
+                make.edges.equalTo(self)
+            })
+            jumpClosure = {
+                [weak self](jumpUrl,ticketUrl,title) in
+                self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
+            }
+            
+            addRefresh({ [weak self] in
+                self!.currentPage = 1
+                self!.downloadData(self!.urlString!+"\(self!.currentPage)", downloadType: self!.downloadType)
+                    }) { [weak self] in
+                    self!.currentPage += 1
+                    self!.downloadData(self!.urlString!+"\(self!.currentPage)", downloadType: self!.downloadType)
+                }
         }
+        
     }
     
     func downloadData(url: String, downloadType: HomeDownloadType) {
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = downloadType
-        print(url)
         downloader.getWithUrl(url)
+    }
+    
+    func handleClickEvent(urlString: String, ticketUrl: String?) {
+        if let tmpViewController = viewController {
+            HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: tmpViewController)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,19 +88,19 @@ extension HomeMonthTicket: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tmpModel = model?.data?.returnData?.comics
-        if tmpModel?.count > 0 {
-            return (tmpModel?.count)!
-        }else {
-            return 0
+        if let tmpModel = model {
+            return tmpModel.count
         }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let listModel = model?.data?.returnData?.comics![indexPath.row]
-        let cell = HomeVIPCell.createVIPCellFor(tableView, atIndexPath: indexPath, listModel: listModel, type: viewType)
-        cell.jumpClosure = jumpClosure
-        return cell
+        if let listModel = model {
+            let cell = HomeVIPCell.createVIPCellFor(tableView, atIndexPath: indexPath, listModel: listModel[indexPath.row], type: viewType)
+            cell.jumpClosure = jumpClosure
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -95,67 +118,36 @@ extension HomeMonthTicket: U17DownloadDelegate {
     func downloader(downloader: U17Download, didFinishWithData data: NSData?) {
         if let tmpData = data {
             if tableView != nil {
-                //self.tableView!.mj_header.endRefreshing()
-                //self.tableView!.mj_footer.endRefreshing()
+                self.tableView!.mj_header.endRefreshing()
+                self.tableView!.mj_footer.endRefreshing()
             }
-            if downloader.downloadType == HomeDownloadType.HomeRank {
-                //排行标题
-                let model = HomeRankTitleModel.parseData(tmpData)
-                let rankingList = model.data?.returnData?.rankinglist
-                //动态获取标题
-                if rankingList?.count > 0 {
-                    var tmpArray = Array<String>()
-                    var tmpLink = Array<String>()
-                    for i in 0..<(rankingList?.count)! {
-                        let link = homeRankDetail+"argValue=\(rankingList![i].argValue!)"+"&argName=\(rankingList![i].argName!)"+"&page="
-                        tmpArray.append(rankingList![i].title!)
-                        tmpLink.append(link)
-                    }
-                    rankLink = tmpLink//要写前面 否则rankTitle一赋值就会调用加载URL
-                    rankTitle = tmpArray
+            //1.json解析
+            if let tmpModel = HomeVIPModel.parseData(tmpData).data?.returnData?.comics {
+                if currentPage == 1 {
+                    model = tmpModel
+                }else {
+                    let tmpArray = NSMutableArray(array: model!)
+                    tmpArray.addObjectsFromArray(tmpModel)
+                    model = NSArray(array: tmpArray) as? Array<HomeVIPComics>
                 }
-            }else if downloader.downloadType == HomeDownloadType.RankTicket {
-                //1.json解析
-                let model = HomeVIPModel.parseData(tmpData)
-                monthTicketView!.model = model
-                monthTicketView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl,title) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
-                }
+            }
+            if downloader.downloadType == HomeDownloadType.RankTicket {
+                viewType = ViewType.RankTicket
             }else if downloader.downloadType == HomeDownloadType.RankClick {
                 //点击页面
-                let model = HomeVIPModel.parseData(tmpData)
-                rankClickView?.model = model
-                rankClickView?.viewType = ViewType.RankClick
-                rankClickView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl,title) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
-                }
+                viewType = ViewType.RankClick
             }else if downloader.downloadType == HomeDownloadType.RankComment {
                 //吐槽页面
-                let model = HomeVIPModel.parseData(tmpData)
-                rankCommentView?.model = model
-                rankCommentView?.viewType = ViewType.RankComment
-                rankCommentView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl,title) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
-                }
+                viewType = ViewType.RankComment
             }else if downloader.downloadType == HomeDownloadType.RankNew {
                 //新作页面
-                let model = HomeVIPModel.parseData(tmpData)
-                rankNewView?.model = model
-                rankCommentView?.viewType = ViewType.RankNew
-                rankNewView!.jumpClosure = {
-                    [weak self](jumpUrl,ticketUrl,title) in
-                    self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
-                }
+                viewType = ViewType.RankNew
             }
         }else {
             print(data)
         }
     }
 }
-
 //刷新页面的代理
 extension HomeMonthTicket: CustomAddRefreshProtocol {
     func addRefresh(header: (()->())?, footer:(()->())?) {

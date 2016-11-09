@@ -33,7 +33,8 @@ class ComicDetailController: U17TabViewController {
             tableView?.reloadData()
         }
     }
-    
+    private var readComicModel: ReadComicModel?
+    var readComicClosure: ReadComicClosure?
     
     func createTableView() {
         automaticallyAdjustsScrollViewInsets = false
@@ -66,6 +67,12 @@ class ComicDetailController: U17TabViewController {
             downloader.downloadType = .ComicTicket
             downloader.getWithUrl(ticketUrl!)
         }
+    }
+    
+    func handleReadComic(urlString: String) {
+        let readComicView = ReadComicController()
+        readComicView.readComicUrl = urlString
+        navigationController?.pushViewController(readComicView, animated: true)
     }
     
     func handleClickEvent(urlString: String, ticketUrl: String?) {
@@ -111,6 +118,10 @@ extension ComicDetailController: U17DownloadDelegate {
                     [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
+                readComicClosure = {[weak self](urlString) in
+                    self!.handleReadComic(urlString)
+                }
+
             }else if downloader.downloadType == HomeDownloadType.ComicTicket {
                     comicTicketModel = ComicDetailTicket.parseData(tmpData)
             }
@@ -163,6 +174,7 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
                     cell = HomeComicChapterCell()
                 }
                 cell?.jumpClosure = jumpClosure
+                cell?.readComicClosure = readComicClosure
                 cell?.model = model
                 return cell!
             }

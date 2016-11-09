@@ -36,6 +36,9 @@
 		BC1A7C9B1DC8B1B2005147C4 /* HomeVIPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1A7C991DC8B1B2005147C4 /* HomeVIPCell.swift */; };
 		BC1A7C9C1DC8B1B2005147C4 /* HomeVIPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1A7C9A1DC8B1B2005147C4 /* HomeVIPCell.xib */; };
 		BC1A7C9E1DC8B664005147C4 /* become_vip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1A7C9D1DC8B664005147C4 /* become_vip@2x.png */; };
+		BC3092D81DD2F53E007EBF63 /* CustomAddRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3092D71DD2F53E007EBF63 /* CustomAddRefreshProtocol.swift */; };
+		BC3092DC1DD30AE5007EBF63 /* ReadComicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3092DB1DD30AE5007EBF63 /* ReadComicController.swift */; };
+		BC3092DE1DD30B5E007EBF63 /* ReadComicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3092DD1DD30B5E007EBF63 /* ReadComicModel.swift */; };
 		BC4E95371DCC7169008E94C2 /* HomeComicHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E95351DCC7169008E94C2 /* HomeComicHeaderCell.swift */; };
 		BC4E95381DCC7169008E94C2 /* HomeComicHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC4E95361DCC7169008E94C2 /* HomeComicHeaderCell.xib */; };
 		BC4E95401DCC83E7008E94C2 /* U17TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E953F1DCC83E7008E94C2 /* U17TabViewController.swift */; };
@@ -148,6 +151,9 @@
 		BC1A7C991DC8B1B2005147C4 /* HomeVIPCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVIPCell.swift; sourceTree = "<group>"; };
 		BC1A7C9A1DC8B1B2005147C4 /* HomeVIPCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVIPCell.xib; sourceTree = "<group>"; };
 		BC1A7C9D1DC8B664005147C4 /* become_vip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "become_vip@2x.png"; sourceTree = "<group>"; };
+		BC3092D71DD2F53E007EBF63 /* CustomAddRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddRefreshProtocol.swift; sourceTree = "<group>"; };
+		BC3092DB1DD30AE5007EBF63 /* ReadComicController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadComicController.swift; sourceTree = "<group>"; };
+		BC3092DD1DD30B5E007EBF63 /* ReadComicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadComicModel.swift; sourceTree = "<group>"; };
 		BC4E95351DCC7169008E94C2 /* HomeComicHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeComicHeaderCell.swift; sourceTree = "<group>"; };
 		BC4E95361DCC7169008E94C2 /* HomeComicHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeComicHeaderCell.xib; sourceTree = "<group>"; };
 		BC4E953F1DCC83E7008E94C2 /* U17TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = U17TabViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +459,7 @@
 				BCF6B1001DCB460A00296544 /* MoreComicController.swift */,
 				BCF6B1021DCB636C00296544 /* ComicDetailController.swift */,
 				BCED4E461DCA159B00398CD2 /* WebViewController.swift */,
+				BC3092DB1DD30AE5007EBF63 /* ReadComicController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -463,6 +470,7 @@
 				BC00127B1DBE2B8300E5C72A /* HomeRecommend.swift */,
 				BCF6B1041DCB63C700296544 /* ComicDetailModel.swift */,
 				94EEAC091DCDC4A300B413D6 /* ComicDetailTicket.swift */,
+				BC3092DD1DD30B5E007EBF63 /* ReadComicModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -576,6 +584,7 @@
 				BC1A7C851DC87AA3005147C4 /* CustomSegCtrl.swift */,
 				BC4E953F1DCC83E7008E94C2 /* U17TabViewController.swift */,
 				BC4E96C51DD05C3C008E94C2 /* CustomNavigationProtocol.swift */,
+				BC3092D71DD2F53E007EBF63 /* CustomAddRefreshProtocol.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -944,12 +953,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC3092D81DD2F53E007EBF63 /* CustomAddRefreshProtocol.swift in Sources */,
 				BC1A7C981DC89AA7005147C4 /* HomeVIPModel.swift in Sources */,
 				BC52AD5F1DBA34270006ED6E /* ViewController.swift in Sources */,
 				BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */,
 				BC19DDA11DC3803F006C83AC /* HomeHotNewCell.swift in Sources */,
 				BC1A7C961DC88B88005147C4 /* HomeVIPView.swift in Sources */,
 				BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */,
+				BC3092DE1DD30B5E007EBF63 /* ReadComicModel.swift in Sources */,
 				94EEAC0A1DCDC4A300B413D6 /* ComicDetailTicket.swift in Sources */,
 				BCF6B1011DCB460A00296544 /* MoreComicController.swift in Sources */,
 				BC52ADC51DBA3F900006ED6E /* MainTabBarController.swift in Sources */,
@@ -963,6 +974,7 @@
 				BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */,
 				BC19DD9D1DC376C6006C83AC /* HomeUpdateCell.swift in Sources */,
 				BC0307541DC7485800D11E59 /* HomeRankCell.swift in Sources */,
+				BC3092DC1DD30AE5007EBF63 /* ReadComicController.swift in Sources */,
 				BC0012391DBDF03E00E5C72A /* Const.swift in Sources */,
 				BCF6B0F61DCB1F4200296544 /* HomeRankTitleModel.swift in Sources */,
 				BCF6B0F41DCB17FC00296544 /* HomeMonthTicket.swift in Sources */,

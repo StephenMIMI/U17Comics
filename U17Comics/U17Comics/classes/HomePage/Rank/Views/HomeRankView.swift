@@ -34,7 +34,6 @@ class HomeRankView: UIView {
     //排行-新作页面
     var rankNewView: HomeMonthTicket?
     
-    var jumpClosure: HomeJumpClosure?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,7 +63,6 @@ class HomeRankView: UIView {
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = downloadType
-        print(url)
         downloader.getWithUrl(url)
     }
     
@@ -92,6 +90,7 @@ class HomeRankView: UIView {
         
         //添加子视图
         monthTicketView = HomeMonthTicket()
+        monthTicketView?.viewController = viewController
         containerView.addSubview(monthTicketView!)
         monthTicketView?.snp_makeConstraints(closure: { (make) in
             make.left.top.bottom.equalTo(containerView)
@@ -99,6 +98,7 @@ class HomeRankView: UIView {
         })
         
         rankClickView = HomeMonthTicket()
+        rankClickView?.viewController = viewController
         containerView.addSubview(rankClickView!)
         rankClickView?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo((monthTicketView?.snp_right)!)
@@ -107,6 +107,7 @@ class HomeRankView: UIView {
         })
         
         rankCommentView = HomeMonthTicket()
+        rankCommentView?.viewController = viewController
         containerView.addSubview(rankCommentView!)
         rankCommentView?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo((rankClickView?.snp_right)!)
@@ -115,6 +116,7 @@ class HomeRankView: UIView {
         })
         
         rankNewView = HomeMonthTicket()
+        rankNewView?.viewController = viewController
         containerView.addSubview(rankNewView!)
         rankNewView?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo((rankCommentView?.snp_right)!)
@@ -127,11 +129,7 @@ class HomeRankView: UIView {
         }
     }
     
-    func handleClickEvent(urlString: String, ticketUrl: String?) {
-        if let tmpViewController = viewController {
-            HomePageService.handleEvent(urlString, comicTicket: ticketUrl, onViewController: tmpViewController)
-        }
-    }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

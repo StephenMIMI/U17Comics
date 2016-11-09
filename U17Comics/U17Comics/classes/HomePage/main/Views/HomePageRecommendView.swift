@@ -9,11 +9,8 @@
 import UIKit
 import MJRefresh
 
-protocol CustomAddRefreshProtocol: NSObjectProtocol {
-    func addRefresh(header: (()->())?, footer:(()->())?)
-}
-
 public typealias HomeJumpClosure = ((String, String?, String?) -> Void)
+public typealias ReadComicClosure = ((String) -> Void)
 
 //定义首页推荐列表的类型
 public enum HomeComicType: Int {
