@@ -10,6 +10,16 @@ import UIKit
 
 class HomeComicHeaderView: UIView {
 
+    //接受controller
+    var controller: UIViewController?
+    var readComicClosure: ReadComicClosure?
+    //接受已阅读章节的名字
+    var chapterName: String?
+    var chapterId: String? {
+        didSet {
+            updateUI()
+        }
+    }
     private var descLabel: UILabel?
     private var downloadBtn: UIButton?
     private var startReadBtn: UIButton?
@@ -17,6 +27,13 @@ class HomeComicHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
+    }
+    
+    func updateUI() {
+        if chapterName != nil {
+            descLabel?.text = "上次看到 \(chapterName!)"
+            startReadBtn?.setTitle("继续阅读", forState: .Normal)
+        }
     }
     
     func configUI() {
@@ -67,11 +84,20 @@ class HomeComicHeaderView: UIView {
     }
     
     func startRead() {
-    
+        if chapterId != nil {
+            let tmpUrl = onlineReadComic+"\(chapterId!)"
+            readComicClosure!(tmpUrl, chapterName, chapterId)
+        }
     }
     
     func startDownload() {
-    
+        let alter = UIAlertController(title: "提示", message: "下载暂未实现~SORRY", preferredStyle: .Alert)
+        alter.addAction(UIAlertAction(title: "好的吧！", style: .Default, handler: { (a) in
+            //占位
+        }))
+        if controller != nil {
+            controller!.presentViewController(alter, animated: true, completion: nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

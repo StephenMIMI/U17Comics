@@ -10,14 +10,18 @@ import UIKit
 
 class ComicDetailController: U17TabViewController {
 
+    //获取文件存放路径
+    let filePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0].stringByAppendingString("comicReadedData.data")
     var jumpUrl: String? {
         didSet {
             createTableView()
             //先下载月票数据并存储
             downloadTicketData()
             downloadDetailData()
+            initLocal()
         }
     }
+    var comicId: String?
     var ticketUrl: String?
     var jumpClosure: HomeJumpClosure?
     private var tableView: UITableView?
@@ -34,19 +38,82 @@ class ComicDetailController: U17TabViewController {
         }
     }
     private var readComicModel: ReadComicModel?
-    var readComicClosure: ReadComicClosure?
+    private var readComicClosure: ReadComicClosure?
+    //暂时接受chapterCell传递的名字和ID
+    private var chapterName: String?
+    private var chapterId: String? {
+        didSet {
+            tableView?.reloadData()
+            updateLocal()
+        }
+    }
+    private var localArray: ComicReadedModelArray?
+    
+    //首次跳转到这个页面，从本地读取信息并初始化数组
+    func initLocal() {
+        let data = NSData(contentsOfFile: filePath)
+        if data != nil {
+            let decode = NSKeyedUnarchiver(forReadingWithData: data!)
+            localArray = decode.decodeObjectForKey("readedArray") as? ComicReadedModelArray
+            decode.finishDecoding()
+        }
+        if localArray?.readedArray == nil {
+            localArray = ComicReadedModelArray()
+        }
+        if jumpUrl != nil {
+            var strArray = jumpUrl?.componentsSeparatedByString("?comicid=")
+            if strArray?.count > 1 {
+                comicId = strArray![1]
+            }
+        }
+        updateLocal()
+    }
+    
+    func updateLocal() {
+        //定义一个局部变量，判断是否更新还是插入
+        var update: Bool = true
+        let tmpModel = ComicReadedModel(comicId: comicId, chapterName: chapterName, chapterId: chapterId)
+        if let count = localArray?.readedArray?.count {
+            for i in 0..<count {
+                if let tmpId = localArray?.readedArray?[i].comicId {
+                    if tmpId == comicId {
+                        //原来已经有的漫画 就更新
+                        self.chapterId = localArray?.readedArray![i].chapterId
+                        self.chapterName = localArray?.readedArray![i].chapterName
+                        //原来已经有的漫画 就更新,但是第一次加载就不更新
+                        if chapterId != nil {
+                            localArray?.readedArray![i] = tmpModel
+                            update = false
+                        }
+                        break
+                    }
+                }
+            }
+        }
+        if update == true && chapterId != nil {
+            localArray?.readedArray!.append(tmpModel)
+        }
+        print(localArray?.readedArray?[0].chapterId)
+        let data = NSMutableData()
+        let code = NSKeyedArchiver.init(forWritingWithMutableData: data)
+        code.encodeObject(localArray, forKey: "readedArray")
+        code.finishEncoding()
+        data.writeToFile(filePath, atomically: false)
+    }
     
     func createTableView() {
         automaticallyAdjustsScrollViewInsets = false
-        tableView = UITableView(frame: CGRectZero, style: .Plain)
-        tableView?.delegate = self
-        tableView?.dataSource = self
-//        tableView?.backgroundColor = UIColor.init(white: 0.5, alpha: 0.8)
-        view.addSubview(tableView!)
-        
-        tableView?.snp_makeConstraints(closure: { (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsetsMake(20, 0, 0, 0))
-        })
+        if tableView == nil {
+            tableView = UITableView(frame: CGRectZero, style: .Plain)
+            tableView?.delegate = self
+            tableView?.dataSource = self
+            view.addSubview(tableView!)
+            
+            tableView?.snp_makeConstraints(closure: { (make) in
+                make.edges.equalTo(view).inset(UIEdgeInsetsMake(20, 0, 0, 0))
+            })
+        }
+
     }
     
     //下载详情的数据
@@ -72,6 +139,7 @@ class ComicDetailController: U17TabViewController {
     func handleReadComic(urlString: String) {
         let readComicView = ReadComicController()
         readComicView.readComicUrl = urlString
+        
         navigationController?.pushViewController(readComicView, animated: true)
     }
     
@@ -81,7 +149,6 @@ class ComicDetailController: U17TabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -118,8 +185,10 @@ extension ComicDetailController: U17DownloadDelegate {
                     [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)
                 }
-                readComicClosure = {[weak self](urlString) in
+                readComicClosure = {[weak self](urlString,chapterName,chapterId) in
                     self!.handleReadComic(urlString)
+                    self!.chapterName = chapterName
+                    self!.chapterId = chapterId
                 }
 
             }else if downloader.downloadType == HomeDownloadType.ComicTicket {
@@ -173,6 +242,7 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
                 if cell == nil {
                     cell = HomeComicChapterCell()
                 }
+                cell?.controller = self
                 cell?.jumpClosure = jumpClosure
                 cell?.readComicClosure = readComicClosure
                 cell?.model = model
@@ -204,6 +274,10 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let cell = HomeComicHeaderView.init(frame: CGRectMake(0,0,screenWidth,44))
+            cell.chapterName = chapterName
+            cell.chapterId = chapterId
+            cell.controller = self
+            cell.readComicClosure = readComicClosure
             return cell
         }
         return nil

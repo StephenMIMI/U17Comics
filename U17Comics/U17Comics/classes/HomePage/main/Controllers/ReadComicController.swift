@@ -12,9 +12,9 @@ import SnapKit
 //阅读漫画页面
 class ReadComicController: U17TabViewController, CustomNavigationProtocol{
 
-    var scrollView: UIScrollView?
-    var containerView: UIView?
-    var lastImage: UIImageView?
+    //用tableView来实现
+    var tableView: UITableView?
+    
     var model: ReadComicModel? {
         didSet {
             if model != nil {
@@ -29,7 +29,7 @@ class ReadComicController: U17TabViewController, CustomNavigationProtocol{
             }
         }
     }
-    var currentPage: Int = 0
+    var curCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,74 +50,18 @@ class ReadComicController: U17TabViewController, CustomNavigationProtocol{
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = .ComicDetail
-        print(urlString)
         downloader.getWithUrl(urlString)
     }
     
     func configUI() {
-        if scrollView == nil {
-            scrollView = UIScrollView()
-            scrollView?.backgroundColor = UIColor.blackColor()
-            scrollView?.showsVerticalScrollIndicator = false
-            //添加scrollView代理
-            scrollView?.delegate = self
-            view.addSubview(scrollView!)
-            print(view.bounds)
-            scrollView?.snp_makeConstraints(closure: { [weak self](make) in
-                make.edges.equalTo(self!.view).inset(UIEdgeInsetsMake(0, 10, 0, 10))
-            })
-            containerView = UIView.createView()
-            scrollView?.addSubview(containerView!)
-            containerView!.snp_makeConstraints { (make) in
-                make.edges.equalTo(scrollView!)
-                make.width.equalTo(scrollView!)
-            }
-        }
-        loadComic()
-    }
-    
-    func loadComic() {
-        //获取image个数
-        if let count = model?.data?.returnData?.image_list?.count {
-            print("total= \(count)page")
-            //计算图片压缩比例
-            var rate:CGFloat = 1.0
-            var height:CGFloat = 0
-            if currentPage < count {
-                //不够3个，有几个加载几个
-                var newCount = 3
-                if (count-currentPage) < 3 {
-                    newCount = (count-currentPage)
-                }
-                //先加载3个
-                for i in currentPage..<currentPage+newCount {
-                    let imageData = model?.data?.returnData?.image_list?[i]
-                    if let w = NSNumberFormatter().numberFromString((imageData!.width)!) {
-                        rate = screenWidth/CGFloat(w)
-                    }
-                    //转化高度
-                    if let h = NSNumberFormatter().numberFromString((imageData!.height)!) {
-                        height = CGFloat(h)*rate
-                    }
-                    let imageView = UIImageView(frame: CGRectMake(0, (height+5)*CGFloat(i), screenWidth-20, height))
-                    imageView.kf_indicatorType = .Activity
-                    let url = NSURL(string: (imageData?.location)!)
-                    imageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: { (receivedSize, totalSize) in
-                        //                    let percentage = (Float(receivedSize)/Float(totalSize))*100.0
-                        //                    print("downloading progress: \(percentage)%")
-                        }, completionHandler: nil)
-                    containerView?.addSubview(imageView)
-                    lastImage = imageView
-                    currentPage = i+1
-                    print(currentPage)
-                }
-                containerView?.snp_updateConstraints(closure: { (make) in
-                    make.bottom.equalTo(lastImage!)
-                })
-//                containerView?.snp_makeConstraints(closure: { (make) in
-//                    make.bottom.equalTo(lastImage!)
-//                })
-            }
+        if tableView == nil {
+            automaticallyAdjustsScrollViewInsets = false
+            tableView = UITableView(frame: CGRectMake(0, 64, screenWidth, screenHeight-64), style: .Plain)
+            tableView?.backgroundColor = UIColor.blackColor()
+            tableView?.delegate = self
+            tableView?.dataSource = self
+            view.addSubview(tableView!)
+            tableView?.reloadData()
         }
     }
     
@@ -143,12 +87,57 @@ extension ReadComicController: U17DownloadDelegate {
 }
 
 //MARK: scrollView代理
-extension ReadComicController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let index = scrollView.contentOffset.y/(scrollView.bounds.height/2)
-        print("index=\(index)")
-        if index > 1 {
-            //loadComic()
+extension ReadComicController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        //计算图片压缩比例
+        var rate:CGFloat = 1.0
+        var height:CGFloat = 0
+        let imageData = model?.data?.returnData?.image_list?[indexPath.row]
+        if let w = NSNumberFormatter().numberFromString((imageData!.width)!) {
+            rate = screenWidth/CGFloat(w)
         }
+        //转化高度
+        if let h = NSNumberFormatter().numberFromString((imageData!.height)!) {
+            height = CGFloat(h)*rate
+        }
+        return height
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //获取image个数
+        //Xcode会调用3次方法
+        if let totalCount = model?.data?.returnData?.image_list?.count {
+            if totalCount > curCount {
+                //不够3个，有几个加载几个
+                if (totalCount-curCount) > 3 {
+                    curCount += 3
+                }else {
+                    curCount += (totalCount-curCount)
+                }
+            }
+        }
+        return curCount
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellId = "readComicCellId"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? ReadComicCell
+        if (nil == cell) {
+            cell = NSBundle.mainBundle().loadNibNamed("ReadComicCell", owner: nil, options: nil).last as? ReadComicCell
+        }
+        let imageData = model?.data?.returnData?.image_list?[indexPath.row]
+        cell?.urlString = imageData?.location
+        return cell!
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height-scrollView.bounds.size.height-20 {
+            tableView?.reloadData()
+        }
+    }
+    
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
     }
 }

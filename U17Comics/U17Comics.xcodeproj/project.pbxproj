@@ -82,6 +82,9 @@
 		BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */; };
 		BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */; };
 		BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */; };
+		BCB86EB51DD464C20071F591 /* ReadComicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB86EB31DD464C20071F591 /* ReadComicCell.swift */; };
+		BCB86EB61DD464C20071F591 /* ReadComicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB86EB41DD464C20071F591 /* ReadComicCell.xib */; };
+		BCB86EB81DD4A0290071F591 /* ComicReadedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB86EB71DD4A0290071F591 /* ComicReadedModel.swift */; };
 		BCC1C5F81DC1FC02000B2F38 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC1C5F71DC1FC02000B2F38 /* HomeHeaderView.swift */; };
 		BCC1C5FB1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC1C5F91DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png */; };
 		BCC1C5FC1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC1C5FA1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png */; };
@@ -203,6 +206,9 @@
 		BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Common.swift"; sourceTree = "<group>"; };
 		BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommendCell.swift; sourceTree = "<group>"; };
 		BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRecommendCell.xib; sourceTree = "<group>"; };
+		BCB86EB31DD464C20071F591 /* ReadComicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadComicCell.swift; sourceTree = "<group>"; };
+		BCB86EB41DD464C20071F591 /* ReadComicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadComicCell.xib; sourceTree = "<group>"; };
+		BCB86EB71DD4A0290071F591 /* ComicReadedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicReadedModel.swift; sourceTree = "<group>"; };
 		BCC1C5F71DC1FC02000B2F38 /* HomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		BCC1C5F91DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommendview_icon_more_5x10_@2x.png"; sourceTree = "<group>"; };
 		BCC1C5FA1DC1FF0A000B2F38 /* recommendview_icon_more_5x10_@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommendview_icon_more_5x10_@3x.png"; sourceTree = "<group>"; };
@@ -471,6 +477,7 @@
 				BCF6B1041DCB63C700296544 /* ComicDetailModel.swift */,
 				94EEAC091DCDC4A300B413D6 /* ComicDetailTicket.swift */,
 				BC3092DD1DD30B5E007EBF63 /* ReadComicModel.swift */,
+				BCB86EB71DD4A0290071F591 /* ComicReadedModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -499,6 +506,8 @@
 				BC4E95551DCCBC1D008E94C2 /* HomeComicHeaderView.swift */,
 				94EEAC0D1DCE37AB00B413D6 /* HomeComicChapterCell.swift */,
 				BC4E96C31DD0558F008E94C2 /* HomeComicChapterFooter.swift */,
+				BCB86EB31DD464C20071F591 /* ReadComicCell.swift */,
+				BCB86EB41DD464C20071F591 /* ReadComicCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -874,6 +883,7 @@
 				BC19DDA21DC3803F006C83AC /* HomeHotNewCell.xib in Resources */,
 				BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */,
 				BC0307571DC7777900D11E59 /* recommend_comic_default_91x115_@2x.png in Resources */,
+				BCB86EB61DD464C20071F591 /* ReadComicCell.xib in Resources */,
 				BCFDAE511DBF559700D79102 /* HomeGalleryCell.xib in Resources */,
 				BC52ADB61DBA3C650006ED6E /* tabbar_mine_normal.png in Resources */,
 				BC19DD9E1DC376C6006C83AC /* HomeUpdateCell.xib in Resources */,
@@ -953,6 +963,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB86EB51DD464C20071F591 /* ReadComicCell.swift in Sources */,
 				BC3092D81DD2F53E007EBF63 /* CustomAddRefreshProtocol.swift in Sources */,
 				BC1A7C981DC89AA7005147C4 /* HomeVIPModel.swift in Sources */,
 				BC52AD5F1DBA34270006ED6E /* ViewController.swift in Sources */,
@@ -988,6 +999,7 @@
 				BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */,
 				BCF6B1051DCB63C700296544 /* ComicDetailModel.swift in Sources */,
 				BC52ADBD1DBA3D090006ED6E /* ProfileViewController.swift in Sources */,
+				BCB86EB81DD4A0290071F591 /* ComicReadedModel.swift in Sources */,
 				BC1A7C9B1DC8B1B2005147C4 /* HomeVIPCell.swift in Sources */,
 				BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */,
 				BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */,

@@ -10,7 +10,8 @@ import UIKit
 
 class HomeComicChapterCell: UITableViewCell {
 
-    
+    //接受controller
+    var controller: UIViewController?
     //目录label
     var catalogLabel: UILabel?
     //更新到某章节label
@@ -201,10 +202,18 @@ class HomeComicChapterCell: UITableViewCell {
         if let chapterList = model?.chapter_list {
             if readComicClosure != nil && chapterList[index].chapter_id != nil {
                 if chapterList[index].type == 3 {
-                    print("VIP章节，需要做个弹框提示")
+                    let alter = UIAlertController(title: "提示", message: "VIP章节暂时无法观看", preferredStyle: .Alert)
+                    alter.addAction(UIAlertAction(title: "好的吧！", style: .Default, handler: { (a) in
+                        print("VIP章节，需要做个弹框提示")
+                    }))
+                    if controller != nil {
+                        controller!.presentViewController(alter, animated: true, completion: nil)
+                    }
                 }else {
                     let tmpUrl = onlineReadComic+"\(chapterList[index].chapter_id!)"
-                    readComicClosure!(tmpUrl)
+                    let tmpName = chapterList[index].name
+                    let tmpId = chapterList[index].chapter_id
+                    readComicClosure!(tmpUrl, tmpName, tmpId)
                 }
             }
         }
