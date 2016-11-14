@@ -8,14 +8,31 @@
 
 import UIKit
 
-class BookShelfViewController: BaseViewController {
+class BookShelfViewController: BaseViewController, CustomNavigationProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        addTitle("书架")
+        view.backgroundColor = customBgColor
+        configUI()
     }
 
+    func configUI() {
+        let label = UILabel()
+        label.text = "该功能暂未实现，先去看看其他的吧!"
+        label.textColor = UIColor.lightGrayColor()
+        label.numberOfLines = 2
+        label.textAlignment = .Center
+        label.font = UIFont.systemFontOfSize(15)
+        view.addSubview(label)
+        
+        label.snp_makeConstraints { (make) in
+            make.centerX.centerY.equalTo(view)
+            make.width.equalTo(200)
+            make.height.equalTo(40)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

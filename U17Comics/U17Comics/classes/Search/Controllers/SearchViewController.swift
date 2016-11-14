@@ -22,6 +22,7 @@ class SearchViewController: BaseViewController, CustomNavigationProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = customBgColor
         addTitle("分类页面")
         //初始化tableView
         automaticallyAdjustsScrollViewInsets = false

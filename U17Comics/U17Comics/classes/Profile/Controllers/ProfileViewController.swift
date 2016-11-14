@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ProfileViewController: BaseViewController {
+class ProfileViewController: BaseViewController, CustomNavigationProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        addTitle("登录界面")
+        
+        view.backgroundColor = customBgColor
+        
     }
 
     override func didReceiveMemoryWarning() {

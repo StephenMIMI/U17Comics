@@ -21,9 +21,12 @@ class MainTabBarController: UITabBarController {
 
     
     func createViewControllers() {
-        let nameArray = ["HomePageViewController","SearchViewController","BookShelfViewController","ProfileViewController"]
-        let imageArray = ["tabbar_comic","tabbar_Special","tabbar_collection","tabbar_mine"]
-        let titleArray = ["首页","分类","书架","我的"]
+        let nameArray = ["HomePageViewController","SearchViewController"]
+        let imageArray = ["home","sort"]
+        let titleArray = ["首页","分类"]
+//        let nameArray = ["HomePageViewController","SearchViewController","BookShelfViewController","ProfileViewController"]
+//        let imageArray = ["tabbar_comic","tabbar_Special","tabbar_collection","tabbar_mine"]
+//        let titleArray = ["首页","分类","书架","我的"]
         var ctrlArray = Array<UINavigationController>()
         for i in 0..<nameArray.count {
             let name = "U17Comics."+nameArray[i]
@@ -40,7 +43,7 @@ class MainTabBarController: UITabBarController {
     
     func createMyTabBar(imageNames: Array<String>, titles: Array<String>) {
         bgView = UIView.createView()
-//        bgView?.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+        bgView?.backgroundColor = UIColor.whiteColor()
         view.addSubview(bgView!)
         bgView?.snp_makeConstraints(closure: { [weak self](make) in
             make.left.right.bottom.equalTo(self!.view)
@@ -49,23 +52,32 @@ class MainTabBarController: UITabBarController {
         
         let width = screenWidth/CGFloat(imageNames.count)
         for i in 0..<imageNames.count {
+            //首先创建2个按钮添加视图
+            let btnView = UIView.createView()
+            btnView.backgroundColor = customBgColor
+            bgView?.addSubview(btnView)
+            
+            btnView.snp_makeConstraints(closure: { (make) in
+                make.top.bottom.equalTo(bgView!)
+                make.width.equalTo(width)
+                make.left.equalTo(width*CGFloat(i))
+            })
             //循环创建按钮
             let imageName = imageNames[i]+"_normal"
-            let selectName = imageNames[i]+"_selected"
+            let selectName = imageNames[i]+"_select"
             let btn = UIButton.createBtn(nil, normalImage: imageName, highlightImage: nil, selectImage: selectName, target: self, action: #selector(btnClick(_:)))
             btn.tag = 100+i
             btn.adjustsImageWhenHighlighted = false//禁用高亮
             bgView?.addSubview(btn)
-            btn.snp_makeConstraints(closure: { [weak self](make) in
-                make.top.bottom.equalTo(self!.bgView!)
-                make.width.equalTo(width)
-                make.left.equalTo(width*CGFloat(i))
+            btn.snp_makeConstraints(closure: { (make) in
+                make.top.bottom.equalTo(btnView)
+                make.centerX.equalTo(btnView)
+                make.width.equalTo(80)
             })
             
             let titleLabel = UILabel.createLabel(titles[i], textAlignment: .Center, font: UIFont.systemFontOfSize(10))
             titleLabel.textColor = UIColor.lightGrayColor()
             titleLabel.tag = 400
-            titleLabel.backgroundColor = UIColor.whiteColor()
             btn.addSubview(titleLabel)
             
             titleLabel.snp_makeConstraints(closure: { (make) in
@@ -75,7 +87,7 @@ class MainTabBarController: UITabBarController {
             //默认选中第一个按钮
             if i == 0 {
                 btn.selected = true
-                titleLabel.textColor = UIColor.redColor()
+                titleLabel.textColor = lightGreen
             }
         }
     }
@@ -107,9 +119,9 @@ class MainTabBarController: UITabBarController {
         selectedIndex = index
         curBtn.userInteractionEnabled = false
         let  curLabel = curBtn.viewWithTag(400) as! UILabel
-        curLabel.textColor = UIColor.redColor()
+        curLabel.textColor = lightGreen
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
