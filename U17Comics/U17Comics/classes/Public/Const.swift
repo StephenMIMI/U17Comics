@@ -19,13 +19,11 @@ let customBgColor = UIColor.init(red: 240/255.0, green: 255/255.0, blue: 240/255
 //首页推荐
 let homeRecommendUrl = "http://app.u17.com/v3/appV3_1/android/phone/comic/boutiqueListNew"
 //首页更多页面
-let homeMoreUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList"
+let homeMoreUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=%d&argName=%@&argCon=%d&page="
+let homeMoreUrlNoArg = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList"
+
 //首页不知道什么鬼更多页面
 let homeUnknownMoreUrl = "http://app.u17.com/v3/appV3_1/android/phone/comic/special?argCon=1&page=1"
-//首页VIP
-let homeVIPUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=14&argName=topic&argCon=2&page="
-//首页订阅
-let homeSubscribeUrl = "http://app.u17.com/v3/appV3_1/android/phone/list/commonComicList?argValue=12&argName=topic&argCon=2&page="
 
 //首页排行
 let homeRankUrl = "http://app.u17.com/v3/appV3_1/android/phone/rank/list"
@@ -37,3 +35,7 @@ let comicsTicketUrl = "http://app.u17.com/v3/appV3_1/android/phone/comic/detail_
 
 //在线查看每章节动画
 let onlineReadComic = "http://app.u17.com/v3/appV3_1/android/phone/comic/chapterNew?chapter_id="
+
+//分类页面数据加载
+let classifyUrl = "http://app.u17.com/v3/appV3_1/android/phone/sort/mobileCateList?version=2"
+

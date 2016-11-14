@@ -23,7 +23,7 @@ class MainTabBarController: UITabBarController {
     func createViewControllers() {
         let nameArray = ["HomePageViewController","SearchViewController","BookShelfViewController","ProfileViewController"]
         let imageArray = ["tabbar_comic","tabbar_Special","tabbar_collection","tabbar_mine"]
-        let titleArray = ["首页","搜索","书架","我的"]
+        let titleArray = ["首页","分类","书架","我的"]
         var ctrlArray = Array<UINavigationController>()
         for i in 0..<nameArray.count {
             let name = "U17Comics."+nameArray[i]

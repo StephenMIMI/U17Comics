@@ -49,9 +49,11 @@ class HomeVIPView: UIView {
         let downloader = U17Download()
         downloader.delegate = self
         if downloadType == HomeDownloadType.HomeVIP {
-            downloader.getWithUrl(homeVIPUrl+"\(currentPage)")
+            let tmpUrl = String(format: homeMoreUrl, 14,"topic",2)
+            downloader.getWithUrl(tmpUrl+"\(currentPage)")
         }else if downloadType == HomeDownloadType.HomeSubscribe {
-            downloader.getWithUrl(homeSubscribeUrl+"\(currentPage)")
+            let tmpUrl = String(format: homeMoreUrl, 12,"topic",2)
+            downloader.getWithUrl(tmpUrl+"\(currentPage)")
         }
         
     }

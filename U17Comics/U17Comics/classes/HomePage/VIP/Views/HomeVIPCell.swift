@@ -140,21 +140,22 @@ class HomeVIPCell: UITableViewCell {
     
     func configVIPLabel() {
         //标签颜色和文字
-        let model = listModel!
-        if model.flag != nil {
-            switch (model.flag?.integerValue)! {
-            case 0:
-                vipLabel.hidden = true
-            case 1:
-                vipLabel.text = "付费"
-                vipLabel.backgroundColor = UIColor.init(red: 255/255.0, green: 209/255.0, blue: 115/255.0, alpha: 1.0)
-            case 2:
-                vipLabel.hidden = true
-            case 3:
-                vipLabel.text = "VIP"
-                vipLabel.backgroundColor = UIColor.init(red: 242/255.0, green: 100/255.0, blue: 1/255.0, alpha: 1.0)
-            default:
-                break
+        if let model = listModel {
+            if model.flag != nil {
+                switch (model.flag?.integerValue)! {
+                case 0:
+                    vipLabel.hidden = true
+                case 1:
+                    vipLabel.text = "付费"
+                    vipLabel.backgroundColor = UIColor.init(red: 255/255.0, green: 209/255.0, blue: 115/255.0, alpha: 1.0)
+                case 2:
+                    vipLabel.hidden = true
+                case 3:
+                    vipLabel.text = "VIP"
+                    vipLabel.backgroundColor = UIColor.init(red: 242/255.0, green: 100/255.0, blue: 1/255.0, alpha: 1.0)
+                default:
+                    break
+                }
             }
         }
     }

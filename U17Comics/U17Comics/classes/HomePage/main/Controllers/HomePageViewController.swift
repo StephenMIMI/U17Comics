@@ -123,14 +123,16 @@ class HomePageViewController: BaseViewController {
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = HomeDownloadType.HomeVIP
-        downloader.getWithUrl(homeVIPUrl+"1")
+        let tmpUrl = String(format: homeMoreUrl, 14,"topic",2)
+        downloader.getWithUrl(tmpUrl+"1")
     }
     
     func downloadSubscribeData() {
         let downloader = U17Download()
         downloader.delegate = self
         downloader.downloadType = HomeDownloadType.HomeSubscribe
-        downloader.getWithUrl(homeSubscribeUrl+"1")
+        let tmpUrl = String(format: homeMoreUrl, 12,"topic",2)
+        downloader.getWithUrl(tmpUrl+"1")
     }
     
     func handleClickEvent(urlString: String, ticketUrl: String?, title: String? = nil) {

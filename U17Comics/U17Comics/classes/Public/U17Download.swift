@@ -29,6 +29,7 @@ enum HomeDownloadType: Int {
     case ComicDetail    //漫画详情
     case ComicTicket    //漫画月票信息
     case Normal
+    case Classify      //分类
 }
 
 

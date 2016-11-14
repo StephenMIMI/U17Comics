@@ -61,10 +61,9 @@ class HomeHeaderView: UIView {
     func tapAction() {
         //更多跳转参数：argValue=8&argName=topic&argCon=2&page=1
         if jumpClosure != nil {
-            
             if listModel!.argValue != nil && listModel!.argName != nil {
-                let para = "\(homeMoreUrl)?argValue=\(listModel!.argValue!.stringValue)&argName=\(listModel!.argName!)&argCon=2&page="
-                jumpClosure!(para,nil,listModel?.itemTitle)
+                let tmpUrl = String(format: homeMoreUrl, ((listModel?.argValue)!).intValue, (listModel?.argName)!,2)
+                jumpClosure!(tmpUrl,nil,listModel?.itemTitle)
             }else {
                 jumpClosure!(homeUnknownMoreUrl,nil,listModel?.itemTitle)
             }
