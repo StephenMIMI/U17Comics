@@ -18,7 +18,7 @@ class ComicDetailController: U17TabViewController {
             //先下载月票数据并存储
             downloadTicketData()
             downloadDetailData()
-            initLocal()
+            //initLocal()
         }
     }
     var comicId: String?
@@ -44,7 +44,7 @@ class ComicDetailController: U17TabViewController {
     private var chapterId: String? {
         didSet {
             tableView?.reloadData()
-            updateLocal()
+            //updateLocal()
         }
     }
     private var localArray: ComicReadedModelArray?
@@ -181,6 +181,11 @@ extension ComicDetailController: U17DownloadDelegate {
         if let tmpData = data {
             if downloader.downloadType == HomeDownloadType.ComicDetail {
                 comicDetailModel = ComicDetailModel.parseData(tmpData)
+                //第一次进入漫画页面，就会给漫画开始按钮一个第一章的值
+                if let tmpModel = comicDetailModel?.data?.returnData?.chapter_list {
+                    chapterId = tmpModel[0].chapter_id
+                    chapterName = tmpModel[0].name
+                }
                 jumpClosure = {
                     [weak self](jumpUrl,ticketUrl,title) in
                     self!.handleClickEvent(jumpUrl, ticketUrl: ticketUrl)

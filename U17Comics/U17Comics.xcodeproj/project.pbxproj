@@ -75,11 +75,19 @@
 		BC52ADBD1DBA3D090006ED6E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADBC1DBA3D090006ED6E /* ProfileViewController.swift */; };
 		BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADBE1DBA3D180006ED6E /* HomePageViewController.swift */; };
 		BC52ADC11DBA3D270006ED6E /* BookShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC01DBA3D270006ED6E /* BookShelfViewController.swift */; };
-		BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC21DBA3D380006ED6E /* SearchViewController.swift */; };
 		BC52ADC51DBA3F900006ED6E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC41DBA3F900006ED6E /* MainTabBarController.swift */; };
 		BC52ADC71DBA431B0006ED6E /* UIView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */; };
 		BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */; };
 		BC52ADCB1DBA44C80006ED6E /* UIButton+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */; };
+		BC6AFF1D1DD94BF20000D153 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6AFF1C1DD94BF20000D153 /* SystemConfiguration.framework */; };
+		BC6AFF1F1DD94BFB0000D153 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6AFF1E1DD94BFB0000D153 /* CoreTelephony.framework */; };
+		BC6AFF211DD94C040000D153 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6AFF201DD94C040000D153 /* ImageIO.framework */; };
+		BC6AFF231DD94C100000D153 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6AFF221DD94C100000D153 /* libsqlite3.tbd */; };
+		BC6AFF251DD94C1A0000D153 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6AFF241DD94C1A0000D153 /* libz.tbd */; };
+		BC6AFF271DD94C330000D153 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6AFF261DD94C330000D153 /* libc++.tbd */; };
+		BC6AFF2D1DD952D40000D153 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFF2C1DD952D40000D153 /* SearchViewController.swift */; };
+		BC6AFF301DD952FB0000D153 /* ClassifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFF2E1DD952FB0000D153 /* ClassifyCell.swift */; };
+		BC6AFF311DD952FB0000D153 /* ClassifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6AFF2F1DD952FB0000D153 /* ClassifyCell.xib */; };
 		BC83D32E1DC208FC007E185A /* HomeRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */; };
 		BC83D32F1DC208FC007E185A /* HomeRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */; };
 		BCB86EB51DD464C20071F591 /* ReadComicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB86EB31DD464C20071F591 /* ReadComicCell.swift */; };
@@ -199,11 +207,19 @@
 		BC52ADBC1DBA3D090006ED6E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BC52ADBE1DBA3D180006ED6E /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		BC52ADC01DBA3D270006ED6E /* BookShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookShelfViewController.swift; sourceTree = "<group>"; };
-		BC52ADC21DBA3D380006ED6E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BC52ADC41DBA3F900006ED6E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		BC52ADC61DBA431B0006ED6E /* UIView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Common.swift"; sourceTree = "<group>"; };
 		BC52ADC81DBA43610006ED6E /* UILabel+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Common.swift"; sourceTree = "<group>"; };
 		BC52ADCA1DBA44C80006ED6E /* UIButton+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Common.swift"; sourceTree = "<group>"; };
+		BC6AFF1C1DD94BF20000D153 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BC6AFF1E1DD94BFB0000D153 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		BC6AFF201DD94C040000D153 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		BC6AFF221DD94C100000D153 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		BC6AFF241DD94C1A0000D153 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		BC6AFF261DD94C330000D153 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		BC6AFF2C1DD952D40000D153 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BC6AFF2E1DD952FB0000D153 /* ClassifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassifyCell.swift; sourceTree = "<group>"; };
+		BC6AFF2F1DD952FB0000D153 /* ClassifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyCell.xib; sourceTree = "<group>"; };
 		BC83D32C1DC208FC007E185A /* HomeRecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRecommendCell.swift; sourceTree = "<group>"; };
 		BC83D32D1DC208FC007E185A /* HomeRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRecommendCell.xib; sourceTree = "<group>"; };
 		BCB86EB31DD464C20071F591 /* ReadComicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadComicCell.swift; sourceTree = "<group>"; };
@@ -234,6 +250,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC6AFF271DD94C330000D153 /* libc++.tbd in Frameworks */,
+				BC6AFF251DD94C1A0000D153 /* libz.tbd in Frameworks */,
+				BC6AFF231DD94C100000D153 /* libsqlite3.tbd in Frameworks */,
+				BC6AFF211DD94C040000D153 /* ImageIO.framework in Frameworks */,
+				BC6AFF1F1DD94BFB0000D153 /* CoreTelephony.framework in Frameworks */,
+				BC6AFF1D1DD94BF20000D153 /* SystemConfiguration.framework in Frameworks */,
 				FAF44F15A061F0A7B960468F /* Pods_U17Comics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +289,12 @@
 		A7EE458C63251D4F728DA41F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC6AFF261DD94C330000D153 /* libc++.tbd */,
+				BC6AFF241DD94C1A0000D153 /* libz.tbd */,
+				BC6AFF221DD94C100000D153 /* libsqlite3.tbd */,
+				BC6AFF201DD94C040000D153 /* ImageIO.framework */,
+				BC6AFF1E1DD94BFB0000D153 /* CoreTelephony.framework */,
+				BC6AFF1C1DD94BF20000D153 /* SystemConfiguration.framework */,
 				6F1784FB8A3D6884240A8DA6 /* Pods_U17Comics.framework */,
 			);
 			name = Frameworks;
@@ -394,12 +422,12 @@
 		BC52AD8A1DBA3C650006ED6E /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				BC6AFF281DD952C50000D153 /* Search */,
 				BC52AD8B1DBA3C650006ED6E /* BookShelf */,
 				BC52AD8F1DBA3C650006ED6E /* HomePage */,
 				BC52AD981DBA3C650006ED6E /* Profile */,
 				BC52AD9C1DBA3C650006ED6E /* Public */,
 				BC52AD9D1DBA3C650006ED6E /* Resources */,
-				BC52ADAE1DBA3C650006ED6E /* Search */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -698,34 +726,36 @@
 			path = "首页";
 			sourceTree = "<group>";
 		};
-		BC52ADAE1DBA3C650006ED6E /* Search */ = {
+		BC6AFF281DD952C50000D153 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				BC52ADAF1DBA3C650006ED6E /* Controllers */,
-				BC52ADB01DBA3C650006ED6E /* Models */,
-				BC52ADB11DBA3C650006ED6E /* Views */,
+				BC6AFF291DD952C50000D153 /* Controllers */,
+				BC6AFF2A1DD952C50000D153 /* Models */,
+				BC6AFF2B1DD952C50000D153 /* Views */,
 			);
 			path = Search;
 			sourceTree = "<group>";
 		};
-		BC52ADAF1DBA3C650006ED6E /* Controllers */ = {
+		BC6AFF291DD952C50000D153 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BC52ADC21DBA3D380006ED6E /* SearchViewController.swift */,
+				BC6AFF2C1DD952D40000D153 /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		BC52ADB01DBA3C650006ED6E /* Models */ = {
+		BC6AFF2A1DD952C50000D153 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		BC52ADB11DBA3C650006ED6E /* Views */ = {
+		BC6AFF2B1DD952C50000D153 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BC6AFF2E1DD952FB0000D153 /* ClassifyCell.swift */,
+				BC6AFF2F1DD952FB0000D153 /* ClassifyCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -851,6 +881,7 @@
 				BC0307551DC7485800D11E59 /* HomeRankCell.xib in Resources */,
 				BC1A7C9E1DC8B664005147C4 /* become_vip@2x.png in Resources */,
 				BC4E954A1DCC896A008E94C2 /* share_press@3x.png in Resources */,
+				BC6AFF311DD952FB0000D153 /* ClassifyCell.xib in Resources */,
 				BC1A7C9C1DC8B1B2005147C4 /* HomeVIPCell.xib in Resources */,
 				BC52AD671DBA34270006ED6E /* LaunchScreen.storyboard in Resources */,
 				BC19DDA41DC38285006C83AC /* discount@2x.png in Resources */,
@@ -970,7 +1001,6 @@
 				BC00127E1DBE3E9500E5C72A /* U17Download.swift in Sources */,
 				BC19DDA11DC3803F006C83AC /* HomeHotNewCell.swift in Sources */,
 				BC1A7C961DC88B88005147C4 /* HomeVIPView.swift in Sources */,
-				BC52ADC31DBA3D380006ED6E /* SearchViewController.swift in Sources */,
 				BC3092DE1DD30B5E007EBF63 /* ReadComicModel.swift in Sources */,
 				94EEAC0A1DCDC4A300B413D6 /* ComicDetailTicket.swift in Sources */,
 				BCF6B1011DCB460A00296544 /* MoreComicController.swift in Sources */,
@@ -1004,6 +1034,8 @@
 				BCFDAE501DBF559700D79102 /* HomeGalleryCell.swift in Sources */,
 				BC52ADBF1DBA3D180006ED6E /* HomePageViewController.swift in Sources */,
 				BCF6B0FB1DCB3DE500296544 /* WebViewService.swift in Sources */,
+				BC6AFF301DD952FB0000D153 /* ClassifyCell.swift in Sources */,
+				BC6AFF2D1DD952D40000D153 /* SearchViewController.swift in Sources */,
 				94EEAC0E1DCE37AB00B413D6 /* HomeComicChapterCell.swift in Sources */,
 				BC52ADC11DBA3D270006ED6E /* BookShelfViewController.swift in Sources */,
 				BC52ADC91DBA43610006ED6E /* UILabel+Common.swift in Sources */,
@@ -1158,6 +1190,20 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = U17Comics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-980681359.U17Comics";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1171,6 +1217,20 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = U17Comics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-980681359.U17Comics";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
