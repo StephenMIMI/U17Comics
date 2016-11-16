@@ -29,6 +29,7 @@ class SearchViewController: BaseViewController, CustomNavigationProtocol {
         tableView = UITableView(frame: CGRectMake(0, 64, screenWidth, screenHeight-64-49), style: .Plain)
         tableView?.delegate = self
         tableView?.dataSource = self
+        tableView?.backgroundColor = customBgColor
         view.addSubview(tableView!)
         downloadData()//下载数据
     }
@@ -56,7 +57,7 @@ class SearchViewController: BaseViewController, CustomNavigationProtocol {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        return 120
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -67,6 +67,7 @@ class ClassifyCell: UITableViewCell {
     }
     
     override func awakeFromNib() {
+        self.backgroundColor = customBgColor
         super.awakeFromNib()
         // Initialization code
     }

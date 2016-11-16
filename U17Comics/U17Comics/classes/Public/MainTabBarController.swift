@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController {
     
     func createViewControllers() {
         let nameArray = ["HomePageViewController","SearchViewController"]
-        let imageArray = ["home","sort"]
+        let imageArray = ["tabbar_comic","tabbar_Special"]
         let titleArray = ["首页","分类"]
 //        let nameArray = ["HomePageViewController","SearchViewController","BookShelfViewController","ProfileViewController"]
 //        let imageArray = ["tabbar_comic","tabbar_Special","tabbar_collection","tabbar_mine"]
@@ -54,7 +54,6 @@ class MainTabBarController: UITabBarController {
         for i in 0..<imageNames.count {
             //首先创建2个按钮添加视图
             let btnView = UIView.createView()
-            btnView.backgroundColor = customBgColor
             bgView?.addSubview(btnView)
             
             btnView.snp_makeConstraints(closure: { (make) in
@@ -64,7 +63,7 @@ class MainTabBarController: UITabBarController {
             })
             //循环创建按钮
             let imageName = imageNames[i]+"_normal"
-            let selectName = imageNames[i]+"_select"
+            let selectName = imageNames[i]+"_selected"
             let btn = UIButton.createBtn(nil, normalImage: imageName, highlightImage: nil, selectImage: selectName, target: self, action: #selector(btnClick(_:)))
             btn.tag = 100+i
             btn.adjustsImageWhenHighlighted = false//禁用高亮
@@ -77,6 +76,7 @@ class MainTabBarController: UITabBarController {
             
             let titleLabel = UILabel.createLabel(titles[i], textAlignment: .Center, font: UIFont.systemFontOfSize(10))
             titleLabel.textColor = UIColor.lightGrayColor()
+            titleLabel.backgroundColor = UIColor.whiteColor()
             titleLabel.tag = 400
             btn.addSubview(titleLabel)
             
@@ -87,7 +87,7 @@ class MainTabBarController: UITabBarController {
             //默认选中第一个按钮
             if i == 0 {
                 btn.selected = true
-                titleLabel.textColor = lightGreen
+                titleLabel.textColor = UIColor.redColor()
             }
         }
     }
@@ -119,7 +119,7 @@ class MainTabBarController: UITabBarController {
         selectedIndex = index
         curBtn.userInteractionEnabled = false
         let  curLabel = curBtn.viewWithTag(400) as! UILabel
-        curLabel.textColor = lightGreen
+        curLabel.textColor = UIColor.redColor()
     }
 
     override func didReceiveMemoryWarning() {

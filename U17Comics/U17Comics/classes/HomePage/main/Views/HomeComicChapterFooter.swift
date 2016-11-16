@@ -10,6 +10,8 @@ import UIKit
 
 class HomeComicChapterFooter: UIView {
 
+    //接受controller
+    var controller: UIViewController?
     private var commentBtn: UIButton?
     private var commentLabel: UILabel?
     var model: ComicDTComment? {
@@ -50,7 +52,12 @@ class HomeComicChapterFooter: UIView {
     }
     
     func btnClick() {
-        print("跳转评论页面")
+        let alter = UIAlertController(title: "提示", message: "评论功能暂不支持！", preferredStyle: .Alert)
+        alter.addAction(UIAlertAction(title: "好的吧！", style: .Default, handler: { (a) in
+        }))
+        if controller != nil {
+            controller!.presentViewController(alter, animated: true, completion: nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

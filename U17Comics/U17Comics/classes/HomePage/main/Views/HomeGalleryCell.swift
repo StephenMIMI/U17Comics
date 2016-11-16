@@ -13,15 +13,31 @@ class HomeGalleryCell: UITableViewCell {
     var jumpClosure: HomeJumpClosure?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
-//    private var imageArray: Array<String>?
-//    private var preImageView:UIImageView?
-//    private var nextImageView:UIImageView?
-//    private var currentImageView:UIImageView?
+    var viewWidth:CGFloat{//获取scrollView自己的高宽
+        return self.frame.size.width
+    }
+    var viewHeight:CGFloat{
+        return self.frame.size.height
+    }
+    private var imageArray: Array<String>?
+    private var preImageView:UIImageView?
+    private var nextImageView:UIImageView?
+    private var currentImageView:UIImageView?
+    private var timer:NSTimer!
+    private var currentPage:Int = 0
     //接受数据
     var GalleryArray: Array<HomeGalleryItem>? {
         didSet {
-            showData()
+            if let count = GalleryArray?.count {
+                var tmpArray = Array<String>()
+                for i in 0..<count {
+                    if GalleryArray![i].cover != nil {
+                         tmpArray.append(GalleryArray![i].cover!)
+                    }
+                }
+                imageArray = tmpArray
+                showData()
+            }
         }
     }
     
@@ -31,7 +47,6 @@ class HomeGalleryCell: UITableViewCell {
         if cell == nil {
             cell = NSBundle.mainBundle().loadNibNamed("HomeGalleryCell", owner: nil, options: nil).last as? HomeGalleryCell
         }
-        
         //传值
         cell?.GalleryArray = galleryArray
         return cell!
@@ -44,76 +59,67 @@ class HomeGalleryCell: UITableViewCell {
         for sub in scrollView.subviews {
             sub.removeFromSuperview()
         }
-        
-        let count = GalleryArray?.count//获取scrollView Image数量
-//        var tempImageArray = Array<String>()
-        if count > 0 {
-            //滚动视图添加约束
-            //1.创建一个容器视图
-            let containerView = UIView.createView()
-            scrollView.delegate = self
-            scrollView.addSubview(containerView)
-            containerView.snp_makeConstraints(closure: { (make) in
-                make.edges.equalTo(scrollView)
-                //横向滚动需约束高度，避免可以上下滚动
-                make.height.equalTo(scrollView)
-            })
-            
-            var lastView: UIView? = nil
-            for i in 0..<count! {
-                let model = GalleryArray![i]
-//                tempImageArray.append(model.cover!)
-                //创建图片
-                let tmpImageView = UIImageView()
-                let url = NSURL(string: model.cover!)
-                tmpImageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "recommend_comic_default_91x115_"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
-                containerView.addSubview(tmpImageView)
-                
-                //添加点击事件
-                tmpImageView.userInteractionEnabled = true
-                tmpImageView.tag = 200+i
+        if let count = imageArray?.count {
+            if count > 1 {
+ 
+                //定义好轮播的3个视图
                 let g = UITapGestureRecognizer(target: self, action: #selector(tapImage(_:)))
-                tmpImageView.addGestureRecognizer(g)
+                preImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight))
+                //preImageView?.userInteractionEnabled = true
+                //preImageView!.addGestureRecognizer(g)
+                scrollView.addSubview(preImageView!)
+                //添加手势
+                currentImageView = UIImageView(frame: CGRect(x: viewWidth, y: 0, width: viewWidth, height: viewHeight))
+                currentImageView?.userInteractionEnabled = true
+                currentImageView!.addGestureRecognizer(g)
+                scrollView.addSubview(currentImageView!)
                 
-                //图片的约束
-                tmpImageView.snp_makeConstraints(closure: { (make) in
-                    make.top.bottom.equalTo(containerView)
-                    make.width.equalTo(scrollView)
-                    if lastView == nil {
-                        make.left.equalTo(containerView)
-                    }else {
-                        make.left.equalTo((lastView?.snp_right)!)
-                    }
-                })
-                lastView = tmpImageView
+                nextImageView = UIImageView(frame: CGRect(x: 2*viewWidth, y: 0, width: viewWidth, height: viewHeight))
+                //nextImageView?.userInteractionEnabled = true
+                //nextImageView!.addGestureRecognizer(g)
+                scrollView.addSubview(nextImageView!)
+                
+                scrollView.contentSize = CGSize(width: 3*viewWidth, height: viewHeight)
+                scrollView.contentOffset = CGPoint(x: viewWidth, y: 0)
+                scrollView.delegate = self
+
+                pageControl.numberOfPages = count
+                //添加定时器
+                timer=NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(timeRun), userInfo: nil, repeats: false)
+                
+                preImageView!.kf_setImageWithURL(NSURL(string: imageArray![count-1]), placeholderImage: UIImage(named: "recommend_comic_default_91x115_"))
+                currentImageView!.kf_setImageWithURL(NSURL(string: imageArray![0]), placeholderImage: UIImage(named: "recommend_comic_default_91x115_"))
+                nextImageView!.kf_setImageWithURL(NSURL(string: imageArray![1]), placeholderImage: UIImage(named: "recommend_comic_default_91x115_"))
+                pageControl.currentPage = currentPage
             }
-            //修改container的宽度
-            containerView.snp_makeConstraints(closure: { (make) in
-                make.right.equalTo(lastView!)
-            })
-            pageControl.numberOfPages = count!
+        }
+    }
+    
+    func timeRun(){
+        UIView.animateWithDuration(0.3, animations: { [unowned self] in
+            self.scrollView.contentOffset=CGPointMake(self.viewWidth*2, 0)
+        }) { [unowned self](b) in
+            self.scrollViewDidEndDecelerating(self.scrollView)
         }
     }
     
     func tapImage(g: UIGestureRecognizer) {
-        
-        let index = (g.view?.tag)! - 200
         //获取点击的数据
-        let gallery = GalleryArray![index].ext
+        let gallery = GalleryArray![currentPage].ext
         
         if jumpClosure != nil  && gallery![0].val != nil {
             if (gallery![0].val!).hasPrefix("http://") {
-                jumpClosure!(gallery![0].val!, nil,gallery![1].val)
+                if gallery?.count > 1 {
+                    jumpClosure!(gallery![0].val!, nil,gallery![1].val)
+                }else {
+                    jumpClosure!(gallery![0].val!, nil, nil)
+                }
             }else {
                 let tmpUrl = "\(comicsDetailUrl)+\(gallery![0].val!)"
                 let tmpTicket = "\(comicsTicketUrl)+\(gallery![0].val!)"
                 jumpClosure!(tmpUrl,tmpTicket,nil)
             }
-            
         }
-        
-        
-        
     }
     
     override func awakeFromNib() {
@@ -131,7 +137,19 @@ class HomeGalleryCell: UITableViewCell {
 //MARK: UIScrollView的代理
 extension HomeGalleryCell: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let index = scrollView.contentOffset.x/scrollView.bounds.width
-        pageControl.currentPage = Int(index)
+        timer.invalidate()
+        timer=NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(timeRun), userInfo: nil, repeats: false)
+        if scrollView.contentOffset.x == 2*viewWidth{
+            //手从右往左滑动
+            currentPage = (currentPage+1) % imageArray!.count
+        }else if scrollView.contentOffset.x == 0{
+            //从左往右滑动
+            currentPage = (currentPage-1+imageArray!.count) % imageArray!.count
+        }
+        currentImageView!.kf_setImageWithURL(NSURL(string: imageArray![currentPage]), placeholderImage: UIImage(named: "recommend_comic_default_91x115_"))
+        nextImageView!.kf_setImageWithURL(NSURL(string: imageArray![(currentPage+1)%imageArray!.count]), placeholderImage: UIImage(named: "recommend_comic_default_91x115_"))
+        preImageView!.kf_setImageWithURL(NSURL(string: imageArray![(currentPage-1+imageArray!.count)%imageArray!.count]), placeholderImage: UIImage(named: "recommend_comic_default_91x115_"))
+        pageControl.currentPage = currentPage
+        scrollView.contentOffset = CGPoint(x: viewWidth, y: 0)
     }
 }

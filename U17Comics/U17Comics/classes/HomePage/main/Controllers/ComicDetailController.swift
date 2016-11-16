@@ -47,6 +47,8 @@ class ComicDetailController: U17TabViewController {
             //updateLocal()
         }
     }
+    //暂时接受存放排序值
+    private var cellSortValue: Bool?
     private var localArray: ComicReadedModelArray?
     
     //首次跳转到这个页面，从本地读取信息并初始化数组
@@ -139,7 +141,6 @@ class ComicDetailController: U17TabViewController {
     func handleReadComic(urlString: String) {
         let readComicView = ReadComicController()
         readComicView.readComicUrl = urlString
-        
         navigationController?.pushViewController(readComicView, animated: true)
     }
     
@@ -184,7 +185,7 @@ extension ComicDetailController: U17DownloadDelegate {
                 //第一次进入漫画页面，就会给漫画开始按钮一个第一章的值
                 if let tmpModel = comicDetailModel?.data?.returnData?.chapter_list {
                     chapterId = tmpModel[0].chapter_id
-                    chapterName = tmpModel[0].name
+                    //chapterName = tmpModel[0].name
                 }
                 jumpClosure = {
                     [weak self](jumpUrl,ticketUrl,title) in
@@ -247,6 +248,10 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
                 if cell == nil {
                     cell = HomeComicChapterCell()
                 }
+                cell?.sortValueClosure = {
+                    self.cellSortValue = $0
+                }
+                cell?.sortBool = cellSortValue
                 cell?.controller = self
                 cell?.jumpClosure = jumpClosure
                 cell?.readComicClosure = readComicClosure
@@ -267,14 +272,7 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
         }
         return height
     }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        var height: CGFloat = 0
-        if section == 1 {
-            height = 44
-        }
-        return height
-    }
+
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
@@ -288,10 +286,19 @@ extension ComicDetailController: UITableViewDelegate, UITableViewDataSource {
         return nil
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        var height: CGFloat = 0
+        if section == 1 {
+            height = 44
+        }
+        return height
+    }
+    
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
             let cell = HomeComicChapterFooter.init(frame: CGRectMake(0,0,screenWidth,44))
             cell.model = comicTicketModel?.data?.returnData?.comment
+            cell.controller = self
             return cell
         }
         return nil

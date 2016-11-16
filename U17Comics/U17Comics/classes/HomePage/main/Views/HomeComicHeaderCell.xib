@@ -106,7 +106,7 @@
                             <action selector="ticketBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="C56-D6-mDQ"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRN-ph-L5v" userLabel="collectionButton">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRN-ph-L5v" userLabel="collectionButton">
                         <rect key="frame" x="334" y="5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="kKO-QT-gNb"/>
@@ -117,7 +117,7 @@
                             <action selector="collectionClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ocF-hC-bSq"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kR6-kd-XKS" userLabel="shareButton">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kR6-kd-XKS" userLabel="shareButton">
                         <rect key="frame" x="374" y="5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="CFt-jZ-0yC"/>

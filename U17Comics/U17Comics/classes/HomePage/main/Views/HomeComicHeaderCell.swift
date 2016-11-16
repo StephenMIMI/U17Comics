@@ -95,8 +95,8 @@ class HomeComicHeaderCell: UITableViewCell {
             descLabel.text = comicModel.description1
             descLabel.userInteractionEnabled = true
             //详情label可以跳转作者详情页面
-            let g = UITapGestureRecognizer(target: self, action: #selector(tapAction))
-            descLabel.addGestureRecognizer(g)
+            //let g = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+            //descLabel.addGestureRecognizer(g)
             if let tmpTicket = ticketModel?.comic?.monthly_ticket?.integerValue {
                 if tmpTicket >= 0 && tmpTicket <= 99999 {
                     ticketLabel.text = "\(tmpTicket)"

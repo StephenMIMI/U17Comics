@@ -22,17 +22,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDB-gU-JWU">
-                        <rect key="frame" x="105" y="10" width="229" height="20"/>
+                        <rect key="frame" x="105" y="10" width="289" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="VGH-PE-Zk6"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="epg-sp-UUG"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBg-JP-NzZ">
-                        <rect key="frame" x="105" y="40" width="229" height="20"/>
+                        <rect key="frame" x="105" y="40" width="289" height="20"/>
                         <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="9UC-eW-VNW"/>
                             <constraint firstAttribute="height" constant="20" id="Sbq-bN-IDQ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -48,24 +50,19 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="120.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iv6-tE-gJt">
-                        <rect key="frame" x="354" y="5" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="FTm-sm-n1S"/>
-                            <constraint firstAttribute="height" constant="50" id="Mrl-CC-VeX"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hDB-gU-JWU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="7Oq-1j-5mz"/>
-                    <constraint firstItem="Iv6-tE-gJt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="RFb-LB-Rw0"/>
-                    <constraint firstItem="Iv6-tE-gJt" firstAttribute="leading" secondItem="eBg-JP-NzZ" secondAttribute="trailing" constant="20" id="RJS-Gk-ykl"/>
+                    <constraint firstAttribute="trailing" secondItem="eBg-JP-NzZ" secondAttribute="trailing" constant="20" id="AqW-s0-XQi"/>
+                    <constraint firstAttribute="trailing" secondItem="hDB-gU-JWU" secondAttribute="trailing" constant="20" id="HE1-XL-RlB"/>
+                    <constraint firstItem="eBg-JP-NzZ" firstAttribute="top" secondItem="hDB-gU-JWU" secondAttribute="bottom" constant="10" id="IHU-gF-fFo"/>
+                    <constraint firstItem="hDB-gU-JWU" firstAttribute="leading" secondItem="RGv-MG-8gr" secondAttribute="trailing" constant="10" id="MR3-Rg-cWR"/>
                     <constraint firstItem="qd6-b5-r7n" firstAttribute="leading" secondItem="RGv-MG-8gr" secondAttribute="trailing" constant="10" id="UzM-aj-bFL"/>
                     <constraint firstItem="eBg-JP-NzZ" firstAttribute="leading" secondItem="RGv-MG-8gr" secondAttribute="trailing" constant="10" id="bDI-uc-EpZ"/>
                     <constraint firstItem="eBg-JP-NzZ" firstAttribute="top" secondItem="hDB-gU-JWU" secondAttribute="bottom" constant="10" id="bFX-TY-dmO"/>
                     <constraint firstItem="RGv-MG-8gr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="cvD-Lv-k1I"/>
-                    <constraint firstItem="Iv6-tE-gJt" firstAttribute="leading" secondItem="hDB-gU-JWU" secondAttribute="trailing" constant="20" id="gUY-Kw-7JN"/>
-                    <constraint firstAttribute="trailing" secondItem="Iv6-tE-gJt" secondAttribute="trailing" constant="10" id="kaS-xq-iaC"/>
+                    <constraint firstItem="hDB-gU-JWU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hFa-cI-bPS"/>
+                    <constraint firstItem="eBg-JP-NzZ" firstAttribute="leading" secondItem="RGv-MG-8gr" secondAttribute="trailing" constant="10" id="i3L-pg-Ftw"/>
                     <constraint firstAttribute="trailing" secondItem="qd6-b5-r7n" secondAttribute="trailing" constant="20" id="lHt-Nu-551"/>
                     <constraint firstItem="RGv-MG-8gr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="pNr-Dh-P7Y"/>
                     <constraint firstItem="qd6-b5-r7n" firstAttribute="top" secondItem="eBg-JP-NzZ" secondAttribute="bottom" id="qbY-iq-mdO"/>
@@ -80,7 +77,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="120.png" width="90" height="90"/>
-    </resources>
 </document>
